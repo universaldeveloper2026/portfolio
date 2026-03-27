@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Portfolio — MJ</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EEF2F7;
+  --surface:#FFFFFF;
+  --surface2:#F8FAFC;
+  --surface3:#F1F5F9;
+  --border:#E2E8F0;
+  --border2:#CBD5E1;
+  --text:#1E293B;
+  --text2:#475569;
+  --muted:#94A3B8;
+  --green:#0F7A4B;  --green-bg:#ECFDF5; --green-border:#A7F3D0;
+  --red:#C0392B;    --red-bg:#FEF2F2;   --red-border:#FECACA;
+  --blue:#1D4ED8;   --blue-bg:#EFF6FF;  --blue-border:#BFDBFE;
+  --gold:#92400E;   --gold-bg:#FFFBEB;  --gold-border:#FDE68A;
+  --indigo:#4F46E5; --indigo-bg:#EEF2FF;
+  --shadow:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.04);
+  --shadow2:0 4px 16px rgba(0,0,0,.1);
+  --shadow3:0 0 0 3px rgba(29,78,216,.12);
+  --r:10px; --r2:8px;
+  --mono:'JetBrains Mono',monospace;
+  --sans:'Inter',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:13px;min-height:100vh;-webkit-font-smoothing:antialiased}
+
+/* ── TOPBAR ── */
+.topbar{background:var(--surface);border-bottom:1px solid var(--border);padding:0 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:300;height:54px;box-shadow:var(--shadow)}
+.t-left{display:flex;align-items:center;gap:10px}
+.logo{width:32px;height:32px;background:linear-gradient(135deg,#1D4ED8,#0F7A4B);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px;color:#fff;flex-shrink:0;box-shadow:0 2px 6px rgba(29,78,216,.25)}
+.t-title{font-size:15px;font-weight:700}
+.t-sub{font-size:9px;color:var(--muted);font-family:var(--mono);margin-top:1px}
+.t-right{display:flex;gap:6px;align-items:center}
+.btn{background:var(--surface2);border:1px solid var(--border2);color:var(--text2);padding:7px 12px;border-radius:var(--r2);font-size:11px;font-family:var(--mono);cursor:pointer;display:flex;align-items:center;gap:5px;transition:all .15s;white-space:nowrap;font-weight:600;box-shadow:var(--shadow)}
+.btn:hover{background:var(--surface3)}
+.btn:active{opacity:.8;transform:scale(.97)}
+.btn.primary{background:var(--blue-bg);border-color:var(--blue-border);color:var(--blue)}
+.btn.upload-btn{background:var(--gold-bg);border-color:var(--gold-border);color:var(--gold)}
+.btn.live-btn{background:var(--green-bg);border-color:var(--green-border);color:var(--green)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+@keyframes spin{to{transform:rotate(360deg)}}
+.spin{display:inline-block;animation:spin 1s linear infinite}
+
+/* ── UPLOAD ZONE ── */
+#uploadZone{margin:16px;border:2px dashed var(--border2);border-radius:14px;padding:36px 20px;text-align:center;background:var(--surface);cursor:pointer;transition:all .2s}
+#uploadZone.drag{border-color:var(--blue);background:var(--blue-bg)}
+#uploadZone.hidden{display:none}
+.uz-icon{font-size:44px;margin-bottom:10px;line-height:1}
+.uz-title{font-size:16px;font-weight:700;margin-bottom:6px}
+.uz-sub{font-size:12px;color:var(--muted);line-height:1.75}
+.uz-chip{display:inline-block;background:var(--blue-bg);border:1px solid var(--blue-border);border-radius:5px;padding:2px 9px;font-family:var(--mono);font-size:10px;color:var(--blue);margin-top:6px}
+.uz-btn{display:inline-block;margin-top:14px;background:var(--blue);color:#fff;padding:9px 26px;border-radius:var(--r2);font-size:13px;font-weight:600;cursor:pointer;box-shadow:0 2px 8px rgba(29,78,216,.3)}
+#fileInput{display:none}
+
+/* ── MAIN ── */
+main{padding:12px 14px;max-width:1024px;margin:0 auto}
+
+/* ── LIVE STATUS BAR ── */
+.live-bar{background:var(--surface);border:1px solid var(--border);border-radius:var(--r2);padding:7px 12px;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;font-size:11px;box-shadow:var(--shadow);gap:8px;flex-wrap:wrap}
+.live-dot{width:8px;height:8px;border-radius:50%;background:var(--muted);flex-shrink:0;transition:background .3s}
+.live-dot.green{background:var(--green);animation:pulse2 2s infinite}
+.live-dot.amber{background:#D97706;animation:pulse2 1s infinite}
+@keyframes pulse2{0%,100%{opacity:1}50%{opacity:.4}}
+.live-label{font-family:var(--mono);font-weight:600;color:var(--text2);display:flex;align-items:center;gap:6px}
+.live-meta{font-size:10px;color:var(--muted);font-family:var(--mono)}
+
+/* ── KPI STRIP ── */
+.kpi-strip{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:12px}
+@media(min-width:500px){.kpi-strip{grid-template-columns:repeat(4,1fr)}}
+.kpi{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:13px 14px;box-shadow:var(--shadow);border-top:3px solid transparent;transition:box-shadow .2s}
+.kpi:hover{box-shadow:var(--shadow2)}
+.kpi.c-blue{border-top-color:var(--blue)}.kpi.c-green{border-top-color:var(--green)}
+.kpi.c-pos{border-top-color:var(--green)}.kpi.c-neg{border-top-color:var(--red)}
+.kpi.c-gold{border-top-color:var(--gold)}
+.kpi-lbl{font-size:9px;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted);margin-bottom:5px;font-weight:600}
+.kpi-val{font-size:18px;font-weight:700;font-family:var(--mono);line-height:1.1;color:var(--text)}
+.kpi-sub{font-size:11px;color:var(--muted);margin-top:4px;font-family:var(--mono);font-weight:600}
+
+/* ── TABS ── */
+.tabs{display:flex;gap:6px;margin-bottom:12px;overflow-x:auto;scrollbar-width:none;padding-bottom:1px}
+.tabs::-webkit-scrollbar{display:none}
+.tab{background:var(--surface);border:1px solid var(--border);border-radius:var(--r2);padding:8px 16px;font-size:12px;color:var(--muted);cursor:pointer;white-space:nowrap;font-weight:500;transition:all .15s;flex-shrink:0;box-shadow:var(--shadow)}
+.tab.active{background:var(--blue);border-color:var(--blue);color:#fff;font-weight:600;box-shadow:0 2px 8px rgba(29,78,216,.28)}
+
+/* ── SECTION ── */
+.sec{margin-bottom:12px}
+.sec-hdr{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r) var(--r) 0 0;border-bottom:1px solid var(--border);background:var(--surface3)}
+.sec-title{font-size:12px;font-weight:700;color:var(--text)}
+.sec-badge{font-size:10px;color:var(--muted);font-family:var(--mono);background:var(--surface);border:1px solid var(--border);padding:2px 8px;border-radius:5px}
+
+/* ── TABLE ── */
+.t-wrap{background:var(--surface);border:1px solid var(--border);border-radius:0 0 var(--r) var(--r);overflow:hidden;box-shadow:var(--shadow)}
+.t-wrap.scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse}
+thead th{background:var(--surface2);padding:8px 12px;text-align:right;font-size:9.5px;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);font-weight:700;white-space:nowrap;border-bottom:1px solid var(--border)}
+thead th:first-child{text-align:left}
+tbody tr{border-top:1px solid var(--border);transition:background .1s}
+tbody tr:hover{background:#F8FAFC}
+td{padding:9px 12px;text-align:right;font-size:12px;font-family:var(--mono);white-space:nowrap;color:var(--text)}
+td:first-child{text-align:left;font-family:var(--sans)}
+.sn{font-size:12px;font-weight:600;color:var(--text);display:block}
+.ss{font-size:10px;color:var(--muted);display:block;margin-top:1px;max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pos{color:var(--green);font-weight:600}
+.neg{color:var(--red);font-weight:600}
+.neu{color:var(--text2)}
+.pill{display:inline-flex;align-items:center;padding:3px 8px;border-radius:5px;font-size:11px;font-weight:700;font-family:var(--mono);gap:2px}
+.pill.pos{background:var(--green-bg);color:var(--green);border:1px solid var(--green-border)}
+.pill.neg{background:var(--red-bg);color:var(--red);border:1px solid var(--red-border)}
+.pill.neu{background:var(--surface2);color:var(--muted);border:1px solid var(--border)}
+
+/* CMP live badge */
+.cmp-wrap{display:flex;flex-direction:column;align-items:flex-end;gap:2px}
+.cmp-price{font-weight:700;font-family:var(--mono)}
+.cmp-badge{font-size:9.5px;font-weight:700;font-family:var(--mono);padding:1px 5px;border-radius:4px;display:inline-flex;align-items:center;gap:2px}
+.cmp-badge.pos{background:var(--green-bg);color:var(--green)}
+.cmp-badge.neg{background:var(--red-bg);color:var(--red)}
+.cmp-badge.neu{background:var(--surface2);color:var(--muted)}
+.live-star{font-size:8px;color:var(--green)}
+
+/* ── WEIGHT BAR ── */
+.bar-row{display:flex;align-items:center;gap:6px;justify-content:flex-end}
+.bar-track{width:40px;height:5px;background:var(--border);border-radius:3px;overflow:hidden;flex-shrink:0}
+.bar-fill{height:100%;border-radius:3px;background:var(--blue)}
+
+/* ── SEARCH ── */
+.search-wrap{position:relative;margin-bottom:10px}
+.search{background:var(--surface);border:1px solid var(--border2);border-radius:var(--r2);padding:9px 12px 9px 36px;color:var(--text);font-family:var(--sans);font-size:13px;width:100%;outline:none;transition:all .2s;box-shadow:var(--shadow)}
+.search:focus{border-color:var(--blue);box-shadow:var(--shadow3)}
+.search::placeholder{color:var(--muted)}
+.s-icon{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:15px;pointer-events:none}
+
+/* ── SECTOR HEATMAP ── */
+.heatmap{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;background:var(--surface);border:1px solid var(--border);border-radius:0 0 var(--r) var(--r);padding:12px;box-shadow:var(--shadow)}
+@media(min-width:480px){.heatmap{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:700px){.heatmap{grid-template-columns:repeat(4,1fr)}}
+.hc{border-radius:var(--r2);padding:10px 12px;border:1px solid transparent;transition:transform .15s,box-shadow .15s}
+.hc:hover{transform:translateY(-2px);box-shadow:var(--shadow2)}
+.hc-name{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;margin-bottom:3px}
+.hc-pct{font-size:18px;font-weight:700;font-family:var(--mono);margin-bottom:2px}
+.hc-info{font-size:9.5px;opacity:.75;font-family:var(--mono)}
+
+/* ── INDEX CARDS ── */
+.idx-section{margin-bottom:14px}
+.idx-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.9px;color:var(--muted);margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.idx-label::after{content:'';flex:1;height:1px;background:var(--border)}
+.idx-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+@media(min-width:400px){.idx-grid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:580px){.idx-grid{grid-template-columns:repeat(4,1fr)}}
+@media(min-width:800px){.idx-grid{grid-template-columns:repeat(5,1fr)}}
+.ic{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:11px 13px;box-shadow:var(--shadow);transition:all .15s;border-left:3px solid transparent;cursor:default}
+.ic:hover{box-shadow:var(--shadow2);transform:translateY(-1px)}
+.ic.pos-card{border-left-color:var(--green);background:linear-gradient(to right,var(--green-bg),var(--surface))}
+.ic.neg-card{border-left-color:var(--red);background:linear-gradient(to right,var(--red-bg),var(--surface))}
+.ic-flag{font-size:11px;margin-bottom:2px}
+.ic-name{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;font-weight:600;margin-bottom:4px}
+.ic-val{font-size:14px;font-weight:700;font-family:var(--mono);color:var(--text)}
+.ic-chg{font-size:10px;font-family:var(--mono);margin-top:3px;font-weight:600;display:flex;align-items:center;gap:4px}
+.ic-pct{padding:1px 5px;border-radius:4px;font-size:9.5px}
+
+/* ── TWO COLUMN ── */
+.two-col{display:grid;grid-template-columns:1fr;gap:12px}
+@media(min-width:680px){.two-col{grid-template-columns:1fr 1fr}}
+
+/* ── GUIDE ── */
+.steps{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:16px;margin-bottom:12px;box-shadow:var(--shadow)}
+.steps-title{font-size:13px;font-weight:700;margin-bottom:14px;color:var(--text);display:flex;align-items:center;gap:8px}
+.step{display:flex;gap:12px;align-items:flex-start;margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+.step:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
+.step-num{width:26px;height:26px;border-radius:50%;background:var(--blue-bg);border:2px solid var(--blue);color:var(--blue);font-size:11px;font-weight:700;font-family:var(--mono);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.step-title{font-size:12px;font-weight:700;margin-bottom:4px}
+.step-desc{font-size:11px;color:var(--muted);line-height:1.75}
+.chip{display:inline-block;background:var(--blue-bg);border:1px solid var(--blue-border);border-radius:4px;padding:1px 7px;font-family:var(--mono);font-size:10px;color:var(--blue)}
+.note{border-radius:var(--r2);padding:10px 14px;font-size:11px;margin-bottom:12px;line-height:1.7;border:1px solid transparent}
+.note.info{background:var(--blue-bg);border-color:var(--blue-border);color:var(--blue)}
+.note.warn{background:var(--gold-bg);border-color:var(--gold-border);color:var(--gold)}
+.note.ok{background:var(--green-bg);border-color:var(--green-border);color:var(--green)}
+
+/* ── TOAST ── */
+#toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--text);color:#fff;border-radius:var(--r);padding:10px 18px;font-size:12px;font-family:var(--mono);z-index:999;opacity:0;transition:all .3s;white-space:nowrap;pointer-events:none;max-width:92vw;text-align:center;box-shadow:var(--shadow2)}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+#toast.ok{background:var(--green)}
+#toast.warn{background:var(--gold)}
+#toast.err{background:var(--red)}
+
+/* ── FOOTER ── */
+.footer{text-align:center;padding:16px;font-size:10px;color:var(--muted);font-family:var(--mono)}
+.dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--green);margin-right:5px;animation:pulse2 2s infinite}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="t-left">
+    <div class="logo">MJ</div>
+    <div>
+      <div class="t-title">Portfolio</div>
+      <div class="t-sub" id="tDate">—</div>
+    </div>
+  </div>
+  <div class="t-right">
+    <label class="btn upload-btn" for="fileInput" title="Upload daily CSV">📂 <span id="upTxt">Update CSV</span></label>
+    <input type="file" id="fileInput" accept=".csv,.CSV" onchange="handleCSV(this)">
+    <button class="btn live-btn" onclick="refreshPrices()" id="rfBtn"><span id="ri">↻</span> Live</button>
+  </div>
+</div>
+
+<!-- UPLOAD ZONE -->
+<div id="uploadZone" ondragover="onDO(event)" ondragleave="onDL(event)" ondrop="onDP(event)">
+  <div class="uz-icon">📊</div>
+  <div class="uz-title">Drop your broker CSV here</div>
+  <div class="uz-sub">
+    Export → <strong>Unrealised P&amp;L Report</strong> → Download CSV<br>
+    Drag &amp; drop or tap Browse — dashboard auto-reads your format<br>
+    <span class="uz-chip">EXPORTREPORT_XXXXX_YYYYMMDD.CSV</span>
+  </div>
+  <label class="uz-btn" for="fileInput">Browse File</label>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard" style="display:none">
+<main>
+
+  <!-- LIVE STATUS -->
+  <div class="live-bar">
+    <div class="live-label"><div class="live-dot" id="liveDot"></div><span id="liveLabel">Loading prices...</span></div>
+    <div class="live-meta" id="liveMeta"></div>
+  </div>
+
+  <!-- KPI STRIP -->
+  <div class="kpi-strip">
+    <div class="kpi c-blue"><div class="kpi-lbl">Total Invested</div><div class="kpi-val" id="k-inv">—</div><div class="kpi-sub">Cost basis</div></div>
+    <div class="kpi c-green"><div class="kpi-lbl">Current Value</div><div class="kpi-val" id="k-curr">—</div><div class="kpi-sub" id="k-chg">—</div></div>
+    <div class="kpi c-pos" id="kpi-pnl"><div class="kpi-lbl">Total P&amp;L</div><div class="kpi-val" id="k-pnl">—</div><div class="kpi-sub" id="k-pnlp">—</div></div>
+    <div class="kpi c-gold"><div class="kpi-lbl">Holdings</div><div class="kpi-val" id="k-cnt">—</div><div class="kpi-sub" id="k-win">—</div></div>
+  </div>
+
+  <!-- TABS -->
+  <div class="tabs">
+    <div class="tab active"  onclick="showTab('ov',this)">📈 Overview + Market</div>
+    <div class="tab" onclick="showTab('hd',this)">📋 Holdings</div>
+    <div class="tab" onclick="showTab('sc',this)">🏭 Sectors</div>
+    <div class="tab" onclick="showTab('gu',this)">❓ GitHub Guide</div>
+  </div>
+
+  <!-- ═══ OVERVIEW + MARKET ═══ -->
+  <div id="t-ov">
+    <!-- Top Gainers / Losers -->
+    <div class="two-col">
+      <div class="sec">
+        <div class="sec-hdr"><span class="sec-title">🚀 Top Gainers</span><span class="sec-badge" id="gBadge">—</span></div>
+        <div class="t-wrap">
+          <table><thead><tr><th>Stock</th><th>CMP ⚡</th><th>Day%</th><th>Avg Buy</th><th>P&amp;L%</th><th>P&amp;L ₹</th></tr></thead>
+          <tbody id="tb-gain"></tbody></table>
+        </div>
+      </div>
+      <div class="sec">
+        <div class="sec-hdr"><span class="sec-title">📉 Top Losers</span><span class="sec-badge" id="lBadge">—</span></div>
+        <div class="t-wrap">
+          <table><thead><tr><th>Stock</th><th>CMP ⚡</th><th>Day%</th><th>Avg Buy</th><th>P&amp;L%</th><th>P&amp;L ₹</th></tr></thead>
+          <tbody id="tb-lose"></tbody></table>
+        </div>
+      </div>
+    </div>
+
+    <!-- INDIAN NIFTY INDICES -->
+    <div class="idx-section">
+      <div class="idx-label">🇮🇳 Indian Indices</div>
+      <div class="idx-grid" id="idx-india"></div>
+    </div>
+
+    <!-- GLOBAL INDICES -->
+    <div class="idx-section">
+      <div class="idx-label">🌍 Global Indices</div>
+      <div class="idx-grid" id="idx-global"></div>
+    </div>
+
+    <!-- COMMODITIES + FX -->
+    <div class="idx-section">
+      <div class="idx-label">💱 Currencies &amp; Commodities</div>
+      <div class="idx-grid" id="idx-comm"></div>
+    </div>
+  </div>
+
+  <!-- ═══ HOLDINGS ═══ -->
+  <div id="t-hd" style="display:none">
+    <div class="search-wrap">
+      <span class="s-icon">🔍</span>
+      <input class="search" id="srch" placeholder="Search stock, sector..." oninput="filterHoldings()">
+    </div>
+    <div class="sec">
+      <div class="sec-hdr"><span class="sec-title">📋 All Holdings — Live CMP</span><span class="sec-badge" id="hBadge">—</span></div>
+      <div class="t-wrap scroll">
+        <table>
+          <thead><tr><th>Stock</th><th>Qty</th><th>Avg Buy ₹</th><th>CMP ⚡ / Day%</th><th>Curr. Value</th><th>P&amp;L ₹</th><th>P&amp;L %</th><th>Wt%</th></tr></thead>
+          <tbody id="tb-hold"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SECTORS ═══ -->
+  <div id="t-sc" style="display:none">
+    <div class="sec">
+      <div class="sec-hdr"><span class="sec-title">🏭 Sector Heatmap</span><span class="sec-badge">by P&amp;L %</span></div>
+      <div class="heatmap" id="heatmap"></div>
+    </div>
+    <div class="sec">
+      <div class="sec-hdr"><span class="sec-title">📊 Sector Detail</span></div>
+      <div class="t-wrap scroll">
+        <table><thead><tr><th>Sector</th><th>Stocks</th><th>Invested</th><th>Curr. Value</th><th>P&amp;L ₹</th><th>P&amp;L %</th><th>Weight</th></tr></thead>
+        <tbody id="tb-sec"></tbody></table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ GITHUB GUIDE ═══ -->
+  <div id="t-gu" style="display:none">
+    <div class="note info">📱 <strong>Goal:</strong> This HTML file hosted on GitHub Pages becomes a permanent free URL you can bookmark on your phone — works like an app, opens in one tap.</div>
+
+    <div class="steps">
+      <div class="steps-title">🐙 GitHub Pages Setup — Free Forever (5 min)</div>
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-title">Create a free GitHub account</div>
+          <div class="step-desc">Go to <span class="chip">github.com</span> → Sign up (free) → Verify email. If you already have one, just sign in.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-title">Create a new repository</div>
+          <div class="step-desc">
+            Click <strong>+</strong> (top right) → <strong>New repository</strong><br>
+            Name it: <span class="chip">portfolio</span> &nbsp; (or any name you like)<br>
+            Set to <strong>Public</strong> (required for free Pages)<br>
+            Tick ✅ <strong>Add a README file</strong><br>
+            Click <strong>Create repository</strong>
+          </div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-title">Upload the dashboard file</div>
+          <div class="step-desc">
+            In your new repo → click <strong>Add file</strong> → <strong>Upload files</strong><br>
+            Drag the downloaded <span class="chip">portfolio_dashboard.html</span> file<br>
+            ⚠️ <strong>RENAME IT</strong> to exactly <span class="chip">index.html</span> before uploading<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;(Right-click the file → Rename → index.html)<br>
+            Add commit message: <em>"Initial upload"</em> → Click <strong>Commit changes</strong>
+          </div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <div class="step-title">Enable GitHub Pages</div>
+          <div class="step-desc">
+            In your repo → <strong>Settings</strong> tab (top menu)<br>
+            Scroll down to <strong>Pages</strong> (left sidebar)<br>
+            Under <em>Source</em> → select <strong>Deploy from a branch</strong><br>
+            Branch: <strong>main</strong> → Folder: <strong>/ (root)</strong><br>
+            Click <strong>Save</strong>
+          </div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <div class="step-title">Get your permanent URL</div>
+          <div class="step-desc">
+            Wait ~60 seconds → refresh Settings → Pages<br>
+            Your URL appears: <span class="chip">https://YourUsername.github.io/portfolio</span><br>
+            ✅ Copy this URL — this is your permanent dashboard link!
+          </div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">6</div>
+        <div class="step-body">
+          <div class="step-title">Add to phone home screen</div>
+          <div class="step-desc">
+            Open URL on phone Chrome → tap ⋮ menu → <strong>Add to Home screen</strong><br>
+            On Safari (iPhone) → tap Share → <strong>Add to Home Screen</strong><br>
+            ✅ Icon appears on home screen — one tap to open, works like an app!
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="steps">
+      <div class="steps-title">📅 When you update the dashboard file later</div>
+      <div class="step">
+        <div class="step-num">A</div>
+        <div class="step-body">
+          <div class="step-title">Go to your GitHub repo</div>
+          <div class="step-desc">Visit <span class="chip">github.com/YourUsername/portfolio</span> → click on <span class="chip">index.html</span></div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">B</div>
+        <div class="step-body">
+          <div class="step-title">Replace the file</div>
+          <div class="step-desc">Click the ✏️ pencil edit icon → delete all content → paste new file content → Commit changes. Site updates in ~30 seconds.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="steps">
+      <div class="steps-title">📅 Daily Portfolio Update (2 taps from phone)</div>
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-title">Export CSV from your broker</div>
+          <div class="step-desc">Login → Portfolio → Unrealised P&amp;L → Export CSV → Save to phone Downloads</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-title">Tap "📂 Update CSV" button (top right)</div>
+          <div class="step-desc">Select the CSV → Dashboard instantly recalculates. New stocks appear, sold ones disappear, quantities update. Zero manual work.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-title">Tap "↻ Live" for real-time prices</div>
+          <div class="step-desc">Fetches NSE live prices. CMP column and P&amp;L update in real time. Auto-refreshes every 5 minutes while the page is open.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note warn">🔒 <strong>100% Private:</strong> Your CSV is read entirely in your browser. It never goes to any server. GitHub only hosts the HTML file — your portfolio data never leaves your device.</div>
+    <div class="note ok">💡 <strong>Tip:</strong> If you get a new CSV from your broker, you don't need to update GitHub. Just open the site and tap "📂 Update CSV" — it reads from your phone locally each time.</div>
+  </div>
+
+</main>
+<div class="footer"><span class="dot"></span><span id="lastUp">—</span></div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+// ══════════════════════════════════════════════════════
+//  DATA
+// ══════════════════════════════════════════════════════
+let PORTFOLIO = [];
+let livePrices    = {};  // code → live CMP
+let liveChangePct = {};  // code → day change %
+let liveChangeAbs = {};  // code → day change absolute
+let lastCSVDate = null;
+let liveCount = 0;
+
+const SEED = [
+  {code:"AUROPHARMA",name:"AUROBINDO PHARMA",   sector:"Pharmaceuticals",      qty:405,  buy:1305.891873,valRate:1281.60},
+  {code:"BAJFINANCE", name:"BAJAJ FINANCE",      sector:"Banking Services",     qty:34775,buy:797.244781, valRate:849.00},
+  {code:"BAJAJFINSV", name:"BAJAJ FINSERV",      sector:"Banking Services",     qty:755,  buy:1962.09466, valRate:1704.40},
+  {code:"BEL",        name:"BHARAT ELECTRONICS", sector:"Aerospace & Defense",  qty:1295, buy:409.414355, valRate:414.45},
+  {code:"BHARTIARTL", name:"BHARTI AIRTEL",      sector:"Telecom",              qty:275,  buy:1929.062394,valRate:1802.10},
+  {code:"BLS",        name:"BLS INTL SERVICES",  sector:"Professional Services",qty:1445, buy:369.154389, valRate:259.40},
+  {code:"BLUESTARCO", name:"BLUE STAR",          sector:"Machinery & Equipment",qty:595,  buy:1799.056815,valRate:1665.90},
+  {code:"CGPOWER",    name:"CG POWER & IND SOL", sector:"Machinery & Equipment",qty:825,  buy:676.008528, valRate:667.30},
+  {code:"DIXON",      name:"DIXON TECHNOLOGIES", sector:"Electronics",          qty:301,  buy:15722.60059,valRate:10174.00},
+  {code:"ETERNAL",    name:"ETERNAL LIMITED",    sector:"Software & IT",        qty:10465,buy:312.290695, valRate:237.94},
+  {code:"FIVESTAR",   name:"FIVE-STAR BUS FIN",  sector:"Banking Services",     qty:3960, buy:538.093046, valRate:364.55},
+  {code:"GVT&D",      name:"GE VERNOVA T&D",     sector:"Machinery & Equipment",qty:150,  buy:3513.900916,valRate:3520.90},
+  {code:"HDFCBANK",   name:"HDFC BANK",          sector:"Banking Services",     qty:660,  buy:806.814661, valRate:764.90},
+  {code:"HCG",        name:"HEALTHCARE GLOBAL",  sector:"Healthcare",           qty:1585, buy:672.002439, valRate:527.15},
+  {code:"INDIANB",    name:"INDIAN BANK",        sector:"Banking Services",     qty:640,  buy:829.506443, valRate:871.45},
+  {code:"INDUSTOWER", name:"INDUS TOWERS",       sector:"Telecom",              qty:1120, buy:474.646231, valRate:429.30},
+  {code:"INDIGO",     name:"INTERGLOBE AVIATION",sector:"Aviation",             qty:325,  buy:4732.560552,valRate:4150.80},
+  {code:"KIRLOSBROS", name:"KIRLOSKAR BROTHERS", sector:"Machinery & Equipment",qty:715,  buy:1748.434959,valRate:1496.10},
+  {code:"LAURUSLABS", name:"LAURUS LABS",        sector:"Pharmaceuticals",      qty:560,  buy:952.866615, valRate:992.60},
+  {code:"MUTHOOTFIN", name:"MUTHOOT FINANCE",    sector:"Banking Services",     qty:300,  buy:3582.499775,valRate:3155.20},
+  {code:"NATCOPHARM", name:"NATCO PHARMA",       sector:"Pharmaceuticals",      qty:910,  buy:1169.704491,valRate:949.75},
+  {code:"NEULANDLAB", name:"NEULAND LABS",       sector:"Pharmaceuticals",      qty:65,   buy:15843.01471,valRate:12030.00},
+  {code:"PRESTIGE",   name:"PRESTIGE ESTATES",   sector:"Real Estate",          qty:355,  buy:1517.409122,valRate:1201.50},
+  {code:"SHRIRAMFIN", name:"SHRIRAM FINANCE",    sector:"Banking Services",     qty:1770, buy:905.220995, valRate:903.60},
+  {code:"SBIN",       name:"STATE BANK OF INDIA",sector:"Banking Services",     qty:510,  buy:1044.342877,valRate:1030.80},
+  {code:"SYMPHONY",   name:"SYMPHONY",           sector:"Specialty Retail",     qty:695,  buy:769.75806,  valRate:724.10},
+  {code:"UJJIVANSFB", name:"UJJIVAN SMALL FIN",  sector:"Banking Services",     qty:26650,buy:59.923198,  valRate:51.34},
+  {code:"UNOMINDA",   name:"UNO MINDA",          sector:"Auto Parts",           qty:460,  buy:1161.898213,valRate:1071.40},
+  {code:"URBANCO",    name:"URBAN COMPANY",      sector:"Professional Services",qty:3340, buy:159.48666,  valRate:114.20},
+  {code:"VEDL",       name:"VEDANTA",            sector:"Metals & Mining",      qty:775,  buy:684.633047, valRate:651.60},
+  {code:"YESBANK",    name:"YES BANK",           sector:"Banking Services",     qty:7760, buy:146.528844, valRate:18.07},
+];
+
+// Yahoo Finance NSE symbols
+const YF = {
+  "AUROPHARMA":"AUROPHARMA.NS","BAJFINANCE":"BAJFINANCE.NS","BAJAJFINSV":"BAJAJFINSV.NS",
+  "BEL":"BEL.NS","BHARTIARTL":"BHARTIARTL.NS","BLS":"BLS.NS","BLUESTARCO":"BLUESTARCO.NS",
+  "CGPOWER":"CGPOWER.NS","DIXON":"DIXON.NS","ETERNAL":"ETERNAL.NS","FIVESTAR":"FIVESTAR.NS",
+  "GVT&D":"GET&D.NS","HDFCBANK":"HDFCBANK.NS","HCG":"HCG.NS","INDIANB":"INDIANB.NS",
+  "INDUSTOWER":"INDUSTOWER.NS","INDIGO":"INDIGO.NS","KIRLOSBROS":"KIRLOSBROS.NS",
+  "LAURUSLABS":"LAURUSLABS.NS","MUTHOOTFIN":"MUTHOOTFIN.NS","NATCOPHARM":"NATCOPHARM.NS",
+  "NEULANDLAB":"NEULANDLAB.NS","PRESTIGE":"PRESTIGE.NS","SHRIRAMFIN":"SHRIRAMFIN.NS",
+  "SBIN":"SBIN.NS","SYMPHONY":"SYMPHONY.NS","UJJIVANSFB":"UJJIVANSFB.NS",
+  "UNOMINDA":"UNOMINDA.NS","URBANCO":"URBANCO.NS","VEDL":"VEDL.NS","YESBANK":"YESBANK.NS"
+};
+
+// ── MARKET DATA (update manually or connect API) ──
+const INDIA_INDICES = [
+  {name:"NIFTY 50",    val:23355.85, chg:443.45,  pct:1.94,  flag:"🇮🇳"},
+  {name:"NIFTY BANK",  val:53858.10, chg:1252.45, pct:2.38,  flag:"🏦"},
+  {name:"BSE SENSEX",  val:75430.76, chg:1362.31, pct:1.84,  flag:"📈"},
+  {name:"NIFTY IT",    val:29767.30, chg:118.40,  pct:0.40,  flag:"💻"},
+  {name:"NIFTY PHARMA",val:22721.85, chg:482.05,  pct:2.17,  flag:"💊"},
+  {name:"NIFTY AUTO",  val:25124.05, chg:608.80,  pct:2.48,  flag:"🚗"},
+  {name:"NIFTY FMCG",  val:47399.55, chg:991.25,  pct:2.14,  flag:"🛒"},
+  {name:"NIFTY METAL", val:11357.95, chg:298.80,  pct:2.70,  flag:"⚙️"},
+  {name:"NIFTY PSU BK",val:8593.00,  chg:235.45,  pct:2.82,  flag:"🏛️"},
+  {name:"INDIA VIX",   val:13.82,    chg:-0.75,   pct:-5.14, flag:"⚡"},
+];
+const GLOBAL_INDICES = [
+  {name:"S&P 500",     val:6556.37,  chg:-24.63,  pct:-0.37, flag:"🇺🇸"},
+  {name:"NASDAQ 100",  val:24002.45, chg:-186.14, pct:-0.77, flag:"🇺🇸"},
+  {name:"DOW JONES",   val:46124.06, chg:-84.41,  pct:-0.18, flag:"🇺🇸"},
+  {name:"NIKKEI 225",  val:53749.62, chg:1497.34, pct:2.87,  flag:"🇯🇵"},
+  {name:"HANG SENG",   val:23627.45, chg:312.80,  pct:1.34,  flag:"🇭🇰"},
+  {name:"DAX",         val:22936.79, chg:215.40,  pct:0.95,  flag:"🇩🇪"},
+  {name:"FTSE 100",    val:8726.43,  chg:45.20,   pct:0.52,  flag:"🇬🇧"},
+  {name:"SHANGHAI",    val:3378.40,  chg:28.60,   pct:0.85,  flag:"🇨🇳"},
+  {name:"CAC 40",      val:8115.30,  chg:98.20,   pct:1.22,  flag:"🇫🇷"},
+  {name:"ASX 200",     val:8021.50,  chg:-18.40,  pct:-0.23, flag:"🇦🇺"},
+];
+const COMM_INDICES = [
+  {name:"USD/INR",     val:94.03,    chg:0.01,    pct:0.01,  flag:"💵"},
+  {name:"EUR/INR",     val:102.85,   chg:0.15,    pct:0.15,  flag:"💶"},
+  {name:"GOLD ₹/10g",  val:88120,    chg:850,     pct:0.97,  flag:"🟡"},
+  {name:"SILVER ₹/kg", val:98450,    chg:620,     pct:0.63,  flag:"⬜"},
+  {name:"CRUDE OIL",   val:6840,     chg:-85,     pct:-1.23, flag:"🛢️"},
+  {name:"NAT GAS",     val:285.40,   chg:3.20,    pct:1.13,  flag:"🔵"},
+  {name:"BITCOIN ₹",   val:7842500,  chg:125000,  pct:1.62,  flag:"₿"},
+];
+
+// ══════════════════════════════════════════════════════
+//  CSV PARSER
+// ══════════════════════════════════════════════════════
+function parseCSV(text) {
+  const lines = text.replace(/\r/g,'').split('\n').map(l=>l.trim()).filter(Boolean);
+  if (lines.length < 2) return [];
+  const headers = lines[0].split(',').map(h=>h.replace(/"/g,'').trim().toUpperCase());
+  const col = (...names) => { for (const n of names) { const i = headers.findIndex(h=>h.includes(n)); if(i>=0) return i; } return -1; };
+  const iCode = col('SCRIPCODE','SCRIP CODE','SYMBOL');
+  const iName = col('SCRIPNAME','SCRIP NAME','COMPANY');
+  const iSec  = col('SECTOR');
+  const iQty  = col('BUYQTY','BUY QTY','QUANTITY');
+  const iBuy  = col('BUYRATE','BUY RATE','AVGRATE','AVG RATE','AVGBUYPRICE');
+  const iVal  = col('VALRATE','VAL RATE','CLOSINGVALUATION','CLOSING VALUATION');
+  const rows = [];
+  for (let i = 1; i < lines.length; i++) {
+    const cells = lines[i].split(',').map(c=>c.replace(/"/g,'').trim());
+    const code = iCode>=0 ? cells[iCode] : ''; if (!code || code.startsWith('*')) continue;
+    const qty = parseFloat(cells[iQty]||0)||0;
+    const buy = parseFloat(cells[iBuy]||0)||0;
+    const valRate = parseFloat(cells[iVal]||0)||0;
+    if (!qty && !buy) continue;
+    rows.push({code, name:iName>=0?cells[iName]:code, sector:(iSec>=0&&cells[iSec]?cells[iSec]:guessSector(code)), qty, buy, valRate});
+  }
+  return rows;
+}
+function guessSector(c) {
+  if(/BAJFINANCE|BAJAJFINSV|HDFC|INDIANB|SBIN|YES|UJJIVAN|FIVESTAR|SHRIRAM|MUTHOOT/.test(c)) return 'Banking Services';
+  if(/AURO|LAURUS|NATCO|NEULAND/.test(c)) return 'Pharmaceuticals';
+  if(/CGPOWER|BLUE|KIRLOS|GVT/.test(c)) return 'Machinery & Equipment';
+  if(/BHARTI|INDUST/.test(c)) return 'Telecom';
+  if(/DIXON/.test(c)) return 'Electronics';
+  if(/INDIGO/.test(c)) return 'Aviation';
+  if(/VEDL/.test(c)) return 'Metals & Mining';
+  if(/PRESTIGE/.test(c)) return 'Real Estate';
+  if(/UNOMINDA/.test(c)) return 'Auto Parts';
+  if(/HCG/.test(c)) return 'Healthcare'; if(/BEL/.test(c)) return 'Aerospace & Defense';
+  if(/ETERNAL/.test(c)) return 'Software & IT'; if(/SYMPHONY/.test(c)) return 'Specialty Retail';
+  return 'Other';
+}
+function handleCSV(input) {
+  const file = input.files[0]; if(!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    const parsed = parseCSV(e.target.result);
+    if(!parsed.length){toast('Could not read CSV — check format','warn');return;}
+    PORTFOLIO = parsed;
+    PORTFOLIO.forEach(s=>{livePrices[s.code]=s.valRate;});
+    liveCount=0; liveChangePct={}; liveChangeAbs={};
+    const m=file.name.match(/(\d{8})/);
+    lastCSVDate=m?m[1].slice(6)+'/'+m[1].slice(4,6)+'/'+m[1].slice(0,4):new Date().toLocaleDateString('en-IN');
+    showDashboard(); renderAll();
+    toast('✅ Loaded '+parsed.length+' stocks — tap Live for prices','ok');
+  };
+  reader.readAsText(file); input.value='';
+}
+function onDO(e){e.preventDefault();document.getElementById('uploadZone').classList.add('drag')}
+function onDL(){document.getElementById('uploadZone').classList.remove('drag')}
+function onDP(e){e.preventDefault();onDL();const f=e.dataTransfer.files[0];if(f)handleCSV({files:[f]})}
+
+// ══════════════════════════════════════════════════════
+//  HELPERS
+// ══════════════════════════════════════════════════════
+const fmtC = n=>{const a=Math.abs(n);return(n<0?'−':'')+(a>=1e7?(a/1e7).toFixed(2)+' Cr':a>=1e5?(a/1e5).toFixed(2)+' L':a>=1000?(a/1000).toFixed(1)+'K':a.toFixed(0))};
+const fmtP = n=>(n>=0?'+':'')+n.toFixed(2)+'%';
+const cls  = n=>n>=0?'pos':'neg';
+const clsPill = n=>n===0?'neu':n>=0?'pos':'neg';
+
+function compute(){
+  return PORTFOLIO.map(s=>{
+    const cmp=livePrices[s.code]||s.valRate;
+    const hasLive=!!livePrices[s.code];
+    const invest=s.buy*s.qty, curr=cmp*s.qty, pnl=curr-invest;
+    const pnlPct=invest>0?(pnl/invest)*100:0;
+    const dayPct=liveChangePct[s.code]||null;
+    const dayAbs=liveChangeAbs[s.code]||null;
+    return{...s,cmp,invest,curr,pnl,pnlPct,hasLive,dayPct,dayAbs};
+  });
+}
+
+// ══════════════════════════════════════════════════════
+//  RENDER
+// ══════════════════════════════════════════════════════
+function renderKPI(data){
+  const inv=data.reduce((a,s)=>a+s.invest,0);
+  const curr=data.reduce((a,s)=>a+s.curr,0);
+  const pnl=curr-inv, pct=inv>0?(pnl/inv)*100:0;
+  const win=data.filter(s=>s.pnl>=0).length;
+  document.getElementById('k-inv').textContent='₹'+fmtC(inv);
+  document.getElementById('k-curr').textContent='₹'+fmtC(curr);
+  document.getElementById('k-chg').textContent=fmtP(pct)+' overall';
+  const pEl=document.getElementById('k-pnl'); pEl.textContent=(pnl>=0?'▲ +':'▼ −')+'₹'+fmtC(Math.abs(pnl));
+  pEl.style.color=pnl>=0?'var(--green)':'var(--red)';
+  const ppEl=document.getElementById('k-pnlp'); ppEl.textContent=fmtP(pct);
+  ppEl.style.color=pnl>=0?'var(--green)':'var(--red)';
+  document.getElementById('kpi-pnl').className='kpi '+(pnl>=0?'c-pos':'c-neg');
+  document.getElementById('k-cnt').textContent=data.length;
+  document.getElementById('k-win').textContent=win+'▲  '+(data.length-win)+'▼';
+}
+
+function cmpCell(s){
+  const price=`<span class="${cls(s.cmp-s.buy)}" style="font-weight:700;font-size:13px">${s.cmp.toFixed(2)}</span>`;
+  if(s.dayPct!==null){
+    const dc=s.dayPct>=0?'pos':'neg';
+    const arrow=s.dayPct>=0?'▲':'▼';
+    return `<div class="cmp-wrap">${price}<span class="cmp-badge ${dc}">${arrow}${Math.abs(s.dayPct).toFixed(2)}%</span></div>`;
+  }
+  return `<div class="cmp-wrap">${price}<span class="cmp-badge neu">—</span></div>`;
+}
+
+function glRow(s){
+  return `<tr>
+    <td><span class="sn">${s.code}</span><span class="ss">${s.name}</span></td>
+    <td>${cmpCell(s)}</td>
+    <td>${s.dayPct!==null?`<span class="pill ${cls(s.dayPct)}">${fmtP(s.dayPct)}</span>`:'<span class="pill neu">—</span>'}</td>
+    <td class="neu">${s.buy.toFixed(2)}</td>
+    <td><span class="pill ${clsPill(s.pnlPct)}">${fmtP(s.pnlPct)}</span></td>
+    <td class="${cls(s.pnl)}">${s.pnl>=0?'+':'−'}₹${fmtC(Math.abs(s.pnl))}</td>
+  </tr>`;
+}
+
+function renderOverview(data){
+  const sorted=[...data].sort((a,b)=>b.pnlPct-a.pnlPct);
+  document.getElementById('tb-gain').innerHTML=sorted.slice(0,5).map(glRow).join('');
+  document.getElementById('tb-lose').innerHTML=sorted.slice(-5).reverse().map(glRow).join('');
+  document.getElementById('gBadge').textContent='Top 5 of '+data.length;
+  document.getElementById('lBadge').textContent='Bottom 5';
+}
+
+function renderHoldings(data){
+  const totalInv=data.reduce((a,s)=>a+s.invest,0);
+  document.getElementById('tb-hold').innerHTML=[...data].sort((a,b)=>b.invest-a.invest).map(s=>{
+    const wt=totalInv>0?(s.invest/totalInv)*100:0;
+    return `<tr class="h-row" data-q="${s.code.toLowerCase()} ${s.name.toLowerCase()} ${s.sector.toLowerCase()}">
+      <td><span class="sn">${s.code}</span><span class="ss">${s.sector}</span></td>
+      <td class="neu">${s.qty.toLocaleString('en-IN')}</td>
+      <td class="neu">${s.buy.toFixed(2)}</td>
+      <td>${cmpCell(s)}</td>
+      <td class="neu">${s.hasLive?'₹'+fmtC(s.curr):'—'}</td>
+      <td class="${cls(s.pnl)}">${s.hasLive?(s.pnl>=0?'+':'−')+'₹'+fmtC(Math.abs(s.pnl)):'—'}</td>
+      <td><span class="pill ${clsPill(s.pnlPct)}">${fmtP(s.pnlPct)}</span></td>
+      <td><div class="bar-row"><span style="font-size:10px;color:var(--muted)">${wt.toFixed(1)}%</span><div class="bar-track"><div class="bar-fill" style="width:${Math.min(wt*3,100)}%"></div></div></div></td>
+    </tr>`;
+  }).join('');
+  document.getElementById('hBadge').textContent=data.length+' stocks · '+liveCount+' live';
+}
+
+function renderSectors(data){
+  const map={};
+  data.forEach(s=>{const k=s.sector||'Other';if(!map[k])map[k]={invest:0,curr:0,count:0,live:0};map[k].invest+=s.invest;map[k].curr+=s.curr;map[k].count++;if(s.hasLive)map[k].live++});
+  const secs=Object.entries(map).map(([n,v])=>({name:n,...v,pnl:v.curr-v.invest,pct:v.invest>0&&v.live>0?(v.curr-v.invest)/v.invest*100:0})).sort((a,b)=>b.pct-a.pct);
+  const totalCurr=secs.reduce((a,s)=>a+s.curr,0);
+  const mx=Math.max(...secs.map(s=>Math.abs(s.pct)),1);
+  document.getElementById('heatmap').innerHTML=secs.map(s=>{
+    const t=Math.min(Math.abs(s.pct)/mx,1);
+    const live=s.live>0;
+    const bg=!live?'#F8FAFC':s.pct>=0?`rgba(15,122,75,${.06+t*.38})`:`rgba(192,57,43,${.06+t*.38})`;
+    const col=!live?'var(--muted)':s.pct>=0?'var(--green)':'var(--red)';
+    const bdr=!live?'var(--border)':s.pct>=0?'rgba(15,122,75,.2)':'rgba(192,57,43,.2)';
+    return `<div class="hc" style="background:${bg};border-color:${bdr}">
+      <div class="hc-name" style="color:${col}">${s.name}</div>
+      <div class="hc-pct" style="color:${col}">${live?fmtP(s.pct):'—'}</div>
+      <div class="hc-info">${s.count} stocks${live?' · ₹'+fmtC(s.curr):''}</div>
+    </div>`;
+  }).join('');
+  document.getElementById('tb-sec').innerHTML=secs.map(s=>{
+    const wt=totalCurr>0&&s.curr>0?(s.curr/totalCurr)*100:0;
+    return `<tr><td><span class="sn" style="font-size:12px">${s.name}</span></td>
+      <td class="neu">${s.count}</td>
+      <td class="neu">₹${fmtC(s.invest)}</td>
+      <td class="neu">${s.live?'₹'+fmtC(s.curr):'—'}</td>
+      <td class="${cls(s.pnl)}">${s.live?(s.pnl>=0?'+':'−')+'₹'+fmtC(Math.abs(s.pnl)):'—'}</td>
+      <td><span class="pill ${clsPill(s.pct)}">${s.live?fmtP(s.pct):'—'}</span></td>
+      <td><span style="color:var(--muted);font-size:11px">${wt>0?wt.toFixed(1)+'%':'—'}</span></td>
+    </tr>`;
+  }).join('');
+}
+
+function renderIndices(){
+  const card=i=>`<div class="ic ${i.pct>=0?'pos-card':'neg-card'}">
+    <div class="ic-name">${i.flag||''} ${i.name}</div>
+    <div class="ic-val">${i.val.toLocaleString('en-IN',{maximumFractionDigits:2})}</div>
+    <div class="ic-chg ${cls(i.pct)}">
+      <span class="ic-pct" style="background:${i.pct>=0?'var(--green-bg)':'var(--red-bg)'};">${fmtP(i.pct)}</span>
+      &nbsp;${i.chg>=0?'+':''}${Math.abs(i.chg)<10?i.chg.toFixed(2):i.chg.toFixed(0)}
+    </div>
+  </div>`;
+  document.getElementById('idx-india').innerHTML=INDIA_INDICES.map(card).join('');
+  document.getElementById('idx-global').innerHTML=GLOBAL_INDICES.map(card).join('');
+  document.getElementById('idx-comm').innerHTML=COMM_INDICES.map(card).join('');
+}
+
+function setLiveStatus(state,count,total){
+  const dot=document.getElementById('liveDot');
+  const lbl=document.getElementById('liveLabel');
+  const meta=document.getElementById('liveMeta');
+  if(state==='loading'){dot.className='live-dot amber';lbl.textContent='Fetching live prices…';meta.textContent=count+'/'+(total||'?')+' updated';}
+  else if(state==='live'){dot.className='live-dot green';lbl.textContent='Live prices · '+count+' stocks updated';meta.textContent='Auto-refresh every 5 min · Last: '+new Date().toLocaleTimeString('en-IN');}
+  else{dot.className='live-dot';lbl.textContent='Using last close prices from CSV';meta.textContent='Tap ↻ Live to fetch real-time NSE data';}
+}
+
+function renderAll(){
+  const data=compute();
+  renderKPI(data); renderOverview(data); renderHoldings(data); renderSectors(data); renderIndices();
+  const now=new Date();
+  document.getElementById('tDate').textContent=now.toLocaleDateString('en-IN',{weekday:'short',day:'2-digit',month:'short',year:'2-digit'});
+  document.getElementById('lastUp').textContent=(lastCSVDate?'CSV: '+lastCSVDate+' · ':'')+' Prices: '+now.toLocaleTimeString('en-IN');
+}
+
+// ══════════════════════════════════════════════════════
+//  LIVE PRICE FETCH  (Yahoo Finance via proxy)
+// ══════════════════════════════════════════════════════
+async function fetchOne(ticker){
+  try{
+    const u=`https://query1.finance.yahoo.com/v8/finance/chart/${ticker}?interval=1d&range=1d`;
+    const p=`https://api.allorigins.win/get?url=${encodeURIComponent(u)}`;
+    const r=await fetch(p,{signal:AbortSignal.timeout(7000)});
+    if(!r.ok) return null;
+    const j=await r.json();
+    const d=JSON.parse(j.contents);
+    const meta=d?.chart?.result?.[0]?.meta;
+    if(!meta) return null;
+    return {
+      price: meta.regularMarketPrice,
+      prev:  meta.previousClose||meta.chartPreviousClose,
+    };
+  }catch{return null;}
+}
+
+let _refreshing=false;
+async function refreshPrices(){
+  if(!PORTFOLIO.length){toast('Upload a CSV first','warn');return;}
+  if(_refreshing) return;
+  _refreshing=true;
+  const btn=document.getElementById('rfBtn');
+  const icon=document.getElementById('ri');
+  btn.disabled=true; icon.className='spin';
+  liveCount=0;
+  setLiveStatus('loading',0,PORTFOLIO.length);
+
+  for(let i=0;i<PORTFOLIO.length;i+=4){
+    const batch=PORTFOLIO.slice(i,i+4);
+    await Promise.all(batch.map(async s=>{
+      const ticker=YF[s.code]; if(!ticker) return;
+      const res=await fetchOne(ticker);
+      if(res&&res.price>0){
+        livePrices[s.code]=res.price;
+        if(res.prev&&res.prev>0){
+          liveChangePct[s.code]=((res.price-res.prev)/res.prev)*100;
+          liveChangeAbs[s.code]=res.price-res.prev;
+        }
+        liveCount++;
+      }
+    }));
+    setLiveStatus('loading',liveCount,PORTFOLIO.length);
+    renderAll();
+  }
+  setLiveStatus('live',liveCount);
+  toast('✅ '+liveCount+'/'+PORTFOLIO.length+' live prices loaded','ok');
+  btn.disabled=false; icon.className='';
+  _refreshing=false;
+}
+
+// ══════════════════════════════════════════════════════
+//  UI
+// ══════════════════════════════════════════════════════
+function showDashboard(){document.getElementById('uploadZone').classList.add('hidden');document.getElementById('dashboard').style.display='';}
+function showTab(id,el){['ov','hd','sc','gu'].forEach(t=>document.getElementById('t-'+t).style.display=t===id?'':'none');document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));el.classList.add('active')}
+function filterHoldings(){const q=document.getElementById('srch').value.toLowerCase();document.querySelectorAll('.h-row').forEach(r=>r.style.display=r.dataset.q.includes(q)?'':'none')}
+let _tt;
+function toast(msg,type='ok'){const el=document.getElementById('toast');el.textContent=msg;el.className='show '+type;clearTimeout(_tt);_tt=setTimeout(()=>el.className='',3500)}
+
+// ── INIT ──
+PORTFOLIO=SEED.map(s=>({...s}));
+PORTFOLIO.forEach(s=>{livePrices[s.code]=s.valRate;});
+showDashboard(); setLiveStatus('stale'); renderAll();
+setInterval(refreshPrices,5*60*1000);
+</script>
+</body>
+</html>
