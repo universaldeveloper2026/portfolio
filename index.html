@@ -239,6 +239,43 @@ td:first-child{text-align:left;font-family:var(--sans)}
   .btn.theme-btn{min-width:36px;font-size:14px}
   .t-title{font-size:13px}
 }
+
+/* ── SELECTOR SCREEN ── */
+#selectorScreen{padding:16px 14px;max-width:600px;margin:0 auto}
+.sel-header{text-align:center;margin-bottom:24px;padding-top:8px}
+.sel-title{font-size:20px;font-weight:700;color:var(--text);margin-bottom:4px}
+.sel-sub{font-size:12px;color:var(--muted);font-family:var(--mono)}
+.sel-step{font-size:10px;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted);font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.sel-step::after{content:'';flex:1;height:1px;background:var(--border)}
+.rm-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin-bottom:20px}
+.rm-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:16px 14px;cursor:pointer;box-shadow:var(--shadow);border-top:3px solid var(--blue);transition:box-shadow .15s,transform .1s}
+.rm-card:hover{box-shadow:var(--shadow2);transform:translateY(-2px)}
+.rm-card:active{transform:scale(.97)}
+.rm-name{font-size:13px;font-weight:700;color:var(--text);margin-bottom:5px;word-break:break-word}
+.rm-meta{font-size:10px;color:var(--muted);font-family:var(--mono)}
+.rm-count{display:inline-block;background:var(--blue-bg);border:1px solid var(--blue-border);border-radius:4px;padding:1px 7px;font-size:10px;color:var(--blue);font-family:var(--mono);font-weight:700;margin-top:6px}
+.client-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+.client-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;cursor:pointer;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:4px;border-left:3px solid var(--green)}
+.client-card:hover{box-shadow:var(--shadow2);transform:translateY(-2px)}
+.client-card:active{transform:scale(.97)}
+.cc-code{font-size:10px;font-family:var(--mono);color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.8px}
+.cc-name{font-size:14px;font-weight:700;color:var(--text)}
+.cc-stocks{font-size:10px;color:var(--muted);font-family:var(--mono)}
+.sel-back{display:flex;align-items:center;gap:8px;margin-bottom:14px}
+.back-btn{background:var(--surface2);border:1px solid var(--border2);border-radius:var(--r2);padding:6px 12px;font-size:11px;font-family:var(--mono);cursor:pointer;color:var(--text2);font-weight:600;display:flex;align-items:center;gap:5px}
+.back-btn:hover{background:var(--surface3)}
+.sel-crumb{font-size:11px;color:var(--muted);font-family:var(--mono)}
+.sel-crumb strong{color:var(--text)}
+.sel-upload-row{margin-bottom:20px;background:var(--gold-bg);border:1px solid var(--gold-border);border-radius:var(--r2);padding:10px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.sel-upload-txt{font-size:11px;color:var(--gold);font-family:var(--mono);font-weight:600}
+/* Client identity bar inside dashboard */
+.client-bar{background:var(--surface);border-bottom:1px solid var(--border);padding:6px 16px;display:flex;align-items:center;gap:10px;font-size:11px;font-family:var(--mono);position:sticky;top:54px;z-index:250;box-shadow:var(--shadow)}
+.client-bar .cb-back{cursor:pointer;background:var(--surface2);border:1px solid var(--border2);border-radius:5px;padding:3px 10px;font-size:10px;font-weight:700;color:var(--text2)}
+.client-bar .cb-back:hover{background:var(--surface3)}
+.client-bar .cb-rm{color:var(--muted)}
+.client-bar .cb-arrow{color:var(--border2)}
+.client-bar .cb-client{color:var(--text);font-weight:700}
+.client-bar .cb-code{color:var(--blue);background:var(--blue-bg);border:1px solid var(--blue-border);border-radius:4px;padding:1px 7px;font-size:10px}
 </style>
 </head>
 <body>
@@ -274,8 +311,43 @@ td:first-child{text-align:left;font-family:var(--sans)}
   <label class="uz-btn" for="fileInput">Browse CSV (Fallback)</label>
 </div>
 
+<!-- SELECTOR SCREEN (RM → Client picker) -->
+<div id="selectorScreen" style="display:none">
+  <!-- Upload row -->
+  <div class="sel-upload-row">
+    <span class="sel-upload-txt">📂 Update data from CSV file</span>
+    <label class="btn upload-btn" for="fileInput" style="margin:0">📂 <span>Update CSV</span></label>
+  </div>
+  <!-- Step 1: RM list -->
+  <div id="rmListView">
+    <div class="sel-header">
+      <div class="sel-title">Select RM</div>
+      <div class="sel-sub">Choose a relationship manager to view their clients</div>
+    </div>
+    <div class="sel-step">Relationship Managers</div>
+    <div class="rm-grid" id="rmGrid"></div>
+  </div>
+  <!-- Step 2: Client list under RM -->
+  <div id="clientListView" style="display:none">
+    <div class="sel-back">
+      <button class="back-btn" onclick="showRMList()">← Back</button>
+      <span class="sel-crumb">RM: <strong id="selRMName">—</strong></span>
+    </div>
+    <div class="sel-step">Select Client</div>
+    <div class="client-grid" id="clientGrid"></div>
+  </div>
+</div>
+
 <!-- DASHBOARD -->
 <div id="dashboard" style="display:none">
+<!-- Client identity bar (sticky under topbar) -->
+<div class="client-bar" id="clientBar" style="display:none">
+  <span class="cb-back" onclick="backToSelector()">← All Clients</span>
+  <span class="cb-rm" id="cbRM">—</span>
+  <span class="cb-arrow">›</span>
+  <span class="cb-client" id="cbClient">—</span>
+  <span class="cb-code" id="cbCode">—</span>
+</div>
 <main>
 
   <!-- LIVE STATUS -->
@@ -460,7 +532,7 @@ let _lastComputedData = null;
 let _lastErrToastTs = 0;
 
 // NEW: Google Sheet CSV URL
-const SHEET_URL   = 'https://docs.google.com/spreadsheets/d/1edXiB-P83C-OSv2OFn_cez3mmjzh_T9e9RRc2H4ldHk/export?format=csv&gid=0';
+const SHEET_URL   = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vShEP1SSfR14wJQzK87lT_Lg3flyW1J8M3_vUM80ojv-9tECbmVZYKtsp3Y-ClqlG-LxpSPpWI1E-Hw/pub?gid=0&single=true&output=csv';
 const LS_SHEET    = 'pf-sheet-v2';
 const LS_PRICES   = 'pf-prices-v2';
 const LS_THEME    = 'pf-theme';
@@ -653,7 +725,7 @@ async function fetchSheetCSV(){
     const proxyUrl=proxies[attempt](SHEET_URL);
     console.log(`[SHEET] Fetch attempt ${attempt+1}…`);
     try{
-      const r=await fetch(proxyUrl,{signal:AbortSignal.timeout(12000)});
+      const r=await Promise.race([fetch(proxyUrl),new Promise((_,rej)=>setTimeout(()=>rej(new Error('Timeout')),12000))]);
       if(!r.ok)throw new Error('HTTP '+r.status);
       const text=await r.text();
       if(!text||text.length<50||!text.includes(','))throw new Error('Bad response');
@@ -719,13 +791,25 @@ function applyPortfolioData(rows,source='live'){
   // Rebuild YF maps
   rebuildYFMaps();
 
-  // NEW: Build client dropdown
+  // Build client dropdown (legacy, still used inside dashboard)
   buildClientList();
 
-  lastCSVDate=source==='live'?'Sheet':(source==='cache'?'Cache':'Sample');
-  showDashboard();
-  renderAll();
-  console.log(`[INIT] Dashboard ready (${source}), ${rows.length} rows`);
+  lastCSVDate=source==='live'?'Sheet':(source==='cache'?'Cache':(source==='upload'?'CSV Upload':'Sample'));
+
+  // Multi-client → show selector screen; single client → go straight to dashboard
+  const hasMultiClient=allClients.length>1;
+  document.getElementById('uploadZone').classList.add('hidden');
+  if(hasMultiClient){
+    buildSelectorScreen();
+    document.getElementById('selectorScreen').style.display='';
+    document.getElementById('dashboard').style.display='none';
+  }else{
+    document.getElementById('selectorScreen').style.display='none';
+    document.getElementById('clientBar').style.display='none';
+    showDashboard();
+    renderAll();
+  }
+  console.log(`[INIT] Dashboard ready (${source}), ${rows.length} rows, ${allClients.length} clients`);
 }
 
 // UPDATED: Build YF map from static + portfolio
@@ -737,8 +821,10 @@ function rebuildYFMaps(){
 }
 
 // ══════════════════════════════════════════════════════
-//  NEW: MULTI-CLIENT SYSTEM
+//  MULTI-CLIENT SYSTEM + SELECTOR SCREEN
 // ══════════════════════════════════════════════════════
+let selectedRM = '';
+
 function buildClientList(){
   const seen=new Map();
   PORTFOLIO.forEach(s=>{if(!seen.has(s.clientCode))seen.set(s.clientCode,s.clientName||s.clientCode);});
@@ -752,13 +838,94 @@ function buildClientList(){
     opt.textContent=c.code+(c.name&&c.name!==c.code?' — '+c.name:'');
     sel.appendChild(opt);
   });
-
-  // Show row only when multi-client
   document.getElementById('clientRow').style.display=allClients.length>1?'flex':'none';
-
-  // Validate current selection
   if(selectedClient&&!allClients.find(c=>c.code===selectedClient)){selectedClient='';sel.value='';}
   updateClientBadge();
+}
+
+// Build RM grid for selector screen
+function buildSelectorScreen(){
+  // Group clients by RM (subgroup)
+  const rmMap=new Map();
+  PORTFOLIO.forEach(s=>{
+    const rm=s.subgroup||'DEFAULT';
+    if(!rmMap.has(rm))rmMap.set(rm,{clients:new Map()});
+    const rm_=rmMap.get(rm);
+    if(!rm_.clients.has(s.clientCode))rm_.clients.set(s.clientCode,{name:s.clientName||s.clientCode,stocks:0});
+    rm_.clients.get(s.clientCode).stocks++;
+  });
+
+  const rmGrid=document.getElementById('rmGrid');
+  rmGrid.innerHTML=[...rmMap.entries()].map(([rm,data])=>{
+    const clientCount=data.clients.size;
+    const totalStocks=[...data.clients.values()].reduce((a,c)=>a+c.stocks,0);
+    const safe=rm.replace(/'/g,"\\'");
+    return `<div class="rm-card" onclick="showClientList('${safe}')">
+      <div class="rm-name">${rm==='DEFAULT'?'All Clients':rm}</div>
+      <div class="rm-meta">${clientCount} client${clientCount!==1?'s':''} · ${totalStocks} stocks</div>
+      <span class="rm-count">${clientCount} client${clientCount!==1?'s':''}</span>
+    </div>`;
+  }).join('');
+}
+
+function showRMList(){
+  selectedRM='';
+  document.getElementById('rmListView').style.display='';
+  document.getElementById('clientListView').style.display='none';
+}
+
+function showClientList(rm){
+  selectedRM=rm;
+  document.getElementById('selRMName').textContent=rm==='DEFAULT'?'All Clients':rm;
+  document.getElementById('rmListView').style.display='none';
+  document.getElementById('clientListView').style.display='';
+
+  // Build client cards for this RM
+  const clients=PORTFOLIO.filter(s=>(s.subgroup||'DEFAULT')===rm);
+  const clientMap=new Map();
+  clients.forEach(s=>{
+    if(!clientMap.has(s.clientCode))clientMap.set(s.clientCode,{name:s.clientName||s.clientCode,stocks:0,invested:0});
+    const c=clientMap.get(s.clientCode);
+    c.stocks++;c.invested+=s.buy*s.qty;
+  });
+
+  const grid=document.getElementById('clientGrid');
+  grid.innerHTML=[...clientMap.entries()].map(([code,info])=>{
+    const safe=code.replace(/'/g,"\\'");
+    return `<div class="client-card" onclick="selectClientFromSelector('${safe}','${rm.replace(/'/g,"\\'")}')">
+      <span class="cc-code">${code}</span>
+      <span class="cc-name">${info.name}</span>
+      <span class="cc-stocks">${info.stocks} stocks · ₹${fmtC(info.invested)} invested</span>
+    </div>`;
+  }).join('');
+}
+
+function selectClientFromSelector(clientCode, rm){
+  selectedClient=clientCode;
+  document.getElementById('clientSelect').value=clientCode;
+  updateClientBadge();
+
+  // Update client identity bar
+  const clientInfo=allClients.find(c=>c.code===clientCode);
+  document.getElementById('cbRM').textContent=rm==='DEFAULT'?'All':rm;
+  document.getElementById('cbClient').textContent=clientInfo?clientInfo.name:clientCode;
+  document.getElementById('cbCode').textContent=clientCode;
+  document.getElementById('clientBar').style.display='flex';
+
+  // Hide selector, show dashboard
+  document.getElementById('selectorScreen').style.display='none';
+  document.getElementById('dashboard').style.display='';
+  renderAll();
+}
+
+function backToSelector(){
+  selectedClient='';
+  document.getElementById('clientSelect').value='';
+  updateClientBadge();
+  document.getElementById('clientBar').style.display='none';
+  document.getElementById('dashboard').style.display='none';
+  document.getElementById('selectorScreen').style.display='';
+  showRMList();
 }
 
 // NEW: filter by selected client
@@ -816,7 +983,7 @@ async function fetchBatchWithRetry(symbols,retries=2){
   for(let attempt=0;attempt<retries+1;attempt++){
     const pFn=PROXIES[attempt%PROXIES.length];
     try{
-      const r=await fetch(pFn(apiUrl),{signal:AbortSignal.timeout(10000)});
+      const r=await Promise.race([fetch(pFn(apiUrl)),new Promise((_,rej)=>setTimeout(()=>rej(new Error('Timeout')),10000))]);
       if(!r.ok)throw new Error('HTTP '+r.status);
       const text=await r.text();
       let data;
@@ -928,6 +1095,9 @@ async function syncSheet(){
   const btn=document.getElementById('syncBtn');
   const icon=document.getElementById('si');
   btn.disabled=true;icon.className='spin';
+  // Reset client selection so selector reappears after sync
+  selectedClient='';selectedRM='';
+  document.getElementById('clientBar').style.display='none';
   await loadSheetData(true);
   btn.disabled=false;
   icon.className='';icon.textContent='🔄';
@@ -1183,7 +1353,7 @@ function renderAll(){
 // ══════════════════════════════════════════════════════
 //  UI HELPERS
 // ══════════════════════════════════════════════════════
-function showDashboard(){document.getElementById('uploadZone').classList.add('hidden');document.getElementById('dashboard').style.display='';}
+function showDashboard(){document.getElementById('uploadZone').classList.add('hidden');document.getElementById('selectorScreen').style.display='none';document.getElementById('dashboard').style.display='';}
 function showTab(id,el){['ov','hd','sc','gu'].forEach(t=>document.getElementById('t-'+t).style.display=t===id?'':'none');document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');}
 
 // UPDATED: debounced search
