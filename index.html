@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>Portfolio — MJ</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
+/* ══ BASE THEME (Light) ══ */
 :root{
   --bg:#EEF2F7;
   --surface:#FFFFFF;
@@ -28,35 +29,82 @@
   --mono:'JetBrains Mono',monospace;
   --sans:'Inter',sans-serif;
 }
-*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+
+/* ══ DARK THEME ══ */
+[data-theme="dark"]{
+  --bg:#0D1117;
+  --surface:#161B26;
+  --surface2:#1C2233;
+  --surface3:#212840;
+  --border:#2A3248;
+  --border2:#36406A;
+  --text:#E2E8F0;
+  --text2:#94A3B8;
+  --muted:#4A5568;
+  --green:#22C55E;  --green-bg:rgba(34,197,94,.1);  --green-border:rgba(34,197,94,.25);
+  --red:#F87171;    --red-bg:rgba(248,113,113,.1);   --red-border:rgba(248,113,113,.25);
+  --blue:#60A5FA;   --blue-bg:rgba(96,165,250,.1);   --blue-border:rgba(96,165,250,.25);
+  --gold:#FBBF24;   --gold-bg:rgba(251,191,36,.1);   --gold-border:rgba(251,191,36,.25);
+  --indigo:#818CF8; --indigo-bg:rgba(129,140,248,.1);
+  --shadow:0 1px 3px rgba(0,0,0,.4),0 1px 2px rgba(0,0,0,.3);
+  --shadow2:0 4px 16px rgba(0,0,0,.5);
+  --shadow3:0 0 0 3px rgba(96,165,250,.18);
+}
+
+/* ══ DARKER GRAY THEME ══ */
+[data-theme="gray"]{
+  --bg:#1A1D23;
+  --surface:#22252E;
+  --surface2:#272B35;
+  --surface3:#2D3140;
+  --border:#353A4A;
+  --border2:#424859;
+  --text:#CDD5E0;
+  --text2:#8896AC;
+  --muted:#50596A;
+  --green:#34D399;  --green-bg:rgba(52,211,153,.1);  --green-border:rgba(52,211,153,.22);
+  --red:#F87171;    --red-bg:rgba(248,113,113,.1);   --red-border:rgba(248,113,113,.22);
+  --blue:#7BAEF8;   --blue-bg:rgba(123,174,248,.1);  --blue-border:rgba(123,174,248,.22);
+  --gold:#FCD34D;   --gold-bg:rgba(252,211,77,.1);   --gold-border:rgba(252,211,77,.22);
+  --indigo:#A5B4FC; --indigo-bg:rgba(165,180,252,.1);
+  --shadow:0 1px 3px rgba(0,0,0,.35),0 1px 2px rgba(0,0,0,.25);
+  --shadow2:0 4px 16px rgba(0,0,0,.45);
+  --shadow3:0 0 0 3px rgba(123,174,248,.16);
+}
+
+/* ══ SMOOTH THEME TRANSITIONS ══ */
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;
+  transition:background-color .22s ease,border-color .22s ease,color .15s ease;}
 body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:13px;min-height:100vh;-webkit-font-smoothing:antialiased}
 
 /* ── TOPBAR ── */
 .topbar{background:var(--surface);border-bottom:1px solid var(--border);padding:0 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:300;height:54px;box-shadow:var(--shadow)}
 .t-left{display:flex;align-items:center;gap:10px}
-.logo{width:32px;height:32px;background:linear-gradient(135deg,#1D4ED8,#0F7A4B);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px;color:#fff;flex-shrink:0;box-shadow:0 2px 6px rgba(29,78,216,.25)}
+.logo{width:32px;height:32px;background:linear-gradient(135deg,#1D4ED8,#0F7A4B);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px;color:#fff;flex-shrink:0;box-shadow:0 2px 6px rgba(29,78,216,.25);transition:none}
 .t-title{font-size:15px;font-weight:700}
 .t-sub{font-size:9px;color:var(--muted);font-family:var(--mono);margin-top:1px}
-.t-right{display:flex;gap:6px;align-items:center}
-.btn{background:var(--surface2);border:1px solid var(--border2);color:var(--text2);padding:7px 12px;border-radius:var(--r2);font-size:11px;font-family:var(--mono);cursor:pointer;display:flex;align-items:center;gap:5px;transition:all .15s;white-space:nowrap;font-weight:600;box-shadow:var(--shadow)}
+.t-right{display:flex;gap:5px;align-items:center;flex-wrap:nowrap}
+.btn{background:var(--surface2);border:1px solid var(--border2);color:var(--text2);padding:7px 12px;border-radius:var(--r2);font-size:11px;font-family:var(--mono);cursor:pointer;display:flex;align-items:center;gap:5px;white-space:nowrap;font-weight:600;box-shadow:var(--shadow)}
 .btn:hover{background:var(--surface3)}
 .btn:active{opacity:.8;transform:scale(.97)}
 .btn.primary{background:var(--blue-bg);border-color:var(--blue-border);color:var(--blue)}
 .btn.upload-btn{background:var(--gold-bg);border-color:var(--gold-border);color:var(--gold)}
 .btn.live-btn{background:var(--green-bg);border-color:var(--green-border);color:var(--green)}
+.btn.theme-btn{background:var(--surface2);border-color:var(--border2);color:var(--text2);min-width:80px;justify-content:center}
+.btn.export-btn{background:var(--indigo-bg);border-color:var(--indigo);color:var(--indigo);font-size:10px;padding:5px 10px}
 .btn:disabled{opacity:.5;cursor:not-allowed}
 @keyframes spin{to{transform:rotate(360deg)}}
 .spin{display:inline-block;animation:spin 1s linear infinite}
 
 /* ── UPLOAD ZONE ── */
-#uploadZone{margin:16px;border:2px dashed var(--border2);border-radius:14px;padding:36px 20px;text-align:center;background:var(--surface);cursor:pointer;transition:all .2s}
+#uploadZone{margin:16px;border:2px dashed var(--border2);border-radius:14px;padding:36px 20px;text-align:center;background:var(--surface);cursor:pointer}
 #uploadZone.drag{border-color:var(--blue);background:var(--blue-bg)}
 #uploadZone.hidden{display:none}
 .uz-icon{font-size:44px;margin-bottom:10px;line-height:1}
 .uz-title{font-size:16px;font-weight:700;margin-bottom:6px}
 .uz-sub{font-size:12px;color:var(--muted);line-height:1.75}
 .uz-chip{display:inline-block;background:var(--blue-bg);border:1px solid var(--blue-border);border-radius:5px;padding:2px 9px;font-family:var(--mono);font-size:10px;color:var(--blue);margin-top:6px}
-.uz-btn{display:inline-block;margin-top:14px;background:var(--blue);color:#fff;padding:9px 26px;border-radius:var(--r2);font-size:13px;font-weight:600;cursor:pointer;box-shadow:0 2px 8px rgba(29,78,216,.3)}
+.uz-btn{display:inline-block;margin-top:14px;background:var(--blue);color:#fff;padding:9px 26px;border-radius:var(--r2);font-size:13px;font-weight:600;cursor:pointer;box-shadow:0 2px 8px rgba(29,78,216,.3);transition:none}
 #fileInput{display:none}
 
 /* ── MAIN ── */
@@ -74,7 +122,7 @@ main{padding:12px 14px;max-width:1024px;margin:0 auto}
 /* ── KPI STRIP ── */
 .kpi-strip{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:12px}
 @media(min-width:500px){.kpi-strip{grid-template-columns:repeat(4,1fr)}}
-.kpi{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:13px 14px;box-shadow:var(--shadow);border-top:3px solid transparent;transition:box-shadow .2s}
+.kpi{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:13px 14px;box-shadow:var(--shadow);border-top:3px solid transparent}
 .kpi:hover{box-shadow:var(--shadow2)}
 .kpi.c-blue{border-top-color:var(--blue)}.kpi.c-green{border-top-color:var(--green)}
 .kpi.c-pos{border-top-color:var(--green)}.kpi.c-neg{border-top-color:var(--red)}
@@ -86,14 +134,15 @@ main{padding:12px 14px;max-width:1024px;margin:0 auto}
 /* ── TABS ── */
 .tabs{display:flex;gap:6px;margin-bottom:12px;overflow-x:auto;scrollbar-width:none;padding-bottom:1px}
 .tabs::-webkit-scrollbar{display:none}
-.tab{background:var(--surface);border:1px solid var(--border);border-radius:var(--r2);padding:8px 16px;font-size:12px;color:var(--muted);cursor:pointer;white-space:nowrap;font-weight:500;transition:all .15s;flex-shrink:0;box-shadow:var(--shadow)}
+.tab{background:var(--surface);border:1px solid var(--border);border-radius:var(--r2);padding:8px 16px;font-size:12px;color:var(--muted);cursor:pointer;white-space:nowrap;font-weight:500;flex-shrink:0;box-shadow:var(--shadow)}
 .tab.active{background:var(--blue);border-color:var(--blue);color:#fff;font-weight:600;box-shadow:0 2px 8px rgba(29,78,216,.28)}
 
 /* ── SECTION ── */
 .sec{margin-bottom:12px}
-.sec-hdr{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r) var(--r) 0 0;border-bottom:1px solid var(--border);background:var(--surface3)}
+.sec-hdr{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:var(--surface3);border:1px solid var(--border);border-radius:var(--r) var(--r) 0 0;border-bottom:1px solid var(--border);flex-wrap:wrap;gap:6px}
 .sec-title{font-size:12px;font-weight:700;color:var(--text)}
 .sec-badge{font-size:10px;color:var(--muted);font-family:var(--mono);background:var(--surface);border:1px solid var(--border);padding:2px 8px;border-radius:5px}
+.sec-actions{display:flex;gap:6px;align-items:center}
 
 /* ── TABLE ── */
 .t-wrap{background:var(--surface);border:1px solid var(--border);border-radius:0 0 var(--r) var(--r);overflow:hidden;box-shadow:var(--shadow)}
@@ -101,8 +150,8 @@ main{padding:12px 14px;max-width:1024px;margin:0 auto}
 table{width:100%;border-collapse:collapse}
 thead th{background:var(--surface2);padding:8px 12px;text-align:right;font-size:9.5px;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);font-weight:700;white-space:nowrap;border-bottom:1px solid var(--border)}
 thead th:first-child{text-align:left}
-tbody tr{border-top:1px solid var(--border);transition:background .1s}
-tbody tr:hover{background:#F8FAFC}
+tbody tr{border-top:1px solid var(--border)}
+tbody tr:hover{background:var(--surface2)}
 td{padding:9px 12px;text-align:right;font-size:12px;font-family:var(--mono);white-space:nowrap;color:var(--text)}
 td:first-child{text-align:left;font-family:var(--sans)}
 .sn{font-size:12px;font-weight:600;color:var(--text);display:block}
@@ -117,21 +166,19 @@ td:first-child{text-align:left;font-family:var(--sans)}
 
 /* CMP live badge */
 .cmp-wrap{display:flex;flex-direction:column;align-items:flex-end;gap:2px}
-.cmp-price{font-weight:700;font-family:var(--mono)}
 .cmp-badge{font-size:9.5px;font-weight:700;font-family:var(--mono);padding:1px 5px;border-radius:4px;display:inline-flex;align-items:center;gap:2px}
 .cmp-badge.pos{background:var(--green-bg);color:var(--green)}
 .cmp-badge.neg{background:var(--red-bg);color:var(--red)}
 .cmp-badge.neu{background:var(--surface2);color:var(--muted)}
-.live-star{font-size:8px;color:var(--green)}
 
 /* ── WEIGHT BAR ── */
 .bar-row{display:flex;align-items:center;gap:6px;justify-content:flex-end}
-.bar-track{width:40px;height:5px;background:var(--border);border-radius:3px;overflow:hidden;flex-shrink:0}
-.bar-fill{height:100%;border-radius:3px;background:var(--blue)}
+.bar-track{width:44px;height:5px;background:var(--border);border-radius:3px;overflow:hidden;flex-shrink:0}
+.bar-fill{height:100%;border-radius:3px;background:var(--blue);transition:width .4s ease}
 
 /* ── SEARCH ── */
 .search-wrap{position:relative;margin-bottom:10px}
-.search{background:var(--surface);border:1px solid var(--border2);border-radius:var(--r2);padding:9px 12px 9px 36px;color:var(--text);font-family:var(--sans);font-size:13px;width:100%;outline:none;transition:all .2s;box-shadow:var(--shadow)}
+.search{background:var(--surface);border:1px solid var(--border2);border-radius:var(--r2);padding:9px 12px 9px 36px;color:var(--text);font-family:var(--sans);font-size:13px;width:100%;outline:none;box-shadow:var(--shadow)}
 .search:focus{border-color:var(--blue);box-shadow:var(--shadow3)}
 .search::placeholder{color:var(--muted)}
 .s-icon{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:15px;pointer-events:none}
@@ -140,7 +187,7 @@ td:first-child{text-align:left;font-family:var(--sans)}
 .heatmap{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;background:var(--surface);border:1px solid var(--border);border-radius:0 0 var(--r) var(--r);padding:12px;box-shadow:var(--shadow)}
 @media(min-width:480px){.heatmap{grid-template-columns:repeat(3,1fr)}}
 @media(min-width:700px){.heatmap{grid-template-columns:repeat(4,1fr)}}
-.hc{border-radius:var(--r2);padding:10px 12px;border:1px solid transparent;transition:transform .15s,box-shadow .15s}
+.hc{border-radius:var(--r2);padding:10px 12px;border:1px solid transparent}
 .hc:hover{transform:translateY(-2px);box-shadow:var(--shadow2)}
 .hc-name{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;margin-bottom:3px}
 .hc-pct{font-size:18px;font-weight:700;font-family:var(--mono);margin-bottom:2px}
@@ -154,11 +201,10 @@ td:first-child{text-align:left;font-family:var(--sans)}
 @media(min-width:400px){.idx-grid{grid-template-columns:repeat(3,1fr)}}
 @media(min-width:580px){.idx-grid{grid-template-columns:repeat(4,1fr)}}
 @media(min-width:800px){.idx-grid{grid-template-columns:repeat(5,1fr)}}
-.ic{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:11px 13px;box-shadow:var(--shadow);transition:all .15s;border-left:3px solid transparent;cursor:default}
+.ic{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:11px 13px;box-shadow:var(--shadow);border-left:3px solid transparent;cursor:default}
 .ic:hover{box-shadow:var(--shadow2);transform:translateY(-1px)}
 .ic.pos-card{border-left-color:var(--green);background:linear-gradient(to right,var(--green-bg),var(--surface))}
 .ic.neg-card{border-left-color:var(--red);background:linear-gradient(to right,var(--red-bg),var(--surface))}
-.ic-flag{font-size:11px;margin-bottom:2px}
 .ic-name{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;font-weight:600;margin-bottom:4px}
 .ic-val{font-size:14px;font-weight:700;font-family:var(--mono);color:var(--text)}
 .ic-chg{font-size:10px;font-family:var(--mono);margin-top:3px;font-weight:600;display:flex;align-items:center;gap:4px}
@@ -173,7 +219,7 @@ td:first-child{text-align:left;font-family:var(--sans)}
 .steps-title{font-size:13px;font-weight:700;margin-bottom:14px;color:var(--text);display:flex;align-items:center;gap:8px}
 .step{display:flex;gap:12px;align-items:flex-start;margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid var(--border)}
 .step:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
-.step-num{width:26px;height:26px;border-radius:50%;background:var(--blue-bg);border:2px solid var(--blue);color:var(--blue);font-size:11px;font-weight:700;font-family:var(--mono);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.step-num{width:26px;height:26px;border-radius:50%;background:var(--blue-bg);border:2px solid var(--blue);color:var(--blue);font-size:11px;font-weight:700;font-family:var(--mono);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;transition:none}
 .step-title{font-size:12px;font-weight:700;margin-bottom:4px}
 .step-desc{font-size:11px;color:var(--muted);line-height:1.75}
 .chip{display:inline-block;background:var(--blue-bg);border:1px solid var(--blue-border);border-radius:4px;padding:1px 7px;font-family:var(--mono);font-size:10px;color:var(--blue)}
@@ -183,15 +229,22 @@ td:first-child{text-align:left;font-family:var(--sans)}
 .note.ok{background:var(--green-bg);border-color:var(--green-border);color:var(--green)}
 
 /* ── TOAST ── */
-#toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--text);color:#fff;border-radius:var(--r);padding:10px 18px;font-size:12px;font-family:var(--mono);z-index:999;opacity:0;transition:all .3s;white-space:nowrap;pointer-events:none;max-width:92vw;text-align:center;box-shadow:var(--shadow2)}
+#toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--text);color:var(--bg);border-radius:var(--r);padding:10px 18px;font-size:12px;font-family:var(--mono);z-index:999;opacity:0;white-space:nowrap;pointer-events:none;max-width:92vw;text-align:center;box-shadow:var(--shadow2);transition:opacity .3s,transform .3s}
 #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-#toast.ok{background:var(--green)}
-#toast.warn{background:var(--gold)}
-#toast.err{background:var(--red)}
+#toast.ok{background:var(--green);color:#fff}
+#toast.warn{background:var(--gold);color:#fff}
+#toast.err{background:var(--red);color:#fff}
 
 /* ── FOOTER ── */
 .footer{text-align:center;padding:16px;font-size:10px;color:var(--muted);font-family:var(--mono)}
 .dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--green);margin-right:5px;animation:pulse2 2s infinite}
+
+/* ── RESPONSIVE TOPBAR ── */
+@media(max-width:400px){
+  .btn.upload-btn span{display:none}
+  .btn.theme-btn{min-width:36px;font-size:14px}
+  .t-title{font-size:13px}
+}
 </style>
 </head>
 <body>
@@ -206,6 +259,7 @@ td:first-child{text-align:left;font-family:var(--sans)}
     </div>
   </div>
   <div class="t-right">
+    <button class="btn theme-btn" onclick="cycleTheme()" id="themeBtn" title="Toggle Theme">☀️ Light</button>
     <label class="btn upload-btn" for="fileInput" title="Upload daily CSV">📂 <span id="upTxt">Update CSV</span></label>
     <input type="file" id="fileInput" accept=".csv,.CSV" onchange="handleCSV(this)">
     <button class="btn live-btn" onclick="refreshPrices()" id="rfBtn"><span id="ri">↻</span> Live</button>
@@ -252,37 +306,30 @@ td:first-child{text-align:left;font-family:var(--sans)}
 
   <!-- ═══ OVERVIEW + MARKET ═══ -->
   <div id="t-ov">
-    <!-- Top Gainers / Losers -->
     <div class="two-col">
       <div class="sec">
         <div class="sec-hdr"><span class="sec-title">🚀 Top Gainers</span><span class="sec-badge" id="gBadge">—</span></div>
-        <div class="t-wrap">
+        <div class="t-wrap scroll">
           <table><thead><tr><th>Stock</th><th>CMP ⚡</th><th>Day%</th><th>Avg Buy</th><th>P&amp;L%</th><th>P&amp;L ₹</th></tr></thead>
           <tbody id="tb-gain"></tbody></table>
         </div>
       </div>
       <div class="sec">
         <div class="sec-hdr"><span class="sec-title">📉 Top Losers</span><span class="sec-badge" id="lBadge">—</span></div>
-        <div class="t-wrap">
+        <div class="t-wrap scroll">
           <table><thead><tr><th>Stock</th><th>CMP ⚡</th><th>Day%</th><th>Avg Buy</th><th>P&amp;L%</th><th>P&amp;L ₹</th></tr></thead>
           <tbody id="tb-lose"></tbody></table>
         </div>
       </div>
     </div>
-
-    <!-- INDIAN NIFTY INDICES -->
     <div class="idx-section">
       <div class="idx-label">🇮🇳 Indian Indices</div>
       <div class="idx-grid" id="idx-india"></div>
     </div>
-
-    <!-- GLOBAL INDICES -->
     <div class="idx-section">
       <div class="idx-label">🌍 Global Indices</div>
       <div class="idx-grid" id="idx-global"></div>
     </div>
-
-    <!-- COMMODITIES + FX -->
     <div class="idx-section">
       <div class="idx-label">💱 Currencies &amp; Commodities</div>
       <div class="idx-grid" id="idx-comm"></div>
@@ -293,13 +340,30 @@ td:first-child{text-align:left;font-family:var(--sans)}
   <div id="t-hd" style="display:none">
     <div class="search-wrap">
       <span class="s-icon">🔍</span>
-      <input class="search" id="srch" placeholder="Search stock, sector..." oninput="filterHoldings()">
+      <input class="search" id="srch" placeholder="Search script, sector..." oninput="filterHoldings()">
     </div>
     <div class="sec">
-      <div class="sec-hdr"><span class="sec-title">📋 All Holdings — Live CMP</span><span class="sec-badge" id="hBadge">—</span></div>
+      <div class="sec-hdr">
+        <span class="sec-title">📋 All Holdings — Live CMP</span>
+        <div class="sec-actions">
+          <span class="sec-badge" id="hBadge">—</span>
+          <button class="btn export-btn" onclick="exportCSV()" title="Download Holdings as CSV">⬇ Export CSV</button>
+        </div>
+      </div>
       <div class="t-wrap scroll">
         <table>
-          <thead><tr><th>Stock</th><th>Qty</th><th>Avg Buy ₹</th><th>CMP ⚡ / Day%</th><th>Curr. Value</th><th>P&amp;L ₹</th><th>P&amp;L %</th><th>Wt%</th></tr></thead>
+          <!-- COLUMN ORDER: Script | CMP | Day% | Wt% | Qty | Avg Buy | Curr Value | P&L ₹ | P&L % -->
+          <thead><tr>
+            <th style="text-align:left">Script</th>
+            <th>CMP ⚡</th>
+            <th>Day / %</th>
+            <th>Wt%</th>
+            <th>Qty</th>
+            <th>Avg Buy ₹</th>
+            <th>Curr. Value</th>
+            <th>P&amp;L ₹</th>
+            <th>P&amp;L %</th>
+          </tr></thead>
           <tbody id="tb-hold"></tbody>
         </table>
       </div>
@@ -324,124 +388,23 @@ td:first-child{text-align:left;font-family:var(--sans)}
   <!-- ═══ GITHUB GUIDE ═══ -->
   <div id="t-gu" style="display:none">
     <div class="note info">📱 <strong>Goal:</strong> This HTML file hosted on GitHub Pages becomes a permanent free URL you can bookmark on your phone — works like an app, opens in one tap.</div>
-
     <div class="steps">
       <div class="steps-title">🐙 GitHub Pages Setup — Free Forever (5 min)</div>
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-body">
-          <div class="step-title">Create a free GitHub account</div>
-          <div class="step-desc">Go to <span class="chip">github.com</span> → Sign up (free) → Verify email. If you already have one, just sign in.</div>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-body">
-          <div class="step-title">Create a new repository</div>
-          <div class="step-desc">
-            Click <strong>+</strong> (top right) → <strong>New repository</strong><br>
-            Name it: <span class="chip">portfolio</span> &nbsp; (or any name you like)<br>
-            Set to <strong>Public</strong> (required for free Pages)<br>
-            Tick ✅ <strong>Add a README file</strong><br>
-            Click <strong>Create repository</strong>
-          </div>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-body">
-          <div class="step-title">Upload the dashboard file</div>
-          <div class="step-desc">
-            In your new repo → click <strong>Add file</strong> → <strong>Upload files</strong><br>
-            Drag the downloaded <span class="chip">portfolio_dashboard.html</span> file<br>
-            ⚠️ <strong>RENAME IT</strong> to exactly <span class="chip">index.html</span> before uploading<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;(Right-click the file → Rename → index.html)<br>
-            Add commit message: <em>"Initial upload"</em> → Click <strong>Commit changes</strong>
-          </div>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">4</div>
-        <div class="step-body">
-          <div class="step-title">Enable GitHub Pages</div>
-          <div class="step-desc">
-            In your repo → <strong>Settings</strong> tab (top menu)<br>
-            Scroll down to <strong>Pages</strong> (left sidebar)<br>
-            Under <em>Source</em> → select <strong>Deploy from a branch</strong><br>
-            Branch: <strong>main</strong> → Folder: <strong>/ (root)</strong><br>
-            Click <strong>Save</strong>
-          </div>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">5</div>
-        <div class="step-body">
-          <div class="step-title">Get your permanent URL</div>
-          <div class="step-desc">
-            Wait ~60 seconds → refresh Settings → Pages<br>
-            Your URL appears: <span class="chip">https://YourUsername.github.io/portfolio</span><br>
-            ✅ Copy this URL — this is your permanent dashboard link!
-          </div>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">6</div>
-        <div class="step-body">
-          <div class="step-title">Add to phone home screen</div>
-          <div class="step-desc">
-            Open URL on phone Chrome → tap ⋮ menu → <strong>Add to Home screen</strong><br>
-            On Safari (iPhone) → tap Share → <strong>Add to Home Screen</strong><br>
-            ✅ Icon appears on home screen — one tap to open, works like an app!
-          </div>
-        </div>
-      </div>
+      <div class="step"><div class="step-num">1</div><div class="step-body"><div class="step-title">Create a free GitHub account</div><div class="step-desc">Go to <span class="chip">github.com</span> → Sign up (free) → Verify email.</div></div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-body"><div class="step-title">Create a new repository</div><div class="step-desc">Click <strong>+</strong> → <strong>New repository</strong>, name it <span class="chip">portfolio</span>, set to <strong>Public</strong>, tick ✅ <strong>Add a README file</strong>, then <strong>Create repository</strong>.</div></div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-body"><div class="step-title">Upload the dashboard file</div><div class="step-desc">In repo → <strong>Add file</strong> → <strong>Upload files</strong> → drag <span class="chip">index.html</span> → Commit changes.</div></div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-body"><div class="step-title">Enable GitHub Pages</div><div class="step-desc">Settings → Pages → Source: <strong>Deploy from branch</strong> → Branch: <strong>main / (root)</strong> → Save.</div></div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-body"><div class="step-title">Get your permanent URL</div><div class="step-desc">Wait ~60s → your URL: <span class="chip">https://YourUsername.github.io/portfolio</span> — bookmark it!</div></div></div>
+      <div class="step"><div class="step-num">6</div><div class="step-body"><div class="step-title">Add to phone home screen</div><div class="step-desc">Chrome: ⋮ → Add to Home screen. Safari: Share → Add to Home Screen. ✅ Works like a native app!</div></div></div>
     </div>
-
     <div class="steps">
-      <div class="steps-title">📅 When you update the dashboard file later</div>
-      <div class="step">
-        <div class="step-num">A</div>
-        <div class="step-body">
-          <div class="step-title">Go to your GitHub repo</div>
-          <div class="step-desc">Visit <span class="chip">github.com/YourUsername/portfolio</span> → click on <span class="chip">index.html</span></div>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">B</div>
-        <div class="step-body">
-          <div class="step-title">Replace the file</div>
-          <div class="step-desc">Click the ✏️ pencil edit icon → delete all content → paste new file content → Commit changes. Site updates in ~30 seconds.</div>
-        </div>
-      </div>
+      <div class="steps-title">📅 Daily Portfolio Update (2 taps)</div>
+      <div class="step"><div class="step-num">1</div><div class="step-body"><div class="step-title">Export CSV from your broker</div><div class="step-desc">Login → Portfolio → Unrealised P&amp;L → Export CSV → Save to Downloads.</div></div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-body"><div class="step-title">Tap "📂 Update CSV"</div><div class="step-desc">Select the CSV → Dashboard instantly recalculates with new quantities and prices.</div></div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-body"><div class="step-title">Tap "↻ Live" for real-time prices</div><div class="step-desc">Fetches all NSE prices in 1–2 fast batch calls (vs 30+ slow ones before). Auto-refreshes every 5 min.</div></div></div>
     </div>
-
-    <div class="steps">
-      <div class="steps-title">📅 Daily Portfolio Update (2 taps from phone)</div>
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-body">
-          <div class="step-title">Export CSV from your broker</div>
-          <div class="step-desc">Login → Portfolio → Unrealised P&amp;L → Export CSV → Save to phone Downloads</div>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-body">
-          <div class="step-title">Tap "📂 Update CSV" button (top right)</div>
-          <div class="step-desc">Select the CSV → Dashboard instantly recalculates. New stocks appear, sold ones disappear, quantities update. Zero manual work.</div>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-body">
-          <div class="step-title">Tap "↻ Live" for real-time prices</div>
-          <div class="step-desc">Fetches NSE live prices. CMP column and P&amp;L update in real time. Auto-refreshes every 5 minutes while the page is open.</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="note warn">🔒 <strong>100% Private:</strong> Your CSV is read entirely in your browser. It never goes to any server. GitHub only hosts the HTML file — your portfolio data never leaves your device.</div>
-    <div class="note ok">💡 <strong>Tip:</strong> If you get a new CSV from your broker, you don't need to update GitHub. Just open the site and tap "📂 Update CSV" — it reads from your phone locally each time.</div>
+    <div class="note warn">🔒 <strong>100% Private:</strong> CSV is read entirely in your browser — your data never leaves your device.</div>
+    <div class="note ok">💡 <strong>Export Tip:</strong> Use the ⬇ Export CSV button in Holdings tab to download a shareable report with live P&amp;L data. Opens perfectly in Excel.</div>
   </div>
 
 </main>
@@ -455,9 +418,9 @@ td:first-child{text-align:left;font-family:var(--sans)}
 //  DATA
 // ══════════════════════════════════════════════════════
 let PORTFOLIO = [];
-let livePrices    = {};  // code → live CMP
-let liveChangePct = {};  // code → day change %
-let liveChangeAbs = {};  // code → day change absolute
+let livePrices    = {};
+let liveChangePct = {};
+let liveChangeAbs = {};
 let lastCSVDate = null;
 let liveCount = 0;
 
@@ -495,7 +458,7 @@ const SEED = [
   {code:"YESBANK",    name:"YES BANK",           sector:"Banking Services",     qty:7760, buy:146.528844, valRate:18.07},
 ];
 
-// Yahoo Finance NSE symbols
+// Yahoo Finance NSE ticker map
 const YF = {
   "AUROPHARMA":"AUROPHARMA.NS","BAJFINANCE":"BAJFINANCE.NS","BAJAJFINSV":"BAJAJFINSV.NS",
   "BEL":"BEL.NS","BHARTIARTL":"BHARTIARTL.NS","BLS":"BLS.NS","BLUESTARCO":"BLUESTARCO.NS",
@@ -507,8 +470,10 @@ const YF = {
   "SBIN":"SBIN.NS","SYMPHONY":"SYMPHONY.NS","UJJIVANSFB":"UJJIVANSFB.NS",
   "UNOMINDA":"UNOMINDA.NS","URBANCO":"URBANCO.NS","VEDL":"VEDL.NS","YESBANK":"YESBANK.NS"
 };
+// Reverse map: "SBIN.NS" → "SBIN"
+const YF_REV = Object.fromEntries(Object.entries(YF).map(([k,v])=>[v,k]));
 
-// ── MARKET DATA (update manually or connect API) ──
+// ── MARKET DATA (static snapshot — update manually or connect API) ──
 const INDIA_INDICES = [
   {name:"NIFTY 50",    val:23355.85, chg:443.45,  pct:1.94,  flag:"🇮🇳"},
   {name:"NIFTY BANK",  val:53858.10, chg:1252.45, pct:2.38,  flag:"🏦"},
@@ -544,32 +509,60 @@ const COMM_INDICES = [
 ];
 
 // ══════════════════════════════════════════════════════
+//  THEME TOGGLE — Light ↔ Dark ↔ Darker Gray
+// ══════════════════════════════════════════════════════
+const THEMES = [
+  {key:'light', label:'☀️ Light'},
+  {key:'dark',  label:'🌙 Dark'},
+  {key:'gray',  label:'🌫️ Gray'},
+];
+let themeIdx = 0;
+
+function cycleTheme(){
+  themeIdx = (themeIdx + 1) % THEMES.length;
+  applyTheme(THEMES[themeIdx]);
+}
+function applyTheme({key, label}){
+  document.documentElement.setAttribute('data-theme', key);
+  document.getElementById('themeBtn').textContent = label;
+  try{ localStorage.setItem('pf-theme', key); }catch(e){}
+}
+// Restore saved theme on load
+(function initTheme(){
+  try{
+    const saved = localStorage.getItem('pf-theme');
+    if(saved){ const idx=THEMES.findIndex(t=>t.key===saved); if(idx>=0){ themeIdx=idx; applyTheme(THEMES[idx]); return; } }
+  }catch(e){}
+  applyTheme(THEMES[0]);
+})();
+
+// ══════════════════════════════════════════════════════
 //  CSV PARSER
 // ══════════════════════════════════════════════════════
-function parseCSV(text) {
-  const lines = text.replace(/\r/g,'').split('\n').map(l=>l.trim()).filter(Boolean);
-  if (lines.length < 2) return [];
-  const headers = lines[0].split(',').map(h=>h.replace(/"/g,'').trim().toUpperCase());
-  const col = (...names) => { for (const n of names) { const i = headers.findIndex(h=>h.includes(n)); if(i>=0) return i; } return -1; };
-  const iCode = col('SCRIPCODE','SCRIP CODE','SYMBOL');
-  const iName = col('SCRIPNAME','SCRIP NAME','COMPANY');
-  const iSec  = col('SECTOR');
-  const iQty  = col('BUYQTY','BUY QTY','QUANTITY');
-  const iBuy  = col('BUYRATE','BUY RATE','AVGRATE','AVG RATE','AVGBUYPRICE');
-  const iVal  = col('VALRATE','VAL RATE','CLOSINGVALUATION','CLOSING VALUATION');
-  const rows = [];
-  for (let i = 1; i < lines.length; i++) {
-    const cells = lines[i].split(',').map(c=>c.replace(/"/g,'').trim());
-    const code = iCode>=0 ? cells[iCode] : ''; if (!code || code.startsWith('*')) continue;
-    const qty = parseFloat(cells[iQty]||0)||0;
-    const buy = parseFloat(cells[iBuy]||0)||0;
-    const valRate = parseFloat(cells[iVal]||0)||0;
-    if (!qty && !buy) continue;
+function parseCSV(text){
+  const lines=text.replace(/\r/g,'').split('\n').map(l=>l.trim()).filter(Boolean);
+  if(lines.length<2) return [];
+  const headers=lines[0].split(',').map(h=>h.replace(/"/g,'').trim().toUpperCase());
+  const col=(...names)=>{for(const n of names){const i=headers.findIndex(h=>h.includes(n));if(i>=0)return i;}return -1;};
+  const iCode=col('SCRIPCODE','SCRIP CODE','SYMBOL');
+  const iName=col('SCRIPNAME','SCRIP NAME','COMPANY');
+  const iSec =col('SECTOR');
+  const iQty =col('BUYQTY','BUY QTY','QUANTITY');
+  const iBuy =col('BUYRATE','BUY RATE','AVGRATE','AVG RATE','AVGBUYPRICE');
+  const iVal =col('VALRATE','VAL RATE','CLOSINGVALUATION','CLOSING VALUATION');
+  const rows=[];
+  for(let i=1;i<lines.length;i++){
+    const cells=lines[i].split(',').map(c=>c.replace(/"/g,'').trim());
+    const code=iCode>=0?cells[iCode]:''; if(!code||code.startsWith('*')) continue;
+    const qty=parseFloat(cells[iQty]||0)||0;
+    const buy=parseFloat(cells[iBuy]||0)||0;
+    const valRate=parseFloat(cells[iVal]||0)||0;
+    if(!qty&&!buy) continue;
     rows.push({code, name:iName>=0?cells[iName]:code, sector:(iSec>=0&&cells[iSec]?cells[iSec]:guessSector(code)), qty, buy, valRate});
   }
   return rows;
 }
-function guessSector(c) {
+function guessSector(c){
   if(/BAJFINANCE|BAJAJFINSV|HDFC|INDIANB|SBIN|YES|UJJIVAN|FIVESTAR|SHRIRAM|MUTHOOT/.test(c)) return 'Banking Services';
   if(/AURO|LAURUS|NATCO|NEULAND/.test(c)) return 'Pharmaceuticals';
   if(/CGPOWER|BLUE|KIRLOS|GVT/.test(c)) return 'Machinery & Equipment';
@@ -579,17 +572,19 @@ function guessSector(c) {
   if(/VEDL/.test(c)) return 'Metals & Mining';
   if(/PRESTIGE/.test(c)) return 'Real Estate';
   if(/UNOMINDA/.test(c)) return 'Auto Parts';
-  if(/HCG/.test(c)) return 'Healthcare'; if(/BEL/.test(c)) return 'Aerospace & Defense';
-  if(/ETERNAL/.test(c)) return 'Software & IT'; if(/SYMPHONY/.test(c)) return 'Specialty Retail';
+  if(/HCG/.test(c)) return 'Healthcare';
+  if(/BEL/.test(c)) return 'Aerospace & Defense';
+  if(/ETERNAL/.test(c)) return 'Software & IT';
+  if(/SYMPHONY/.test(c)) return 'Specialty Retail';
   return 'Other';
 }
-function handleCSV(input) {
-  const file = input.files[0]; if(!file) return;
-  const reader = new FileReader();
-  reader.onload = e => {
-    const parsed = parseCSV(e.target.result);
+function handleCSV(input){
+  const file=input.files[0]; if(!file) return;
+  const reader=new FileReader();
+  reader.onload=e=>{
+    const parsed=parseCSV(e.target.result);
     if(!parsed.length){toast('Could not read CSV — check format','warn');return;}
-    PORTFOLIO = parsed;
+    PORTFOLIO=parsed;
     PORTFOLIO.forEach(s=>{livePrices[s.code]=s.valRate;});
     liveCount=0; liveChangePct={}; liveChangeAbs={};
     const m=file.name.match(/(\d{8})/);
@@ -606,10 +601,10 @@ function onDP(e){e.preventDefault();onDL();const f=e.dataTransfer.files[0];if(f)
 // ══════════════════════════════════════════════════════
 //  HELPERS
 // ══════════════════════════════════════════════════════
-const fmtC = n=>{const a=Math.abs(n);return(n<0?'−':'')+(a>=1e7?(a/1e7).toFixed(2)+' Cr':a>=1e5?(a/1e5).toFixed(2)+' L':a>=1000?(a/1000).toFixed(1)+'K':a.toFixed(0))};
-const fmtP = n=>(n>=0?'+':'')+n.toFixed(2)+'%';
-const cls  = n=>n>=0?'pos':'neg';
-const clsPill = n=>n===0?'neu':n>=0?'pos':'neg';
+const fmtC=n=>{const a=Math.abs(n);return(n<0?'−':'')+(a>=1e7?(a/1e7).toFixed(2)+' Cr':a>=1e5?(a/1e5).toFixed(2)+' L':a>=1000?(a/1000).toFixed(1)+'K':a.toFixed(0))};
+const fmtP=n=>(n>=0?'+':'')+n.toFixed(2)+'%';
+const cls =n=>n>=0?'pos':'neg';
+const clsPill=n=>n===0?'neu':n>=0?'pos':'neg';
 
 function compute(){
   return PORTFOLIO.map(s=>{
@@ -617,10 +612,116 @@ function compute(){
     const hasLive=!!livePrices[s.code];
     const invest=s.buy*s.qty, curr=cmp*s.qty, pnl=curr-invest;
     const pnlPct=invest>0?(pnl/invest)*100:0;
-    const dayPct=liveChangePct[s.code]||null;
-    const dayAbs=liveChangeAbs[s.code]||null;
+    const dayPct=liveChangePct[s.code]??null;
+    const dayAbs=liveChangeAbs[s.code]??null;
     return{...s,cmp,invest,curr,pnl,pnlPct,hasLive,dayPct,dayAbs};
   });
+}
+
+// ══════════════════════════════════════════════════════
+//  LIVE PRICE FETCH — Yahoo Finance v7 BATCH API
+//  ✅ Fast: 1–2 calls for all stocks vs 30+ before
+//  ✅ Races corsproxy.io (fast) vs allorigins (reliable)
+// ══════════════════════════════════════════════════════
+async function fetchBatch(symbols){
+  const apiUrl=`https://query1.finance.yahoo.com/v7/finance/quote?symbols=${symbols.join(',')}&fields=regularMarketPrice,regularMarketChangePercent,regularMarketChange`;
+
+  // corsproxy.io: direct passthrough — fast, no wrapping
+  const tryCorsproxy=async()=>{
+    const r=await fetch(`https://corsproxy.io/?${encodeURIComponent(apiUrl)}`,{signal:AbortSignal.timeout(8000)});
+    if(!r.ok) throw new Error('err');
+    const d=await r.json();
+    const res=d?.quoteResponse?.result;
+    if(!res||!res.length) throw new Error('empty');
+    return res;
+  };
+
+  // allorigins: wraps in {contents:"..."} — slightly slower but a great backup
+  const tryAllOrigins=async()=>{
+    const r=await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(apiUrl)}`,{signal:AbortSignal.timeout(12000)});
+    if(!r.ok) throw new Error('err');
+    const j=await r.json();
+    const d=JSON.parse(j.contents);
+    const res=d?.quoteResponse?.result;
+    if(!res||!res.length) throw new Error('empty');
+    return res;
+  };
+
+  // Race both — whichever responds first wins
+  return await Promise.any([tryCorsproxy(), tryAllOrigins()]);
+}
+
+function processQuotes(quotes){
+  for(const q of quotes){
+    const code=YF_REV[q.symbol];
+    if(!code) continue;
+    const price=q.regularMarketPrice;
+    if(price&&price>0){
+      livePrices[code]=price;
+      liveChangePct[code]=q.regularMarketChangePercent??0;
+      liveChangeAbs[code]=q.regularMarketChange??0;
+      liveCount++;
+    }
+  }
+}
+
+let _refreshing=false;
+async function refreshPrices(){
+  if(!PORTFOLIO.length){toast('Upload a CSV first','warn');return;}
+  if(_refreshing) return;
+  _refreshing=true;
+  const btn=document.getElementById('rfBtn');
+  const icon=document.getElementById('ri');
+  btn.disabled=true; icon.className='spin';
+  liveCount=0; liveChangePct={}; liveChangeAbs={};
+  setLiveStatus('loading',0,PORTFOLIO.length);
+
+  const allSymbols=PORTFOLIO.map(s=>YF[s.code]).filter(Boolean);
+  const BATCH=25; // Yahoo handles ~25-30 per call reliably
+
+  try{
+    for(let i=0;i<allSymbols.length;i+=BATCH){
+      const quotes=await fetchBatch(allSymbols.slice(i,i+BATCH));
+      processQuotes(quotes);
+      setLiveStatus('loading',liveCount,PORTFOLIO.length);
+      renderAll();
+    }
+    setLiveStatus('live',liveCount);
+    toast('✅ '+liveCount+'/'+PORTFOLIO.length+' live prices loaded','ok');
+  }catch(e){
+    setLiveStatus('stale');
+    toast('⚠️ Price fetch failed — check connection & retry','err');
+  }
+
+  btn.disabled=false; icon.className='';
+  _refreshing=false;
+}
+
+// ══════════════════════════════════════════════════════
+//  EXPORT CSV
+// ══════════════════════════════════════════════════════
+function exportCSV(){
+  const data=compute();
+  if(!data.length){toast('No holdings to export','warn');return;}
+  const totalInv=data.reduce((a,s)=>a+s.invest,0);
+  const sorted=[...data].sort((a,b)=>b.curr-a.curr);
+  const headers=['Script','Company','Sector','CMP','Day Change%','Holding Wt%','Qty','Avg Buy ₹','Curr Value ₹','PnL ₹','PnL%'];
+  const rows=sorted.map(s=>{
+    const wt=totalInv>0?(s.invest/totalInv)*100:0;
+    return[s.code,`"${s.name}"`,`"${s.sector}"`,s.cmp.toFixed(2),
+      s.dayPct!==null?s.dayPct.toFixed(2):'',wt.toFixed(2),s.qty,s.buy.toFixed(2),
+      s.hasLive?s.curr.toFixed(2):'',s.hasLive?s.pnl.toFixed(2):'',s.pnlPct.toFixed(2)
+    ].join(',');
+  });
+  // BOM prefix so Excel auto-detects UTF-8 & ₹ symbol
+  const csv='\uFEFF'+[headers.join(','),...rows].join('\r\n');
+  const blob=new Blob([csv],{type:'text/csv;charset=utf-8'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url; a.download='Holdings_'+new Date().toISOString().slice(0,10)+'.csv';
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+  toast('✅ Holdings CSV exported','ok');
 }
 
 // ══════════════════════════════════════════════════════
@@ -647,10 +748,21 @@ function cmpCell(s){
   const price=`<span class="${cls(s.cmp-s.buy)}" style="font-weight:700;font-size:13px">${s.cmp.toFixed(2)}</span>`;
   if(s.dayPct!==null){
     const dc=s.dayPct>=0?'pos':'neg';
-    const arrow=s.dayPct>=0?'▲':'▼';
-    return `<div class="cmp-wrap">${price}<span class="cmp-badge ${dc}">${arrow}${Math.abs(s.dayPct).toFixed(2)}%</span></div>`;
+    return `<div class="cmp-wrap">${price}<span class="cmp-badge ${dc}">${s.dayPct>=0?'▲':'▼'}${Math.abs(s.dayPct).toFixed(2)}%</span></div>`;
   }
   return `<div class="cmp-wrap">${price}<span class="cmp-badge neu">—</span></div>`;
+}
+
+// Separate renderers for the new Holdings layout
+function cmpPriceOnly(s){
+  return `<span class="${cls(s.cmp-s.buy)}" style="font-weight:700;font-size:13px">${s.cmp.toFixed(2)}</span>`;
+}
+
+function dayChangePill(s){
+  if(s.dayPct===null) return '<span class="pill neu">—</span>';
+  const arrow=s.dayPct>=0?'▲':'▼';
+  const cls2=s.dayPct>=0?'pos':'neg';
+  return `<span class="pill ${cls2}">${arrow}${Math.abs(s.dayPct).toFixed(2)}%</span>`;
 }
 
 function glRow(s){
@@ -674,17 +786,25 @@ function renderOverview(data){
 
 function renderHoldings(data){
   const totalInv=data.reduce((a,s)=>a+s.invest,0);
-  document.getElementById('tb-hold').innerHTML=[...data].sort((a,b)=>b.invest-a.invest).map(s=>{
+  // Sort: biggest current value first
+  document.getElementById('tb-hold').innerHTML=[...data].sort((a,b)=>b.curr-a.curr).map(s=>{
     const wt=totalInv>0?(s.invest/totalInv)*100:0;
+    // NEW ORDER: Script | CMP | Day% | Wt% | Qty | Avg Buy | Curr Value | P&L ₹ | P&L %
     return `<tr class="h-row" data-q="${s.code.toLowerCase()} ${s.name.toLowerCase()} ${s.sector.toLowerCase()}">
       <td><span class="sn">${s.code}</span><span class="ss">${s.sector}</span></td>
+      <td>${cmpPriceOnly(s)}</td>
+      <td>${dayChangePill(s)}</td>
+      <td>
+        <div class="bar-row">
+          <span style="font-size:11px;font-weight:700;color:var(--text2)">${wt.toFixed(1)}%</span>
+          <div class="bar-track"><div class="bar-fill" style="width:${Math.min(wt*4,100)}%"></div></div>
+        </div>
+      </td>
       <td class="neu">${s.qty.toLocaleString('en-IN')}</td>
       <td class="neu">${s.buy.toFixed(2)}</td>
-      <td>${cmpCell(s)}</td>
       <td class="neu">${s.hasLive?'₹'+fmtC(s.curr):'—'}</td>
       <td class="${cls(s.pnl)}">${s.hasLive?(s.pnl>=0?'+':'−')+'₹'+fmtC(Math.abs(s.pnl)):'—'}</td>
       <td><span class="pill ${clsPill(s.pnlPct)}">${fmtP(s.pnlPct)}</span></td>
-      <td><div class="bar-row"><span style="font-size:10px;color:var(--muted)">${wt.toFixed(1)}%</span><div class="bar-track"><div class="bar-fill" style="width:${Math.min(wt*3,100)}%"></div></div></div></td>
     </tr>`;
   }).join('');
   document.getElementById('hBadge').textContent=data.length+' stocks · '+liveCount+' live';
@@ -699,13 +819,13 @@ function renderSectors(data){
   document.getElementById('heatmap').innerHTML=secs.map(s=>{
     const t=Math.min(Math.abs(s.pct)/mx,1);
     const live=s.live>0;
-    const bg=!live?'#F8FAFC':s.pct>=0?`rgba(15,122,75,${.06+t*.38})`:`rgba(192,57,43,${.06+t*.38})`;
+    const bg=!live?'var(--surface2)':s.pct>=0?`rgba(15,122,75,${.06+t*.38})`:`rgba(192,57,43,${.06+t*.38})`;
     const col=!live?'var(--muted)':s.pct>=0?'var(--green)':'var(--red)';
     const bdr=!live?'var(--border)':s.pct>=0?'rgba(15,122,75,.2)':'rgba(192,57,43,.2)';
     return `<div class="hc" style="background:${bg};border-color:${bdr}">
       <div class="hc-name" style="color:${col}">${s.name}</div>
       <div class="hc-pct" style="color:${col}">${live?fmtP(s.pct):'—'}</div>
-      <div class="hc-info">${s.count} stocks${live?' · ₹'+fmtC(s.curr):''}</div>
+      <div class="hc-info" style="color:${col}">${s.count} stocks${live?' · ₹'+fmtC(s.curr):''}</div>
     </div>`;
   }).join('');
   document.getElementById('tb-sec').innerHTML=secs.map(s=>{
@@ -753,61 +873,7 @@ function renderAll(){
 }
 
 // ══════════════════════════════════════════════════════
-//  LIVE PRICE FETCH  (Yahoo Finance via proxy)
-// ══════════════════════════════════════════════════════
-async function fetchOne(ticker){
-  try{
-    const u=`https://query1.finance.yahoo.com/v8/finance/chart/${ticker}?interval=1d&range=1d`;
-    const p=`https://api.allorigins.win/get?url=${encodeURIComponent(u)}`;
-    const r=await fetch(p,{signal:AbortSignal.timeout(7000)});
-    if(!r.ok) return null;
-    const j=await r.json();
-    const d=JSON.parse(j.contents);
-    const meta=d?.chart?.result?.[0]?.meta;
-    if(!meta) return null;
-    return {
-      price: meta.regularMarketPrice,
-      prev:  meta.previousClose||meta.chartPreviousClose,
-    };
-  }catch{return null;}
-}
-
-let _refreshing=false;
-async function refreshPrices(){
-  if(!PORTFOLIO.length){toast('Upload a CSV first','warn');return;}
-  if(_refreshing) return;
-  _refreshing=true;
-  const btn=document.getElementById('rfBtn');
-  const icon=document.getElementById('ri');
-  btn.disabled=true; icon.className='spin';
-  liveCount=0;
-  setLiveStatus('loading',0,PORTFOLIO.length);
-
-  for(let i=0;i<PORTFOLIO.length;i+=4){
-    const batch=PORTFOLIO.slice(i,i+4);
-    await Promise.all(batch.map(async s=>{
-      const ticker=YF[s.code]; if(!ticker) return;
-      const res=await fetchOne(ticker);
-      if(res&&res.price>0){
-        livePrices[s.code]=res.price;
-        if(res.prev&&res.prev>0){
-          liveChangePct[s.code]=((res.price-res.prev)/res.prev)*100;
-          liveChangeAbs[s.code]=res.price-res.prev;
-        }
-        liveCount++;
-      }
-    }));
-    setLiveStatus('loading',liveCount,PORTFOLIO.length);
-    renderAll();
-  }
-  setLiveStatus('live',liveCount);
-  toast('✅ '+liveCount+'/'+PORTFOLIO.length+' live prices loaded','ok');
-  btn.disabled=false; icon.className='';
-  _refreshing=false;
-}
-
-// ══════════════════════════════════════════════════════
-//  UI
+//  UI HELPERS
 // ══════════════════════════════════════════════════════
 function showDashboard(){document.getElementById('uploadZone').classList.add('hidden');document.getElementById('dashboard').style.display='';}
 function showTab(id,el){['ov','hd','sc','gu'].forEach(t=>document.getElementById('t-'+t).style.display=t===id?'':'none');document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));el.classList.add('active')}
