@@ -29,50 +29,30 @@
   --mono:'JetBrains Mono',monospace;
   --sans:'Inter',sans-serif;
 }
-
 /* ══ DARK THEME ══ */
 [data-theme="dark"]{
-  --bg:#0D1117;
-  --surface:#161B26;
-  --surface2:#1C2233;
-  --surface3:#212840;
-  --border:#2A3248;
-  --border2:#36406A;
-  --text:#E2E8F0;
-  --text2:#94A3B8;
-  --muted:#4A5568;
-  --green:#22C55E;  --green-bg:rgba(34,197,94,.1);  --green-border:rgba(34,197,94,.25);
-  --red:#F87171;    --red-bg:rgba(248,113,113,.1);   --red-border:rgba(248,113,113,.25);
-  --blue:#60A5FA;   --blue-bg:rgba(96,165,250,.1);   --blue-border:rgba(96,165,250,.25);
-  --gold:#FBBF24;   --gold-bg:rgba(251,191,36,.1);   --gold-border:rgba(251,191,36,.25);
-  --indigo:#818CF8; --indigo-bg:rgba(129,140,248,.1);
+  --bg:#0D1117;--surface:#161B26;--surface2:#1C2233;--surface3:#212840;
+  --border:#2A3248;--border2:#36406A;--text:#E2E8F0;--text2:#94A3B8;--muted:#4A5568;
+  --green:#22C55E;--green-bg:rgba(34,197,94,.1);--green-border:rgba(34,197,94,.25);
+  --red:#F87171;--red-bg:rgba(248,113,113,.1);--red-border:rgba(248,113,113,.25);
+  --blue:#60A5FA;--blue-bg:rgba(96,165,250,.1);--blue-border:rgba(96,165,250,.25);
+  --gold:#FBBF24;--gold-bg:rgba(251,191,36,.1);--gold-border:rgba(251,191,36,.25);
+  --indigo:#818CF8;--indigo-bg:rgba(129,140,248,.1);
   --shadow:0 1px 3px rgba(0,0,0,.4),0 1px 2px rgba(0,0,0,.3);
-  --shadow2:0 4px 16px rgba(0,0,0,.5);
-  --shadow3:0 0 0 3px rgba(96,165,250,.18);
+  --shadow2:0 4px 16px rgba(0,0,0,.5);--shadow3:0 0 0 3px rgba(96,165,250,.18);
 }
-
-/* ══ DARKER GRAY THEME ══ */
+/* ══ GRAY THEME ══ */
 [data-theme="gray"]{
-  --bg:#1A1D23;
-  --surface:#22252E;
-  --surface2:#272B35;
-  --surface3:#2D3140;
-  --border:#353A4A;
-  --border2:#424859;
-  --text:#CDD5E0;
-  --text2:#8896AC;
-  --muted:#50596A;
-  --green:#34D399;  --green-bg:rgba(52,211,153,.1);  --green-border:rgba(52,211,153,.22);
-  --red:#F87171;    --red-bg:rgba(248,113,113,.1);   --red-border:rgba(248,113,113,.22);
-  --blue:#7BAEF8;   --blue-bg:rgba(123,174,248,.1);  --blue-border:rgba(123,174,248,.22);
-  --gold:#FCD34D;   --gold-bg:rgba(252,211,77,.1);   --gold-border:rgba(252,211,77,.22);
-  --indigo:#A5B4FC; --indigo-bg:rgba(165,180,252,.1);
+  --bg:#1A1D23;--surface:#22252E;--surface2:#272B35;--surface3:#2D3140;
+  --border:#353A4A;--border2:#424859;--text:#CDD5E0;--text2:#8896AC;--muted:#50596A;
+  --green:#34D399;--green-bg:rgba(52,211,153,.1);--green-border:rgba(52,211,153,.22);
+  --red:#F87171;--red-bg:rgba(248,113,113,.1);--red-border:rgba(248,113,113,.22);
+  --blue:#7BAEF8;--blue-bg:rgba(123,174,248,.1);--blue-border:rgba(123,174,248,.22);
+  --gold:#FCD34D;--gold-bg:rgba(252,211,77,.1);--gold-border:rgba(252,211,77,.22);
+  --indigo:#A5B4FC;--indigo-bg:rgba(165,180,252,.1);
   --shadow:0 1px 3px rgba(0,0,0,.35),0 1px 2px rgba(0,0,0,.25);
-  --shadow2:0 4px 16px rgba(0,0,0,.45);
-  --shadow3:0 0 0 3px rgba(123,174,248,.16);
+  --shadow2:0 4px 16px rgba(0,0,0,.45);--shadow3:0 0 0 3px rgba(123,174,248,.16);
 }
-
-/* ══ SMOOTH THEME TRANSITIONS ══ */
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;
   transition:background-color .22s ease,border-color .22s ease,color .15s ease;}
 body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:13px;min-height:100vh;-webkit-font-smoothing:antialiased}
@@ -87,11 +67,13 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:13
 .btn{background:var(--surface2);border:1px solid var(--border2);color:var(--text2);padding:7px 12px;border-radius:var(--r2);font-size:11px;font-family:var(--mono);cursor:pointer;display:flex;align-items:center;gap:5px;white-space:nowrap;font-weight:600;box-shadow:var(--shadow)}
 .btn:hover{background:var(--surface3)}
 .btn:active{opacity:.8;transform:scale(.97)}
-.btn.primary{background:var(--blue-bg);border-color:var(--blue-border);color:var(--blue)}
 .btn.upload-btn{background:var(--gold-bg);border-color:var(--gold-border);color:var(--gold)}
 .btn.live-btn{background:var(--green-bg);border-color:var(--green-border);color:var(--green)}
+/* NEW: Sync button */
+.btn.sync-btn{background:var(--blue-bg);border-color:var(--blue-border);color:var(--blue)}
 .btn.theme-btn{background:var(--surface2);border-color:var(--border2);color:var(--text2);min-width:80px;justify-content:center}
 .btn.export-btn{background:var(--indigo-bg);border-color:var(--indigo);color:var(--indigo);font-size:10px;padding:5px 10px}
+.btn.sort-dir{padding:6px 10px;font-size:12px;min-width:36px;justify-content:center}
 .btn:disabled{opacity:.5;cursor:not-allowed}
 @keyframes spin{to{transform:rotate(360deg)}}
 .spin{display:inline-block;animation:spin 1s linear infinite}
@@ -156,22 +138,16 @@ td{padding:9px 12px;text-align:right;font-size:12px;font-family:var(--mono);whit
 td:first-child{text-align:left;font-family:var(--sans)}
 .sn{font-size:12px;font-weight:600;color:var(--text);display:block}
 .ss{font-size:10px;color:var(--muted);display:block;margin-top:1px;max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.pos{color:var(--green);font-weight:600}
-.neg{color:var(--red);font-weight:600}
-.neu{color:var(--text2)}
+.pos{color:var(--green);font-weight:600}.neg{color:var(--red);font-weight:600}.neu{color:var(--text2)}
 .pill{display:inline-flex;align-items:center;padding:3px 8px;border-radius:5px;font-size:11px;font-weight:700;font-family:var(--mono);gap:2px}
 .pill.pos{background:var(--green-bg);color:var(--green);border:1px solid var(--green-border)}
 .pill.neg{background:var(--red-bg);color:var(--red);border:1px solid var(--red-border)}
 .pill.neu{background:var(--surface2);color:var(--muted);border:1px solid var(--border)}
-
-/* CMP live badge */
 .cmp-wrap{display:flex;flex-direction:column;align-items:flex-end;gap:2px}
 .cmp-badge{font-size:9.5px;font-weight:700;font-family:var(--mono);padding:1px 5px;border-radius:4px;display:inline-flex;align-items:center;gap:2px}
 .cmp-badge.pos{background:var(--green-bg);color:var(--green)}
 .cmp-badge.neg{background:var(--red-bg);color:var(--red)}
 .cmp-badge.neu{background:var(--surface2);color:var(--muted)}
-
-/* ── WEIGHT BAR ── */
 .bar-row{display:flex;align-items:center;gap:6px;justify-content:flex-end}
 .bar-track{width:44px;height:5px;background:var(--border);border-radius:3px;overflow:hidden;flex-shrink:0}
 .bar-fill{height:100%;border-radius:3px;background:var(--blue);transition:width .4s ease}
@@ -183,11 +159,25 @@ td:first-child{text-align:left;font-family:var(--sans)}
 .search::placeholder{color:var(--muted)}
 .s-icon{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:15px;pointer-events:none}
 
+/* NEW: Controls row for client selector + sort */
+.controls-row{display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap;align-items:center}
+.ctrl-select{background:var(--surface);border:1px solid var(--border2);border-radius:var(--r2);padding:7px 10px;color:var(--text);font-family:var(--sans);font-size:12px;outline:none;box-shadow:var(--shadow);cursor:pointer;flex:1;min-width:160px;max-width:260px}
+.ctrl-select:focus{border-color:var(--blue);box-shadow:var(--shadow3)}
+.sort-wrap{display:flex;gap:5px;align-items:center;flex-wrap:wrap}
+.sort-label{font-size:10px;color:var(--muted);font-family:var(--mono);font-weight:600;white-space:nowrap}
+.sort-select{background:var(--surface);border:1px solid var(--border2);border-radius:var(--r2);padding:6px 9px;color:var(--text);font-family:var(--mono);font-size:11px;outline:none;box-shadow:var(--shadow);cursor:pointer}
+.sort-select:focus{border-color:var(--blue)}
+
+/* NEW: Sector filter clear bar */
+.sector-filter-bar{display:none;background:var(--blue-bg);border:1px solid var(--blue-border);border-radius:var(--r2);padding:7px 12px;margin-bottom:10px;font-size:11px;color:var(--blue);font-family:var(--mono);font-weight:600;align-items:center;justify-content:space-between;gap:8px}
+.sector-filter-bar.visible{display:flex}
+.sector-filter-bar .clear-btn{cursor:pointer;background:var(--blue);color:#fff;border:none;border-radius:5px;padding:3px 9px;font-size:10px;font-family:var(--mono);font-weight:700}
+
 /* ── SECTOR HEATMAP ── */
 .heatmap{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;background:var(--surface);border:1px solid var(--border);border-radius:0 0 var(--r) var(--r);padding:12px;box-shadow:var(--shadow)}
 @media(min-width:480px){.heatmap{grid-template-columns:repeat(3,1fr)}}
 @media(min-width:700px){.heatmap{grid-template-columns:repeat(4,1fr)}}
-.hc{border-radius:var(--r2);padding:10px 12px;border:1px solid transparent}
+.hc{border-radius:var(--r2);padding:10px 12px;border:1px solid transparent;cursor:pointer}
 .hc:hover{transform:translateY(-2px);box-shadow:var(--shadow2)}
 .hc-name{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;margin-bottom:3px}
 .hc-pct{font-size:18px;font-weight:700;font-family:var(--mono);margin-bottom:2px}
@@ -209,8 +199,6 @@ td:first-child{text-align:left;font-family:var(--sans)}
 .ic-val{font-size:14px;font-weight:700;font-family:var(--mono);color:var(--text)}
 .ic-chg{font-size:10px;font-family:var(--mono);margin-top:3px;font-weight:600;display:flex;align-items:center;gap:4px}
 .ic-pct{padding:1px 5px;border-radius:4px;font-size:9.5px}
-
-/* ── TWO COLUMN ── */
 .two-col{display:grid;grid-template-columns:1fr;gap:12px}
 @media(min-width:680px){.two-col{grid-template-columns:1fr 1fr}}
 
@@ -228,6 +216,13 @@ td:first-child{text-align:left;font-family:var(--sans)}
 .note.warn{background:var(--gold-bg);border-color:var(--gold-border);color:var(--gold)}
 .note.ok{background:var(--green-bg);border-color:var(--green-border);color:var(--green)}
 
+/* NEW: Loading overlay */
+#loadingOverlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.38);z-index:500;align-items:center;justify-content:center}
+#loadingOverlay.visible{display:flex}
+.spinner-box{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px 32px;display:flex;align-items:center;gap:14px;box-shadow:var(--shadow2)}
+.spinner-icon{font-size:22px;animation:spin 1s linear infinite;display:inline-block}
+.spinner-txt{font-size:13px;font-weight:600;color:var(--text);font-family:var(--mono)}
+
 /* ── TOAST ── */
 #toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--text);color:var(--bg);border-radius:var(--r);padding:10px 18px;font-size:12px;font-family:var(--mono);z-index:999;opacity:0;white-space:nowrap;pointer-events:none;max-width:92vw;text-align:center;box-shadow:var(--shadow2);transition:opacity .3s,transform .3s}
 #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
@@ -239,7 +234,6 @@ td:first-child{text-align:left;font-family:var(--sans)}
 .footer{text-align:center;padding:16px;font-size:10px;color:var(--muted);font-family:var(--mono)}
 .dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--green);margin-right:5px;animation:pulse2 2s infinite}
 
-/* ── RESPONSIVE TOPBAR ── */
 @media(max-width:400px){
   .btn.upload-btn span{display:none}
   .btn.theme-btn{min-width:36px;font-size:14px}
@@ -260,22 +254,24 @@ td:first-child{text-align:left;font-family:var(--sans)}
   </div>
   <div class="t-right">
     <button class="btn theme-btn" onclick="cycleTheme()" id="themeBtn" title="Toggle Theme">☀️ Light</button>
-    <label class="btn upload-btn" for="fileInput" title="Upload daily CSV">📂 <span id="upTxt">Update CSV</span></label>
+    <!-- NEW: Sync Sheet button -->
+    <button class="btn sync-btn" onclick="syncSheet()" id="syncBtn" title="Sync from Google Sheet"><span id="si">🔄</span> Sync Sheet</button>
+    <label class="btn upload-btn" for="fileInput" title="Upload daily CSV">📂 <span>Update CSV</span></label>
     <input type="file" id="fileInput" accept=".csv,.CSV" onchange="handleCSV(this)">
     <button class="btn live-btn" onclick="refreshPrices()" id="rfBtn"><span id="ri">↻</span> Live</button>
   </div>
 </div>
 
-<!-- UPLOAD ZONE -->
+<!-- UPLOAD ZONE (shown while loading) -->
 <div id="uploadZone" ondragover="onDO(event)" ondragleave="onDL(event)" ondrop="onDP(event)">
   <div class="uz-icon">📊</div>
-  <div class="uz-title">Drop your broker CSV here</div>
+  <div class="uz-title">Loading portfolio from Google Sheet…</div>
   <div class="uz-sub">
-    Export → <strong>Unrealised P&amp;L Report</strong> → Download CSV<br>
-    Drag &amp; drop or tap Browse — dashboard auto-reads your format<br>
-    <span class="uz-chip">EXPORTREPORT_XXXXX_YYYYMMDD.CSV</span>
+    Auto-loading data from your Google Sheet.<br>
+    Or drop a broker CSV as backup — dashboard auto-reads your format<br>
+    <span class="uz-chip">Auto-sync enabled</span>
   </div>
-  <label class="uz-btn" for="fileInput">Browse File</label>
+  <label class="uz-btn" for="fileInput">Browse CSV (Fallback)</label>
 </div>
 
 <!-- DASHBOARD -->
@@ -284,8 +280,16 @@ td:first-child{text-align:left;font-family:var(--sans)}
 
   <!-- LIVE STATUS -->
   <div class="live-bar">
-    <div class="live-label"><div class="live-dot" id="liveDot"></div><span id="liveLabel">Loading prices...</span></div>
+    <div class="live-label"><div class="live-dot" id="liveDot"></div><span id="liveLabel">Loading…</span></div>
     <div class="live-meta" id="liveMeta"></div>
+  </div>
+
+  <!-- NEW: Client Selector row (hidden when single client) -->
+  <div class="controls-row" id="clientRow" style="display:none">
+    <select class="ctrl-select" id="clientSelect" onchange="onClientChange()">
+      <option value="">All Clients</option>
+    </select>
+    <span id="clientBadge" style="font-size:10px;color:var(--muted);font-family:var(--mono)"></span>
   </div>
 
   <!-- KPI STRIP -->
@@ -304,7 +308,7 @@ td:first-child{text-align:left;font-family:var(--sans)}
     <div class="tab" onclick="showTab('gu',this)">❓ GitHub Guide</div>
   </div>
 
-  <!-- ═══ OVERVIEW + MARKET ═══ -->
+  <!-- ═══ OVERVIEW ═══ -->
   <div id="t-ov">
     <div class="two-col">
       <div class="sec">
@@ -338,9 +342,27 @@ td:first-child{text-align:left;font-family:var(--sans)}
 
   <!-- ═══ HOLDINGS ═══ -->
   <div id="t-hd" style="display:none">
+    <!-- NEW: Sector filter banner -->
+    <div class="sector-filter-bar" id="sectorFilterBar">
+      <span>🏭 Filtered by sector: <strong id="sectorFilterName"></strong></span>
+      <button class="clear-btn" onclick="clearSectorFilter()">✕ Clear Filter</button>
+    </div>
     <div class="search-wrap">
       <span class="s-icon">🔍</span>
-      <input class="search" id="srch" placeholder="Search script, sector..." oninput="filterHoldings()">
+      <!-- UPDATED: debounced -->
+      <input class="search" id="srch" placeholder="Search script, sector, client..." oninput="debouncedFilter()">
+    </div>
+    <!-- NEW: Sort controls row -->
+    <div class="controls-row sort-wrap">
+      <span class="sort-label">Sort by:</span>
+      <select class="sort-select" id="sortSelect" onchange="renderHoldingsFromCurrent()">
+        <option value="curr">Current Value</option>
+        <option value="pnlpct">P&amp;L %</option>
+        <option value="pnlabs">P&amp;L ₹</option>
+        <option value="wt">Weight %</option>
+        <option value="daypct">Day %</option>
+      </select>
+      <button class="btn sort-dir" id="sortDirBtn" onclick="toggleSortDir()" title="Toggle direction">▼</button>
     </div>
     <div class="sec">
       <div class="sec-hdr">
@@ -352,17 +374,10 @@ td:first-child{text-align:left;font-family:var(--sans)}
       </div>
       <div class="t-wrap scroll">
         <table>
-          <!-- COLUMN ORDER: Script | CMP | Day% | Wt% | Qty | Avg Buy | Curr Value | P&L ₹ | P&L % -->
           <thead><tr>
             <th style="text-align:left">Script</th>
-            <th>CMP ⚡</th>
-            <th>Day / %</th>
-            <th>Wt%</th>
-            <th>Qty</th>
-            <th>Avg Buy ₹</th>
-            <th>Curr. Value</th>
-            <th>P&amp;L ₹</th>
-            <th>P&amp;L %</th>
+            <th>CMP ⚡</th><th>Day / %</th><th>Wt%</th><th>Qty</th>
+            <th>Avg Buy ₹</th><th>Curr. Value</th><th>P&amp;L ₹</th><th>P&amp;L %</th>
           </tr></thead>
           <tbody id="tb-hold"></tbody>
         </table>
@@ -373,11 +388,12 @@ td:first-child{text-align:left;font-family:var(--sans)}
   <!-- ═══ SECTORS ═══ -->
   <div id="t-sc" style="display:none">
     <div class="sec">
-      <div class="sec-hdr"><span class="sec-title">🏭 Sector Heatmap</span><span class="sec-badge">by P&amp;L %</span></div>
+      <!-- UPDATED: hint about clickable drilldown -->
+      <div class="sec-hdr"><span class="sec-title">🏭 Sector Heatmap</span><span class="sec-badge">Click sector to drill down →</span></div>
       <div class="heatmap" id="heatmap"></div>
     </div>
     <div class="sec">
-      <div class="sec-hdr"><span class="sec-title">📊 Sector Detail</span></div>
+      <div class="sec-hdr"><span class="sec-title">📊 Sector Detail</span><span class="sec-badge">Click row to filter holdings</span></div>
       <div class="t-wrap scroll">
         <table><thead><tr><th>Sector</th><th>Stocks</th><th>Invested</th><th>Curr. Value</th><th>P&amp;L ₹</th><th>P&amp;L %</th><th>Weight</th></tr></thead>
         <tbody id="tb-sec"></tbody></table>
@@ -385,7 +401,7 @@ td:first-child{text-align:left;font-family:var(--sans)}
     </div>
   </div>
 
-  <!-- ═══ GITHUB GUIDE ═══ -->
+  <!-- ═══ GUIDE ═══ -->
   <div id="t-gu" style="display:none">
     <div class="note info">📱 <strong>Goal:</strong> This HTML file hosted on GitHub Pages becomes a permanent free URL you can bookmark on your phone — works like an app, opens in one tap.</div>
     <div class="steps">
@@ -395,15 +411,9 @@ td:first-child{text-align:left;font-family:var(--sans)}
       <div class="step"><div class="step-num">3</div><div class="step-body"><div class="step-title">Upload the dashboard file</div><div class="step-desc">In repo → <strong>Add file</strong> → <strong>Upload files</strong> → drag <span class="chip">index.html</span> → Commit changes.</div></div></div>
       <div class="step"><div class="step-num">4</div><div class="step-body"><div class="step-title">Enable GitHub Pages</div><div class="step-desc">Settings → Pages → Source: <strong>Deploy from branch</strong> → Branch: <strong>main / (root)</strong> → Save.</div></div></div>
       <div class="step"><div class="step-num">5</div><div class="step-body"><div class="step-title">Get your permanent URL</div><div class="step-desc">Wait ~60s → your URL: <span class="chip">https://YourUsername.github.io/portfolio</span> — bookmark it!</div></div></div>
-      <div class="step"><div class="step-num">6</div><div class="step-body"><div class="step-title">Add to phone home screen</div><div class="step-desc">Chrome: ⋮ → Add to Home screen. Safari: Share → Add to Home Screen. ✅ Works like a native app!</div></div></div>
+      <div class="step"><div class="step-num">6</div><div class="step-body"><div class="step-title">Update Google Sheet data</div><div class="step-desc">Just update the sheet → tap <span class="chip">🔄 Sync Sheet</span> → dashboard auto-refreshes. No file uploads needed!</div></div></div>
     </div>
-    <div class="steps">
-      <div class="steps-title">📅 Daily Portfolio Update (2 taps)</div>
-      <div class="step"><div class="step-num">1</div><div class="step-body"><div class="step-title">Export CSV from your broker</div><div class="step-desc">Login → Portfolio → Unrealised P&amp;L → Export CSV → Save to Downloads.</div></div></div>
-      <div class="step"><div class="step-num">2</div><div class="step-body"><div class="step-title">Tap "📂 Update CSV"</div><div class="step-desc">Select the CSV → Dashboard instantly recalculates with new quantities and prices.</div></div></div>
-      <div class="step"><div class="step-num">3</div><div class="step-body"><div class="step-title">Tap "↻ Live" for real-time prices</div><div class="step-desc">Fetches all NSE prices in 1–2 fast batch calls (vs 30+ slow ones before). Auto-refreshes every 5 min.</div></div></div>
-    </div>
-    <div class="note warn">🔒 <strong>100% Private:</strong> CSV is read entirely in your browser — your data never leaves your device.</div>
+    <div class="note warn">🔒 <strong>100% Private:</strong> CSV data is read entirely in your browser — nothing leaves your device.</div>
     <div class="note ok">💡 <strong>Export Tip:</strong> Use the ⬇ Export CSV button in Holdings tab to download a shareable report with live P&amp;L data. Opens perfectly in Excel.</div>
   </div>
 
@@ -413,190 +423,122 @@ td:first-child{text-align:left;font-family:var(--sans)}
 
 <div id="toast"></div>
 
+<!-- NEW: Loading spinner overlay -->
+<div id="loadingOverlay">
+  <div class="spinner-box">
+    <span class="spinner-icon">⏳</span>
+    <span class="spinner-txt" id="loadingTxt">Loading data…</span>
+  </div>
+</div>
+
 <script>
 // ══════════════════════════════════════════════════════
-//  DATA
+//  STATE
 // ══════════════════════════════════════════════════════
-let PORTFOLIO = [];
-let livePrices    = {};
-let liveChangePct = {};
-let liveChangeAbs = {};
-let lastCSVDate = null;
-let liveCount = 0;
+let PORTFOLIO      = [];
+let livePrices     = {};
+let liveChangePct  = {};
+let liveChangeAbs  = {};
+let lastCSVDate    = null;
+let liveCount      = 0;
 
+// NEW: Multi-client
+let selectedClient    = '';
+let allClients        = [];
+
+// NEW: Sector drilldown
+let activeSectorFilter = '';
+
+// NEW: Sort state
+let sortKey = 'curr';
+let sortAsc = false;
+
+// NEW: Cached computed data for re-renders
+let _lastComputedData = null;
+
+// NEW: Toast spam guard
+let _lastErrToastTs = 0;
+
+// NEW: Google Sheet CSV URL
+const SHEET_URL   = 'https://docs.google.com/spreadsheets/d/1edXiB-P83C-OSv2OFn_cez3mmjzh_T9e9RRc2H4ldHk/export?format=csv&gid=0';
+const LS_SHEET    = 'pf-sheet-v2';
+const LS_PRICES   = 'pf-prices-v2';
+const LS_THEME    = 'pf-theme';
+
+// SEED — used only when sheet AND cache both fail
 const SEED = [
-  {code:"AUROPHARMA",name:"AUROBINDO PHARMA",   sector:"Pharmaceuticals",      qty:405,  buy:1305.891873,valRate:1281.60},
-  {code:"BAJFINANCE", name:"BAJAJ FINANCE",      sector:"Banking Services",     qty:34775,buy:797.244781, valRate:849.00},
-  {code:"BAJAJFINSV", name:"BAJAJ FINSERV",      sector:"Banking Services",     qty:755,  buy:1962.09466, valRate:1704.40},
-  {code:"BEL",        name:"BHARAT ELECTRONICS", sector:"Aerospace & Defense",  qty:1295, buy:409.414355, valRate:414.45},
-  {code:"BHARTIARTL", name:"BHARTI AIRTEL",      sector:"Telecom",              qty:275,  buy:1929.062394,valRate:1802.10},
-  {code:"BLS",        name:"BLS INTL SERVICES",  sector:"Professional Services",qty:1445, buy:369.154389, valRate:259.40},
-  {code:"BLUESTARCO", name:"BLUE STAR",          sector:"Machinery & Equipment",qty:595,  buy:1799.056815,valRate:1665.90},
-  {code:"CGPOWER",    name:"CG POWER & IND SOL", sector:"Machinery & Equipment",qty:825,  buy:676.008528, valRate:667.30},
-  {code:"DIXON",      name:"DIXON TECHNOLOGIES", sector:"Electronics",          qty:301,  buy:15722.60059,valRate:10174.00},
-  {code:"ETERNAL",    name:"ETERNAL LIMITED",    sector:"Software & IT",        qty:10465,buy:312.290695, valRate:237.94},
-  {code:"FIVESTAR",   name:"FIVE-STAR BUS FIN",  sector:"Banking Services",     qty:3960, buy:538.093046, valRate:364.55},
-  {code:"GVT&D",      name:"GE VERNOVA T&D",     sector:"Machinery & Equipment",qty:150,  buy:3513.900916,valRate:3520.90},
-  {code:"HDFCBANK",   name:"HDFC BANK",          sector:"Banking Services",     qty:660,  buy:806.814661, valRate:764.90},
-  {code:"HCG",        name:"HEALTHCARE GLOBAL",  sector:"Healthcare",           qty:1585, buy:672.002439, valRate:527.15},
-  {code:"INDIANB",    name:"INDIAN BANK",        sector:"Banking Services",     qty:640,  buy:829.506443, valRate:871.45},
-  {code:"INDUSTOWER", name:"INDUS TOWERS",       sector:"Telecom",              qty:1120, buy:474.646231, valRate:429.30},
-  {code:"INDIGO",     name:"INTERGLOBE AVIATION",sector:"Aviation",             qty:325,  buy:4732.560552,valRate:4150.80},
-  {code:"KIRLOSBROS", name:"KIRLOSKAR BROTHERS", sector:"Machinery & Equipment",qty:715,  buy:1748.434959,valRate:1496.10},
-  {code:"LAURUSLABS", name:"LAURUS LABS",        sector:"Pharmaceuticals",      qty:560,  buy:952.866615, valRate:992.60},
-  {code:"MUTHOOTFIN", name:"MUTHOOT FINANCE",    sector:"Banking Services",     qty:300,  buy:3582.499775,valRate:3155.20},
-  {code:"NATCOPHARM", name:"NATCO PHARMA",       sector:"Pharmaceuticals",      qty:910,  buy:1169.704491,valRate:949.75},
-  {code:"NEULANDLAB", name:"NEULAND LABS",       sector:"Pharmaceuticals",      qty:65,   buy:15843.01471,valRate:12030.00},
-  {code:"PRESTIGE",   name:"PRESTIGE ESTATES",   sector:"Real Estate",          qty:355,  buy:1517.409122,valRate:1201.50},
-  {code:"SHRIRAMFIN", name:"SHRIRAM FINANCE",    sector:"Banking Services",     qty:1770, buy:905.220995, valRate:903.60},
-  {code:"SBIN",       name:"STATE BANK OF INDIA",sector:"Banking Services",     qty:510,  buy:1044.342877,valRate:1030.80},
-  {code:"SYMPHONY",   name:"SYMPHONY",           sector:"Specialty Retail",     qty:695,  buy:769.75806,  valRate:724.10},
-  {code:"UJJIVANSFB", name:"UJJIVAN SMALL FIN",  sector:"Banking Services",     qty:26650,buy:59.923198,  valRate:51.34},
-  {code:"UNOMINDA",   name:"UNO MINDA",          sector:"Auto Parts",           qty:460,  buy:1161.898213,valRate:1071.40},
-  {code:"URBANCO",    name:"URBAN COMPANY",      sector:"Professional Services",qty:3340, buy:159.48666,  valRate:114.20},
-  {code:"VEDL",       name:"VEDANTA",            sector:"Metals & Mining",      qty:775,  buy:684.633047, valRate:651.60},
-  {code:"YESBANK",    name:"YES BANK",           sector:"Banking Services",     qty:7760, buy:146.528844, valRate:18.07},
+  {subgroup:'',clientCode:'DEFAULT',clientName:'Default',code:"AUROPHARMA",name:"AUROBINDO PHARMA",   sector:"Pharmaceuticals",      qty:405,  buy:1305.89,valRate:1281.60},
+  {subgroup:'',clientCode:'DEFAULT',clientName:'Default',code:"BAJFINANCE", name:"BAJAJ FINANCE",      sector:"Banking Services",     qty:34775,buy:797.24, valRate:849.00},
+  {subgroup:'',clientCode:'DEFAULT',clientName:'Default',code:"BAJAJFINSV", name:"BAJAJ FINSERV",      sector:"Banking Services",     qty:755,  buy:1962.09,valRate:1704.40},
+  {subgroup:'',clientCode:'DEFAULT',clientName:'Default',code:"BEL",        name:"BHARAT ELECTRONICS", sector:"Aerospace & Defense",  qty:1295, buy:409.41, valRate:414.45},
+  {subgroup:'',clientCode:'DEFAULT',clientName:'Default',code:"BHARTIARTL", name:"BHARTI AIRTEL",      sector:"Telecom",              qty:275,  buy:1929.06,valRate:1802.10},
+  {subgroup:'',clientCode:'DEFAULT',clientName:'Default',code:"HDFCBANK",   name:"HDFC BANK",          sector:"Banking Services",     qty:660,  buy:806.81, valRate:764.90},
+  {subgroup:'',clientCode:'DEFAULT',clientName:'Default',code:"SBIN",       name:"STATE BANK OF INDIA",sector:"Banking Services",     qty:510,  buy:1044.34,valRate:1030.80},
+  {subgroup:'',clientCode:'DEFAULT',clientName:'Default',code:"INDIGO",     name:"INTERGLOBE AVIATION",sector:"Aviation",             qty:325,  buy:4732.56,valRate:4150.80},
 ];
 
-// Yahoo Finance NSE ticker map
-const YF = {
+// Yahoo Finance symbol map (static + dynamic)
+const YF_STATIC = {
   "AUROPHARMA":"AUROPHARMA.NS","BAJFINANCE":"BAJFINANCE.NS","BAJAJFINSV":"BAJAJFINSV.NS",
   "BEL":"BEL.NS","BHARTIARTL":"BHARTIARTL.NS","BLS":"BLS.NS","BLUESTARCO":"BLUESTARCO.NS",
   "CGPOWER":"CGPOWER.NS","DIXON":"DIXON.NS","ETERNAL":"ETERNAL.NS","FIVESTAR":"FIVESTAR.NS",
-  "GVT&D":"GET&D.NS","HDFCBANK":"HDFCBANK.NS","HCG":"HCG.NS","INDIANB":"INDIANB.NS",
-  "INDUSTOWER":"INDUSTOWER.NS","INDIGO":"INDIGO.NS","KIRLOSBROS":"KIRLOSBROS.NS",
-  "LAURUSLABS":"LAURUSLABS.NS","MUTHOOTFIN":"MUTHOOTFIN.NS","NATCOPHARM":"NATCOPHARM.NS",
-  "NEULANDLAB":"NEULANDLAB.NS","PRESTIGE":"PRESTIGE.NS","SHRIRAMFIN":"SHRIRAMFIN.NS",
-  "SBIN":"SBIN.NS","SYMPHONY":"SYMPHONY.NS","UJJIVANSFB":"UJJIVANSFB.NS",
-  "UNOMINDA":"UNOMINDA.NS","URBANCO":"URBANCO.NS","VEDL":"VEDL.NS","YESBANK":"YESBANK.NS"
+  "GET&D":"GET&D.NS","GVT&D":"GET&D.NS","HDFCBANK":"HDFCBANK.NS","HCG":"HCG.NS",
+  "INDIANB":"INDIANB.NS","INDUSTOWER":"INDUSTOWER.NS","INDIGO":"INDIGO.NS",
+  "KIRLOSBROS":"KIRLOSBROS.NS","LAURUSLABS":"LAURUSLABS.NS","MUTHOOTFIN":"MUTHOOTFIN.NS",
+  "NATCOPHARM":"NATCOPHARM.NS","NEULANDLAB":"NEULANDLAB.NS","PRESTIGE":"PRESTIGE.NS",
+  "SHRIRAMFIN":"SHRIRAMFIN.NS","SBIN":"SBIN.NS","SYMPHONY":"SYMPHONY.NS",
+  "UJJIVANSFB":"UJJIVANSFB.NS","UNOMINDA":"UNOMINDA.NS","URBANCO":"URBANCO.NS",
+  "VEDL":"VEDL.NS","YESBANK":"YESBANK.NS","TCS":"TCS.NS","INFY":"INFY.NS",
+  "RELIANCE":"RELIANCE.NS","WIPRO":"WIPRO.NS","HINDUNILVR":"HINDUNILVR.NS",
+  "ICICIBANK":"ICICIBANK.NS","KOTAKBANK":"KOTAKBANK.NS","AXISBANK":"AXISBANK.NS",
+  "LT":"LT.NS","MARUTI":"MARUTI.NS","TATAMOTORS":"TATAMOTORS.NS","TITAN":"TITAN.NS",
 };
-// Reverse map: "SBIN.NS" → "SBIN"
-const YF_REV = Object.fromEntries(Object.entries(YF).map(([k,v])=>[v,k]));
+let YF     = {};
+let YF_REV = {};
 
-// ── MARKET DATA (static snapshot — update manually or connect API) ──
-const INDIA_INDICES = [
-  {name:"NIFTY 50",    val:23355.85, chg:443.45,  pct:1.94,  flag:"🇮🇳"},
-  {name:"NIFTY BANK",  val:53858.10, chg:1252.45, pct:2.38,  flag:"🏦"},
-  {name:"BSE SENSEX",  val:75430.76, chg:1362.31, pct:1.84,  flag:"📈"},
-  {name:"NIFTY IT",    val:29767.30, chg:118.40,  pct:0.40,  flag:"💻"},
-  {name:"NIFTY PHARMA",val:22721.85, chg:482.05,  pct:2.17,  flag:"💊"},
-  {name:"NIFTY AUTO",  val:25124.05, chg:608.80,  pct:2.48,  flag:"🚗"},
-  {name:"NIFTY FMCG",  val:47399.55, chg:991.25,  pct:2.14,  flag:"🛒"},
-  {name:"NIFTY METAL", val:11357.95, chg:298.80,  pct:2.70,  flag:"⚙️"},
-  {name:"NIFTY PSU BK",val:8593.00,  chg:235.45,  pct:2.82,  flag:"🏛️"},
-  {name:"INDIA VIX",   val:13.82,    chg:-0.75,   pct:-5.14, flag:"⚡"},
+// Static market indices
+const INDIA_INDICES=[
+  {name:"NIFTY 50",    val:23355.85,chg:443.45, pct:1.94, flag:"🇮🇳"},
+  {name:"NIFTY BANK",  val:53858.10,chg:1252.45,pct:2.38, flag:"🏦"},
+  {name:"BSE SENSEX",  val:75430.76,chg:1362.31,pct:1.84, flag:"📈"},
+  {name:"NIFTY IT",    val:29767.30,chg:118.40, pct:0.40, flag:"💻"},
+  {name:"NIFTY PHARMA",val:22721.85,chg:482.05, pct:2.17, flag:"💊"},
+  {name:"NIFTY AUTO",  val:25124.05,chg:608.80, pct:2.48, flag:"🚗"},
+  {name:"NIFTY FMCG",  val:47399.55,chg:991.25, pct:2.14, flag:"🛒"},
+  {name:"NIFTY METAL", val:11357.95,chg:298.80, pct:2.70, flag:"⚙️"},
+  {name:"NIFTY PSU BK",val:8593.00, chg:235.45, pct:2.82, flag:"🏛️"},
+  {name:"INDIA VIX",   val:13.82,   chg:-0.75,  pct:-5.14,flag:"⚡"},
 ];
-const GLOBAL_INDICES = [
-  {name:"S&P 500",     val:6556.37,  chg:-24.63,  pct:-0.37, flag:"🇺🇸"},
-  {name:"NASDAQ 100",  val:24002.45, chg:-186.14, pct:-0.77, flag:"🇺🇸"},
-  {name:"DOW JONES",   val:46124.06, chg:-84.41,  pct:-0.18, flag:"🇺🇸"},
-  {name:"NIKKEI 225",  val:53749.62, chg:1497.34, pct:2.87,  flag:"🇯🇵"},
-  {name:"HANG SENG",   val:23627.45, chg:312.80,  pct:1.34,  flag:"🇭🇰"},
-  {name:"DAX",         val:22936.79, chg:215.40,  pct:0.95,  flag:"🇩🇪"},
-  {name:"FTSE 100",    val:8726.43,  chg:45.20,   pct:0.52,  flag:"🇬🇧"},
-  {name:"SHANGHAI",    val:3378.40,  chg:28.60,   pct:0.85,  flag:"🇨🇳"},
-  {name:"CAC 40",      val:8115.30,  chg:98.20,   pct:1.22,  flag:"🇫🇷"},
-  {name:"ASX 200",     val:8021.50,  chg:-18.40,  pct:-0.23, flag:"🇦🇺"},
+const GLOBAL_INDICES=[
+  {name:"S&P 500",     val:6556.37, chg:-24.63, pct:-0.37,flag:"🇺🇸"},
+  {name:"NASDAQ 100",  val:24002.45,chg:-186.14,pct:-0.77,flag:"🇺🇸"},
+  {name:"DOW JONES",   val:46124.06,chg:-84.41, pct:-0.18,flag:"🇺🇸"},
+  {name:"NIKKEI 225",  val:53749.62,chg:1497.34,pct:2.87, flag:"🇯🇵"},
+  {name:"HANG SENG",   val:23627.45,chg:312.80, pct:1.34, flag:"🇭🇰"},
+  {name:"DAX",         val:22936.79,chg:215.40, pct:0.95, flag:"🇩🇪"},
+  {name:"FTSE 100",    val:8726.43, chg:45.20,  pct:0.52, flag:"🇬🇧"},
+  {name:"SHANGHAI",    val:3378.40, chg:28.60,  pct:0.85, flag:"🇨🇳"},
+  {name:"CAC 40",      val:8115.30, chg:98.20,  pct:1.22, flag:"🇫🇷"},
+  {name:"ASX 200",     val:8021.50, chg:-18.40, pct:-0.23,flag:"🇦🇺"},
 ];
-const COMM_INDICES = [
-  {name:"USD/INR",     val:94.03,    chg:0.01,    pct:0.01,  flag:"💵"},
-  {name:"EUR/INR",     val:102.85,   chg:0.15,    pct:0.15,  flag:"💶"},
-  {name:"GOLD ₹/10g",  val:88120,    chg:850,     pct:0.97,  flag:"🟡"},
-  {name:"SILVER ₹/kg", val:98450,    chg:620,     pct:0.63,  flag:"⬜"},
-  {name:"CRUDE OIL",   val:6840,     chg:-85,     pct:-1.23, flag:"🛢️"},
-  {name:"NAT GAS",     val:285.40,   chg:3.20,    pct:1.13,  flag:"🔵"},
-  {name:"BITCOIN ₹",   val:7842500,  chg:125000,  pct:1.62,  flag:"₿"},
+const COMM_INDICES=[
+  {name:"USD/INR",    val:94.03,   chg:0.01,  pct:0.01, flag:"💵"},
+  {name:"EUR/INR",    val:102.85,  chg:0.15,  pct:0.15, flag:"💶"},
+  {name:"GOLD ₹/10g", val:88120,   chg:850,   pct:0.97, flag:"🟡"},
+  {name:"SILVER ₹/kg",val:98450,   chg:620,   pct:0.63, flag:"⬜"},
+  {name:"CRUDE OIL",  val:6840,    chg:-85,   pct:-1.23,flag:"🛢️"},
+  {name:"NAT GAS",    val:285.40,  chg:3.20,  pct:1.13, flag:"🔵"},
+  {name:"BITCOIN ₹",  val:7842500, chg:125000,pct:1.62, flag:"₿"},
 ];
-
-// ══════════════════════════════════════════════════════
-//  THEME TOGGLE — Light ↔ Dark ↔ Darker Gray
-// ══════════════════════════════════════════════════════
-const THEMES = [
-  {key:'light', label:'☀️ Light'},
-  {key:'dark',  label:'🌙 Dark'},
-  {key:'gray',  label:'🌫️ Gray'},
-];
-let themeIdx = 0;
-
-function cycleTheme(){
-  themeIdx = (themeIdx + 1) % THEMES.length;
-  applyTheme(THEMES[themeIdx]);
-}
-function applyTheme({key, label}){
-  document.documentElement.setAttribute('data-theme', key);
-  document.getElementById('themeBtn').textContent = label;
-  try{ localStorage.setItem('pf-theme', key); }catch(e){}
-}
-// Restore saved theme on load
-(function initTheme(){
-  try{
-    const saved = localStorage.getItem('pf-theme');
-    if(saved){ const idx=THEMES.findIndex(t=>t.key===saved); if(idx>=0){ themeIdx=idx; applyTheme(THEMES[idx]); return; } }
-  }catch(e){}
-  applyTheme(THEMES[0]);
-})();
 
 // ══════════════════════════════════════════════════════
-//  CSV PARSER
+//  THEME
 // ══════════════════════════════════════════════════════
-function parseCSV(text){
-  const lines=text.replace(/\r/g,'').split('\n').map(l=>l.trim()).filter(Boolean);
-  if(lines.length<2) return [];
-  const headers=lines[0].split(',').map(h=>h.replace(/"/g,'').trim().toUpperCase());
-  const col=(...names)=>{for(const n of names){const i=headers.findIndex(h=>h.includes(n));if(i>=0)return i;}return -1;};
-  const iCode=col('SCRIPCODE','SCRIP CODE','SYMBOL');
-  const iName=col('SCRIPNAME','SCRIP NAME','COMPANY');
-  const iSec =col('SECTOR');
-  const iQty =col('BUYQTY','BUY QTY','QUANTITY');
-  const iBuy =col('BUYRATE','BUY RATE','AVGRATE','AVG RATE','AVGBUYPRICE');
-  const iVal =col('VALRATE','VAL RATE','CLOSINGVALUATION','CLOSING VALUATION');
-  const rows=[];
-  for(let i=1;i<lines.length;i++){
-    const cells=lines[i].split(',').map(c=>c.replace(/"/g,'').trim());
-    const code=iCode>=0?cells[iCode]:''; if(!code||code.startsWith('*')) continue;
-    const qty=parseFloat(cells[iQty]||0)||0;
-    const buy=parseFloat(cells[iBuy]||0)||0;
-    const valRate=parseFloat(cells[iVal]||0)||0;
-    if(!qty&&!buy) continue;
-    rows.push({code, name:iName>=0?cells[iName]:code, sector:(iSec>=0&&cells[iSec]?cells[iSec]:guessSector(code)), qty, buy, valRate});
-  }
-  return rows;
-}
-function guessSector(c){
-  if(/BAJFINANCE|BAJAJFINSV|HDFC|INDIANB|SBIN|YES|UJJIVAN|FIVESTAR|SHRIRAM|MUTHOOT/.test(c)) return 'Banking Services';
-  if(/AURO|LAURUS|NATCO|NEULAND/.test(c)) return 'Pharmaceuticals';
-  if(/CGPOWER|BLUE|KIRLOS|GVT/.test(c)) return 'Machinery & Equipment';
-  if(/BHARTI|INDUST/.test(c)) return 'Telecom';
-  if(/DIXON/.test(c)) return 'Electronics';
-  if(/INDIGO/.test(c)) return 'Aviation';
-  if(/VEDL/.test(c)) return 'Metals & Mining';
-  if(/PRESTIGE/.test(c)) return 'Real Estate';
-  if(/UNOMINDA/.test(c)) return 'Auto Parts';
-  if(/HCG/.test(c)) return 'Healthcare';
-  if(/BEL/.test(c)) return 'Aerospace & Defense';
-  if(/ETERNAL/.test(c)) return 'Software & IT';
-  if(/SYMPHONY/.test(c)) return 'Specialty Retail';
-  return 'Other';
-}
-function handleCSV(input){
-  const file=input.files[0]; if(!file) return;
-  const reader=new FileReader();
-  reader.onload=e=>{
-    const parsed=parseCSV(e.target.result);
-    if(!parsed.length){toast('Could not read CSV — check format','warn');return;}
-    PORTFOLIO=parsed;
-    PORTFOLIO.forEach(s=>{livePrices[s.code]=s.valRate;});
-    liveCount=0; liveChangePct={}; liveChangeAbs={};
-    const m=file.name.match(/(\d{8})/);
-    lastCSVDate=m?m[1].slice(6)+'/'+m[1].slice(4,6)+'/'+m[1].slice(0,4):new Date().toLocaleDateString('en-IN');
-    showDashboard(); renderAll();
-    toast('✅ Loaded '+parsed.length+' stocks — tap Live for prices','ok');
-  };
-  reader.readAsText(file); input.value='';
-}
-function onDO(e){e.preventDefault();document.getElementById('uploadZone').classList.add('drag')}
-function onDL(){document.getElementById('uploadZone').classList.remove('drag')}
-function onDP(e){e.preventDefault();onDL();const f=e.dataTransfer.files[0];if(f)handleCSV({files:[f]})}
+const THEMES=[{key:'light',label:'☀️ Light'},{key:'dark',label:'🌙 Dark'},{key:'gray',label:'🌫️ Gray'}];
+let themeIdx=0;
+function cycleTheme(){themeIdx=(themeIdx+1)%THEMES.length;applyTheme(THEMES[themeIdx]);}
+function applyTheme({key,label}){document.documentElement.setAttribute('data-theme',key);document.getElementById('themeBtn').textContent=label;try{localStorage.setItem(LS_THEME,key);}catch(e){}}
+(function initTheme(){try{const s=localStorage.getItem(LS_THEME);if(s){const i=THEMES.findIndex(t=>t.key===s);if(i>=0){themeIdx=i;applyTheme(THEMES[i]);return;}}}catch(e){}applyTheme(THEMES[0]);})();
 
 // ══════════════════════════════════════════════════════
 //  HELPERS
@@ -605,56 +547,301 @@ const fmtC=n=>{const a=Math.abs(n);return(n<0?'−':'')+(a>=1e7?(a/1e7).toFixed(
 const fmtP=n=>(n>=0?'+':'')+n.toFixed(2)+'%';
 const cls =n=>n>=0?'pos':'neg';
 const clsPill=n=>n===0?'neu':n>=0?'pos':'neg';
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 
+// ══════════════════════════════════════════════════════
+//  NEW: GOOGLE SHEET CSV PARSER
+//  Required cols: SUBGROUPCODE, CLIENTCODE, NAME,
+//                 SYMBOL/SCRIPCODE, QTY, BUYPRICE, SECTOR
+// ══════════════════════════════════════════════════════
+function parseSheetCSV(text){
+  console.log('[SHEET] Parsing CSV…');
+  const lines=text.replace(/\r/g,'').split('\n').map(l=>l.trim()).filter(Boolean);
+  if(lines.length<2){console.warn('[SHEET] Too few lines');return[];}
+
+  // UPDATED: headers to UPPERCASE, trimmed
+  const hdrs=lines[0].split(',').map(h=>h.replace(/"/g,'').trim().toUpperCase());
+  console.log('[SHEET] Headers detected:', hdrs);
+
+  const col=(...names)=>{for(const n of names){const i=hdrs.findIndex(h=>h.includes(n));if(i>=0)return i;}return -1;};
+
+  const iSub  = col('SUBGROUPCODE','SUBGROUP');
+  const iCC   = col('CLIENTCODE','CLIENT CODE','CLIENT');
+  const iName = col('NAME','CLIENTNAME','CLIENT NAME');
+  const iSym  = col('SYMBOL','SCRIPCODE','SCRIP CODE','SCRIPNAME','SCRIP NAME');
+  const iQty  = col('QTY','QUANTITY','BUYQTY','BUY QTY');
+  const iBuy  = col('BUYPRICE','BUY PRICE','BUYRATE','BUY RATE','AVGBUYPRICE','AVGRATE','AVG RATE');
+  const iSec  = col('SECTOR');
+  const iVal  = col('VALRATE','VAL RATE','CLOSINGVALUATION','CLOSING VALUATION');
+
+  console.log('[SHEET] Col indices:',{iSub,iCC,iName,iSym,iQty,iBuy,iSec,iVal});
+
+  const rows=[];let skip=0;
+  for(let i=1;i<lines.length;i++){
+    const c=lines[i].split(',').map(v=>v.replace(/"/g,'').trim());
+    if(c.length<2)continue;
+    const clientCode=iCC>=0?c[iCC]:'';
+    const symbol    =iSym>=0?c[iSym]:'';
+    // UPDATED: skip if CLIENTCODE or SYMBOL missing
+    if(!clientCode||!symbol||symbol.startsWith('*')){skip++;continue;}
+    const qty =parseFloat(c[iQty]||0)||0;
+    const buy =parseFloat(c[iBuy]||0)||0;
+    if(!qty&&!buy)continue;
+    const sector=iSec>=0&&c[iSec]?c[iSec]:guessSector(symbol);
+    const val   =iVal>=0?parseFloat(c[iVal]||0)||buy:buy;
+    rows.push({subgroup:iSub>=0?c[iSub]:'',clientCode,clientName:iName>=0?(c[iName]||clientCode):clientCode,
+               code:symbol,name:iName>=0?(c[iName]||symbol):symbol,sector,qty,buy,valRate:val});
+  }
+  // Debug: first 5 rows
+  console.log('[SHEET] First 5 parsed rows:', rows.slice(0,5));
+  console.log(`[SHEET] Parsed ${rows.length} rows, skipped ${skip}`);
+  return rows;
+}
+
+// UPDATED: Broker CSV parser (fallback for file upload)
+function parseCSV(text){
+  const lines=text.replace(/\r/g,'').split('\n').map(l=>l.trim()).filter(Boolean);
+  if(lines.length<2)return[];
+  const hdrs=lines[0].split(',').map(h=>h.replace(/"/g,'').trim().toUpperCase());
+  const col=(...n)=>{for(const x of n){const i=hdrs.findIndex(h=>h.includes(x));if(i>=0)return i;}return -1;};
+  const iCode=col('SCRIPCODE','SCRIP CODE','SYMBOL');
+  const iName=col('SCRIPNAME','SCRIP NAME','COMPANY','NAME');
+  const iSec =col('SECTOR');
+  const iQty =col('BUYQTY','BUY QTY','QUANTITY','QTY');
+  const iBuy =col('BUYRATE','BUY RATE','AVGRATE','AVG RATE','AVGBUYPRICE','BUYPRICE');
+  const iVal =col('VALRATE','VAL RATE','CLOSINGVALUATION','CLOSING VALUATION');
+  const rows=[];
+  for(let i=1;i<lines.length;i++){
+    const c=lines[i].split(',').map(v=>v.replace(/"/g,'').trim());
+    const code=iCode>=0?c[iCode]:'';if(!code||code.startsWith('*'))continue;
+    const qty=parseFloat(c[iQty]||0)||0,buy=parseFloat(c[iBuy]||0)||0,val=parseFloat(c[iVal]||0)||0;
+    if(!qty&&!buy)continue;
+    rows.push({subgroup:'',clientCode:'UPLOAD',clientName:'Uploaded',code,
+               name:iName>=0?c[iName]:code,sector:(iSec>=0&&c[iSec]?c[iSec]:guessSector(code)),qty,buy,valRate:val});
+  }
+  return rows;
+}
+
+function guessSector(c){
+  if(/BAJFINANCE|BAJAJFINSV|HDFC|INDIANB|SBIN|YES|UJJIVAN|FIVESTAR|SHRIRAM|MUTHOOT|ICICI|KOTAK|AXIS/.test(c))return 'Banking Services';
+  if(/AURO|LAURUS|NATCO|NEULAND/.test(c))return 'Pharmaceuticals';
+  if(/CGPOWER|BLUE|KIRLOS|GVT/.test(c))return 'Machinery & Equipment';
+  if(/BHARTI|INDUST/.test(c))return 'Telecom';
+  if(/DIXON/.test(c))return 'Electronics';
+  if(/INDIGO/.test(c))return 'Aviation';
+  if(/VEDL/.test(c))return 'Metals & Mining';
+  if(/PRESTIGE/.test(c))return 'Real Estate';
+  if(/UNOMINDA/.test(c))return 'Auto Parts';
+  if(/HCG/.test(c))return 'Healthcare';
+  if(/BEL/.test(c))return 'Aerospace & Defense';
+  if(/ETERNAL|WIPRO|INFY|TCS/.test(c))return 'Software & IT';
+  if(/SYMPHONY/.test(c))return 'Specialty Retail';
+  return 'Other';
+}
+
+// ══════════════════════════════════════════════════════
+//  NEW: AUTO FETCH SHEET (retry + 3 proxy fallbacks)
+// ══════════════════════════════════════════════════════
+async function fetchSheetCSV(){
+  // 3 proxy options — rotate on retry
+  const proxies=[
+    u=>`https://corsproxy.io/?${encodeURIComponent(u)}`,
+    u=>`https://api.allorigins.win/raw?url=${encodeURIComponent(u)}`,
+    u=>`https://thingproxy.freeboard.io/fetch/${encodeURIComponent(u)}`,
+  ];
+  for(let attempt=0;attempt<3;attempt++){
+    const proxyUrl=proxies[attempt](SHEET_URL);
+    console.log(`[SHEET] Fetch attempt ${attempt+1}…`);
+    try{
+      const r=await fetch(proxyUrl,{signal:AbortSignal.timeout(12000)});
+      if(!r.ok)throw new Error('HTTP '+r.status);
+      const text=await r.text();
+      if(!text||text.length<50||!text.includes(','))throw new Error('Bad response');
+      console.log('[SHEET] Success, len='+text.length);
+      return text;
+    }catch(e){
+      console.warn(`[SHEET] Attempt ${attempt+1} failed:`,e.message);
+      if(attempt<2)await sleep(700);
+    }
+  }
+  return null;
+}
+
+// NEW: Load + parse sheet, cache on success, fall back to cache/seed
+async function loadSheetData(spinner=true){
+  if(spinner)showLoading('Syncing from Google Sheet…');
+  let parsed=null,source='live';
+
+  const csv=await fetchSheetCSV();
+  if(csv){
+    parsed=parseSheetCSV(csv);
+    if(parsed.length>0){
+      try{localStorage.setItem(LS_SHEET,JSON.stringify({ts:Date.now(),data:parsed}));}catch(e){}
+    }else{
+      parsed=null;
+      console.warn('[SHEET] Parse = 0 rows, trying cache');
+    }
+  }
+
+  if(!parsed){
+    // Load cached data
+    try{
+      const raw=localStorage.getItem(LS_SHEET);
+      if(raw){const s=JSON.parse(raw);if(s.data&&s.data.length){
+        parsed=s.data;source='cache';
+        const ago=Math.round((Date.now()-s.ts)/60000);
+        toast(`⚠️ Using last saved data (${ago}m ago)`,'warn');
+        console.log('[SHEET] Cache loaded, age='+ago+'m');
+      }}
+    }catch(e){}
+  }
+
+  if(!parsed){
+    parsed=SEED;source='seed';
+    toast('⚠️ Sheet unavailable — showing sample data','warn');
+    console.warn('[SHEET] Fell back to SEED');
+  }
+
+  hideLoading();
+  applyPortfolioData(parsed,source);
+}
+
+// NEW: Apply parsed rows → rebuild state → render
+function applyPortfolioData(rows,source='live'){
+  PORTFOLIO=rows;
+
+  // Restore cached prices
+  try{const cp=JSON.parse(localStorage.getItem(LS_PRICES)||'{}');Object.assign(livePrices,cp);}catch(e){}
+
+  // Seed initial prices from valRate
+  PORTFOLIO.forEach(s=>{if(!livePrices[s.code]&&s.valRate>0)livePrices[s.code]=s.valRate;});
+
+  // Rebuild YF maps
+  rebuildYFMaps();
+
+  // NEW: Build client dropdown
+  buildClientList();
+
+  lastCSVDate=source==='live'?'Sheet':(source==='cache'?'Cache':'Sample');
+  showDashboard();
+  renderAll();
+  console.log(`[INIT] Dashboard ready (${source}), ${rows.length} rows`);
+}
+
+// UPDATED: Build YF map from static + portfolio
+function rebuildYFMaps(){
+  YF={...YF_STATIC};
+  PORTFOLIO.forEach(s=>{if(!YF[s.code])YF[s.code]=s.code+'.NS';});
+  YF_REV={};
+  for(const [k,v] of Object.entries(YF))YF_REV[v]=k;
+}
+
+// ══════════════════════════════════════════════════════
+//  NEW: MULTI-CLIENT SYSTEM
+// ══════════════════════════════════════════════════════
+function buildClientList(){
+  const seen=new Map();
+  PORTFOLIO.forEach(s=>{if(!seen.has(s.clientCode))seen.set(s.clientCode,s.clientName||s.clientCode);});
+  allClients=[...seen.entries()].map(([code,name])=>({code,name})).sort((a,b)=>a.code.localeCompare(b.code));
+
+  const sel=document.getElementById('clientSelect');
+  sel.innerHTML='<option value="">All Clients</option>';
+  allClients.forEach(c=>{
+    const opt=document.createElement('option');
+    opt.value=c.code;
+    opt.textContent=c.code+(c.name&&c.name!==c.code?' — '+c.name:'');
+    sel.appendChild(opt);
+  });
+
+  // Show row only when multi-client
+  document.getElementById('clientRow').style.display=allClients.length>1?'flex':'none';
+
+  // Validate current selection
+  if(selectedClient&&!allClients.find(c=>c.code===selectedClient)){selectedClient='';sel.value='';}
+  updateClientBadge();
+}
+
+// NEW: filter by selected client
+function getFilteredData(){
+  return selectedClient?PORTFOLIO.filter(s=>s.clientCode===selectedClient):PORTFOLIO;
+}
+
+function onClientChange(){
+  selectedClient=document.getElementById('clientSelect').value;
+  updateClientBadge();
+  renderAll();
+}
+
+function updateClientBadge(){
+  const b=document.getElementById('clientBadge');
+  if(selectedClient){
+    const c=allClients.find(x=>x.code===selectedClient);
+    const n=PORTFOLIO.filter(s=>s.clientCode===selectedClient).length;
+    b.textContent=`${c?c.name:selectedClient} · ${n} stocks`;
+  }else{
+    b.textContent=allClients.length>1?`${allClients.length} clients · ${PORTFOLIO.length} total`:'';
+  }
+}
+
+// ══════════════════════════════════════════════════════
+//  COMPUTE
+// ══════════════════════════════════════════════════════
 function compute(){
-  return PORTFOLIO.map(s=>{
-    const cmp=livePrices[s.code]||s.valRate;
+  return getFilteredData().map(s=>{
+    const cmp=livePrices[s.code]||s.valRate||s.buy;
     const hasLive=!!livePrices[s.code];
-    const invest=s.buy*s.qty, curr=cmp*s.qty, pnl=curr-invest;
+    const invest=s.buy*s.qty,curr=cmp*s.qty,pnl=curr-invest;
     const pnlPct=invest>0?(pnl/invest)*100:0;
-    const dayPct=liveChangePct[s.code]??null;
-    const dayAbs=liveChangeAbs[s.code]??null;
-    return{...s,cmp,invest,curr,pnl,pnlPct,hasLive,dayPct,dayAbs};
+    return{...s,cmp,invest,curr,pnl,pnlPct,hasLive,dayPct:liveChangePct[s.code]??null,dayAbs:liveChangeAbs[s.code]??null};
   });
 }
 
 // ══════════════════════════════════════════════════════
-//  LIVE PRICE FETCH — Yahoo Finance v7 BATCH API
-//  ✅ Fast: 1–2 calls for all stocks vs 30+ before
-//  ✅ Races corsproxy.io (fast) vs allorigins (reliable)
+//  FIXED: LIVE PRICE FETCH — Yahoo Finance v7
+//  FIXED: smaller batches (8), 2 retries each batch,
+//         BSE fallback, status labels, no toast spam
 // ══════════════════════════════════════════════════════
-async function fetchBatch(symbols){
+
+// FIXED: batch fetch with retry
+async function fetchBatchWithRetry(symbols,retries=2){
   const apiUrl=`https://query1.finance.yahoo.com/v7/finance/quote?symbols=${symbols.join(',')}&fields=regularMarketPrice,regularMarketChangePercent,regularMarketChange`;
 
-  // corsproxy.io: direct passthrough — fast, no wrapping
-  const tryCorsproxy=async()=>{
-    const r=await fetch(`https://corsproxy.io/?${encodeURIComponent(apiUrl)}`,{signal:AbortSignal.timeout(8000)});
-    if(!r.ok) throw new Error('err');
-    const d=await r.json();
-    const res=d?.quoteResponse?.result;
-    if(!res||!res.length) throw new Error('empty');
-    return res;
-  };
+  // Proxy rotation for retries
+  const PROXIES=[
+    u=>`https://corsproxy.io/?${encodeURIComponent(u)}`,
+    u=>`https://api.allorigins.win/get?url=${encodeURIComponent(u)}`,
+    u=>`https://thingproxy.freeboard.io/fetch/${encodeURIComponent(u)}`,
+  ];
 
-  // allorigins: wraps in {contents:"..."} — slightly slower but a great backup
-  const tryAllOrigins=async()=>{
-    const r=await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(apiUrl)}`,{signal:AbortSignal.timeout(12000)});
-    if(!r.ok) throw new Error('err');
-    const j=await r.json();
-    const d=JSON.parse(j.contents);
-    const res=d?.quoteResponse?.result;
-    if(!res||!res.length) throw new Error('empty');
-    return res;
-  };
-
-  // Race both — whichever responds first wins
-  return await Promise.any([tryCorsproxy(), tryAllOrigins()]);
+  for(let attempt=0;attempt<retries+1;attempt++){
+    const pFn=PROXIES[attempt%PROXIES.length];
+    try{
+      const r=await fetch(pFn(apiUrl),{signal:AbortSignal.timeout(10000)});
+      if(!r.ok)throw new Error('HTTP '+r.status);
+      const text=await r.text();
+      let data;
+      // allorigins wraps in {contents}
+      if(text.trim().startsWith('{"contents')){
+        try{data=JSON.parse(JSON.parse(text).contents);}catch(e){data=JSON.parse(text);}
+      }else{data=JSON.parse(text);}
+      const res=data?.quoteResponse?.result;
+      if(!res||!res.length)throw new Error('Empty result');
+      return res;
+    }catch(e){
+      console.warn(`[PRICE] Batch attempt ${attempt+1} failed (${symbols[0]}…):`,e.message);
+      if(attempt<retries)await sleep(400);
+    }
+  }
+  return []; // empty on total failure
 }
 
+// UPDATED: processQuotes — handle both .NS and .BO
 function processQuotes(quotes){
   for(const q of quotes){
-    const code=YF_REV[q.symbol];
-    if(!code) continue;
+    // Try direct reverse map, then strip suffix
+    let code=YF_REV[q.symbol];
+    if(!code){const base=q.symbol.replace(/\.(NS|BO)$/,'');code=YF_REV[base+'.NS']||YF_REV[base+'.BO']||base;}
+    if(!code)continue;
     const price=q.regularMarketPrice;
     if(price&&price>0){
       livePrices[code]=price;
@@ -667,35 +854,105 @@ function processQuotes(quotes){
 
 let _refreshing=false;
 async function refreshPrices(){
-  if(!PORTFOLIO.length){toast('Upload a CSV first','warn');return;}
-  if(_refreshing) return;
+  if(!PORTFOLIO.length){toast('Load data first','warn');return;}
+  if(_refreshing)return;
   _refreshing=true;
   const btn=document.getElementById('rfBtn');
   const icon=document.getElementById('ri');
-  btn.disabled=true; icon.className='spin';
-  liveCount=0; liveChangePct={}; liveChangeAbs={};
+  btn.disabled=true;icon.className='spin';
+  liveCount=0;liveChangePct={};liveChangeAbs={};
   setLiveStatus('loading',0,PORTFOLIO.length);
 
-  const allSymbols=PORTFOLIO.map(s=>YF[s.code]).filter(Boolean);
-  const BATCH=25; // Yahoo handles ~25-30 per call reliably
+  // UPDATED: Get unique codes across ALL clients
+  const codes=[...new Set(PORTFOLIO.map(s=>s.code))];
+  // UPDATED: Normalize: use YF map, fallback .NS
+  const nsSymbols=codes.map(c=>YF[c]||c+'.NS');
 
-  try{
-    for(let i=0;i<allSymbols.length;i+=BATCH){
-      const quotes=await fetchBatch(allSymbols.slice(i,i+BATCH));
+  // FIXED: Batch size 8 (safe for Yahoo), 400ms between batches
+  const BSIZE=8,DELAY=400;
+  const failedBatches=[];
+
+  console.log(`[PRICE] Fetching ${nsSymbols.length} symbols in batches of ${BSIZE}`);
+
+  for(let i=0;i<nsSymbols.length;i+=BSIZE){
+    const batch=nsSymbols.slice(i,i+BSIZE);
+    const quotes=await fetchBatchWithRetry(batch,2);
+    if(quotes.length>0){
       processQuotes(quotes);
-      setLiveStatus('loading',liveCount,PORTFOLIO.length);
-      renderAll();
+    }else{
+      failedBatches.push(...batch);
+      // FIXED: Try BSE (.BO) fallback for failed batch
+      console.log('[PRICE] Trying BSE fallback for:',batch);
+      const boBatch=batch.map(s=>s.replace('.NS','.BO'));
+      const boQuotes=await fetchBatchWithRetry(boBatch,1);
+      if(boQuotes.length>0)processQuotes(boQuotes);
     }
-    setLiveStatus('live',liveCount);
-    toast('✅ '+liveCount+'/'+PORTFOLIO.length+' live prices loaded','ok');
-  }catch(e){
-    setLiveStatus('stale');
-    toast('⚠️ Price fetch failed — check connection & retry','err');
+    setLiveStatus('loading',liveCount,codes.length);
+    if(i+BSIZE<nsSymbols.length)await sleep(DELAY);
   }
 
-  btn.disabled=false; icon.className='';
+  // FIXED: Apply sheet valRate as fallback for any still-missing prices
+  let fbCount=0;
+  PORTFOLIO.forEach(s=>{
+    if(!liveChangePct.hasOwnProperty(s.code)&&s.valRate>0&&!livePrices[s.code]){
+      livePrices[s.code]=s.valRate;fbCount++;
+    }
+  });
+  if(fbCount)console.log(`[PRICE] Fallback prices applied: ${fbCount}`);
+  if(failedBatches.length)console.warn('[PRICE] Failed symbols:',failedBatches);
+
+  // Cache prices
+  try{localStorage.setItem(LS_PRICES,JSON.stringify(livePrices));}catch(e){}
+
+  // FIXED: Proper status labels (no repeated toasts on full fail)
+  const total=codes.length;
+  if(liveCount===0){
+    setLiveStatus('cached');
+    const now=Date.now();
+    if(now-_lastErrToastTs>30000){toast('⚠️ Using Cached Prices — check connection','warn');_lastErrToastTs=now;}
+  }else if(liveCount<total){
+    setLiveStatus('partial',liveCount,total);
+    toast(`⚡ Partial Live Data: ${liveCount}/${total} updated`,'ok');
+  }else{
+    setLiveStatus('live',liveCount,total);
+    toast(`✅ Live Data: ${liveCount}/${total} prices loaded`,'ok');
+  }
+
+  renderAll();
+  btn.disabled=false;icon.className='';
   _refreshing=false;
 }
+
+// NEW: Sync Sheet button
+async function syncSheet(){
+  const btn=document.getElementById('syncBtn');
+  const icon=document.getElementById('si');
+  btn.disabled=true;icon.className='spin';
+  await loadSheetData(true);
+  btn.disabled=false;
+  icon.className='';icon.textContent='🔄';
+}
+
+// ══════════════════════════════════════════════════════
+//  CSV UPLOAD (fallback)
+// ══════════════════════════════════════════════════════
+function handleCSV(input){
+  const file=input.files[0];if(!file)return;
+  const reader=new FileReader();
+  reader.onload=e=>{
+    let parsed=parseSheetCSV(e.target.result);
+    if(!parsed.length)parsed=parseCSV(e.target.result);
+    if(!parsed.length){toast('Could not read CSV — check format','warn');return;}
+    applyPortfolioData(parsed,'upload');
+    const m=file.name.match(/(\d{8})/);
+    lastCSVDate=m?m[1].slice(6)+'/'+m[1].slice(4,6)+'/'+m[1].slice(0,4):new Date().toLocaleDateString('en-IN');
+    toast('✅ Loaded '+parsed.length+' rows — tap Live for prices','ok');
+  };
+  reader.readAsText(file);input.value='';
+}
+function onDO(e){e.preventDefault();document.getElementById('uploadZone').classList.add('drag')}
+function onDL(){document.getElementById('uploadZone').classList.remove('drag')}
+function onDP(e){e.preventDefault();onDL();const f=e.dataTransfer.files[0];if(f)handleCSV({files:[f]})}
 
 // ══════════════════════════════════════════════════════
 //  EXPORT CSV
@@ -705,22 +962,18 @@ function exportCSV(){
   if(!data.length){toast('No holdings to export','warn');return;}
   const totalInv=data.reduce((a,s)=>a+s.invest,0);
   const sorted=[...data].sort((a,b)=>b.curr-a.curr);
-  const headers=['Script','Company','Sector','CMP','Day Change%','Holding Wt%','Qty','Avg Buy ₹','Curr Value ₹','PnL ₹','PnL%'];
+  const hdr=['Script','Company','Sector','Client','CMP','Day%','Wt%','Qty','AvgBuy','CurrValue','PnL','PnL%'];
   const rows=sorted.map(s=>{
     const wt=totalInv>0?(s.invest/totalInv)*100:0;
-    return[s.code,`"${s.name}"`,`"${s.sector}"`,s.cmp.toFixed(2),
+    return[s.code,`"${s.name}"`,`"${s.sector}"`,s.clientCode||'',s.cmp.toFixed(2),
       s.dayPct!==null?s.dayPct.toFixed(2):'',wt.toFixed(2),s.qty,s.buy.toFixed(2),
       s.hasLive?s.curr.toFixed(2):'',s.hasLive?s.pnl.toFixed(2):'',s.pnlPct.toFixed(2)
     ].join(',');
   });
-  // BOM prefix so Excel auto-detects UTF-8 & ₹ symbol
-  const csv='\uFEFF'+[headers.join(','),...rows].join('\r\n');
-  const blob=new Blob([csv],{type:'text/csv;charset=utf-8'});
-  const url=URL.createObjectURL(blob);
-  const a=document.createElement('a');
-  a.href=url; a.download='Holdings_'+new Date().toISOString().slice(0,10)+'.csv';
-  document.body.appendChild(a); a.click();
-  document.body.removeChild(a); URL.revokeObjectURL(url);
+  const csv='\uFEFF'+[hdr.join(','),...rows].join('\r\n');
+  const url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));
+  const a=document.createElement('a');a.href=url;a.download='Holdings_'+new Date().toISOString().slice(0,10)+'.csv';
+  document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(url);
   toast('✅ Holdings CSV exported','ok');
 }
 
@@ -730,39 +983,28 @@ function exportCSV(){
 function renderKPI(data){
   const inv=data.reduce((a,s)=>a+s.invest,0);
   const curr=data.reduce((a,s)=>a+s.curr,0);
-  const pnl=curr-inv, pct=inv>0?(pnl/inv)*100:0;
+  const pnl=curr-inv,pct=inv>0?(pnl/inv)*100:0;
   const win=data.filter(s=>s.pnl>=0).length;
   document.getElementById('k-inv').textContent='₹'+fmtC(inv);
   document.getElementById('k-curr').textContent='₹'+fmtC(curr);
   document.getElementById('k-chg').textContent=fmtP(pct)+' overall';
-  const pEl=document.getElementById('k-pnl'); pEl.textContent=(pnl>=0?'▲ +':'▼ −')+'₹'+fmtC(Math.abs(pnl));
-  pEl.style.color=pnl>=0?'var(--green)':'var(--red)';
-  const ppEl=document.getElementById('k-pnlp'); ppEl.textContent=fmtP(pct);
-  ppEl.style.color=pnl>=0?'var(--green)':'var(--red)';
+  const pEl=document.getElementById('k-pnl');pEl.textContent=(pnl>=0?'▲ +':'▼ −')+'₹'+fmtC(Math.abs(pnl));pEl.style.color=pnl>=0?'var(--green)':'var(--red)';
+  const ppEl=document.getElementById('k-pnlp');ppEl.textContent=fmtP(pct);ppEl.style.color=pnl>=0?'var(--green)':'var(--red)';
   document.getElementById('kpi-pnl').className='kpi '+(pnl>=0?'c-pos':'c-neg');
   document.getElementById('k-cnt').textContent=data.length;
   document.getElementById('k-win').textContent=win+'▲  '+(data.length-win)+'▼';
 }
 
 function cmpCell(s){
-  const price=`<span class="${cls(s.cmp-s.buy)}" style="font-weight:700;font-size:13px">${s.cmp.toFixed(2)}</span>`;
-  if(s.dayPct!==null){
-    const dc=s.dayPct>=0?'pos':'neg';
-    return `<div class="cmp-wrap">${price}<span class="cmp-badge ${dc}">${s.dayPct>=0?'▲':'▼'}${Math.abs(s.dayPct).toFixed(2)}%</span></div>`;
-  }
-  return `<div class="cmp-wrap">${price}<span class="cmp-badge neu">—</span></div>`;
+  const p=`<span class="${cls(s.cmp-s.buy)}" style="font-weight:700;font-size:13px">${s.cmp.toFixed(2)}</span>`;
+  if(s.dayPct!==null){const dc=s.dayPct>=0?'pos':'neg';return `<div class="cmp-wrap">${p}<span class="cmp-badge ${dc}">${s.dayPct>=0?'▲':'▼'}${Math.abs(s.dayPct).toFixed(2)}%</span></div>`;}
+  return `<div class="cmp-wrap">${p}<span class="cmp-badge neu">—</span></div>`;
 }
 
-// Separate renderers for the new Holdings layout
-function cmpPriceOnly(s){
-  return `<span class="${cls(s.cmp-s.buy)}" style="font-weight:700;font-size:13px">${s.cmp.toFixed(2)}</span>`;
-}
-
+function cmpPriceOnly(s){return `<span class="${cls(s.cmp-s.buy)}" style="font-weight:700;font-size:13px">${s.cmp.toFixed(2)}</span>`;}
 function dayChangePill(s){
-  if(s.dayPct===null) return '<span class="pill neu">—</span>';
-  const arrow=s.dayPct>=0?'▲':'▼';
-  const cls2=s.dayPct>=0?'pos':'neg';
-  return `<span class="pill ${cls2}">${arrow}${Math.abs(s.dayPct).toFixed(2)}%</span>`;
+  if(s.dayPct===null)return '<span class="pill neu">—</span>';
+  return `<span class="pill ${s.dayPct>=0?'pos':'neg'}">${s.dayPct>=0?'▲':'▼'}${Math.abs(s.dayPct).toFixed(2)}%</span>`;
 }
 
 function glRow(s){
@@ -784,22 +1026,33 @@ function renderOverview(data){
   document.getElementById('lBadge').textContent='Bottom 5';
 }
 
+// UPDATED: Holdings render with sort + sector filter
 function renderHoldings(data){
   const totalInv=data.reduce((a,s)=>a+s.invest,0);
-  // Sort: biggest current value first
-  document.getElementById('tb-hold').innerHTML=[...data].sort((a,b)=>b.curr-a.curr).map(s=>{
+  const sk=document.getElementById('sortSelect').value||sortKey;
+  sortKey=sk;
+
+  const sortFns={
+    'curr':(a,b)=>b.curr-a.curr,
+    'pnlpct':(a,b)=>b.pnlPct-a.pnlPct,
+    'pnlabs':(a,b)=>b.pnl-a.pnl,
+    'wt':(a,b)=>(b.invest-a.invest),
+    'daypct':(a,b)=>(b.dayPct??-999)-(a.dayPct??-999),
+  };
+  let sorted=[...data].sort(sortFns[sk]||sortFns['curr']);
+  if(sortAsc)sorted=sorted.reverse();
+
+  // UPDATED: sector filter (works with client filter)
+  if(activeSectorFilter)sorted=sorted.filter(s=>s.sector===activeSectorFilter);
+
+  // UPDATED: table always renders regardless of price status
+  document.getElementById('tb-hold').innerHTML=sorted.map(s=>{
     const wt=totalInv>0?(s.invest/totalInv)*100:0;
-    // NEW ORDER: Script | CMP | Day% | Wt% | Qty | Avg Buy | Curr Value | P&L ₹ | P&L %
-    return `<tr class="h-row" data-q="${s.code.toLowerCase()} ${s.name.toLowerCase()} ${s.sector.toLowerCase()}">
+    return `<tr class="h-row" data-q="${s.code.toLowerCase()} ${s.name.toLowerCase()} ${s.sector.toLowerCase()} ${(s.clientCode||'').toLowerCase()}">
       <td><span class="sn">${s.code}</span><span class="ss">${s.sector}</span></td>
       <td>${cmpPriceOnly(s)}</td>
       <td>${dayChangePill(s)}</td>
-      <td>
-        <div class="bar-row">
-          <span style="font-size:11px;font-weight:700;color:var(--text2)">${wt.toFixed(1)}%</span>
-          <div class="bar-track"><div class="bar-fill" style="width:${Math.min(wt*4,100)}%"></div></div>
-        </div>
-      </td>
+      <td><div class="bar-row"><span style="font-size:11px;font-weight:700;color:var(--text2)">${wt.toFixed(1)}%</span><div class="bar-track"><div class="bar-fill" style="width:${Math.min(wt*4,100)}%"></div></div></div></td>
       <td class="neu">${s.qty.toLocaleString('en-IN')}</td>
       <td class="neu">${s.buy.toFixed(2)}</td>
       <td class="neu">${s.hasLive?'₹'+fmtC(s.curr):'—'}</td>
@@ -807,30 +1060,52 @@ function renderHoldings(data){
       <td><span class="pill ${clsPill(s.pnlPct)}">${fmtP(s.pnlPct)}</span></td>
     </tr>`;
   }).join('');
-  document.getElementById('hBadge').textContent=data.length+' stocks · '+liveCount+' live';
+  document.getElementById('hBadge').textContent=sorted.length+(activeSectorFilter?' (filtered ':' stocks · ')+liveCount+(activeSectorFilter?')':' live');
 }
 
+// NEW: Re-render holdings with current cached data (for sort/filter changes without recomputing)
+function renderHoldingsFromCurrent(){
+  if(_lastComputedData)renderHoldings(_lastComputedData);
+}
+
+// NEW: Sort direction toggle
+function toggleSortDir(){
+  sortAsc=!sortAsc;
+  document.getElementById('sortDirBtn').textContent=sortAsc?'▲':'▼';
+  renderHoldingsFromCurrent();
+}
+
+// UPDATED: Sector render + clickable heatmap cells
 function renderSectors(data){
   const map={};
-  data.forEach(s=>{const k=s.sector||'Other';if(!map[k])map[k]={invest:0,curr:0,count:0,live:0};map[k].invest+=s.invest;map[k].curr+=s.curr;map[k].count++;if(s.hasLive)map[k].live++});
+  data.forEach(s=>{const k=s.sector||'Other';if(!map[k])map[k]={invest:0,curr:0,count:0,live:0};map[k].invest+=s.invest;map[k].curr+=s.curr;map[k].count++;if(s.hasLive)map[k].live++;});
   const secs=Object.entries(map).map(([n,v])=>({name:n,...v,pnl:v.curr-v.invest,pct:v.invest>0&&v.live>0?(v.curr-v.invest)/v.invest*100:0})).sort((a,b)=>b.pct-a.pct);
   const totalCurr=secs.reduce((a,s)=>a+s.curr,0);
+  const totalInv=secs.reduce((a,s)=>a+s.invest,0);
   const mx=Math.max(...secs.map(s=>Math.abs(s.pct)),1);
+
+  // UPDATED: heatmap cells clickable, shows allocation %
   document.getElementById('heatmap').innerHTML=secs.map(s=>{
     const t=Math.min(Math.abs(s.pct)/mx,1);
     const live=s.live>0;
     const bg=!live?'var(--surface2)':s.pct>=0?`rgba(15,122,75,${.06+t*.38})`:`rgba(192,57,43,${.06+t*.38})`;
     const col=!live?'var(--muted)':s.pct>=0?'var(--green)':'var(--red)';
     const bdr=!live?'var(--border)':s.pct>=0?'rgba(15,122,75,.2)':'rgba(192,57,43,.2)';
-    return `<div class="hc" style="background:${bg};border-color:${bdr}">
+    const alloc=totalInv>0?(s.invest/totalInv*100).toFixed(1):'0';
+    const safe=s.name.replace(/'/g,"\\'");
+    return `<div class="hc" style="background:${bg};border-color:${bdr}" onclick="drillSector('${safe}')">
       <div class="hc-name" style="color:${col}">${s.name}</div>
       <div class="hc-pct" style="color:${col}">${live?fmtP(s.pct):'—'}</div>
-      <div class="hc-info" style="color:${col}">${s.count} stocks${live?' · ₹'+fmtC(s.curr):''}</div>
+      <div class="hc-info" style="color:${col}">${s.count} stocks · ${alloc}%${live?' · ₹'+fmtC(s.curr):''}</div>
     </div>`;
   }).join('');
+
+  // UPDATED: table rows clickable
   document.getElementById('tb-sec').innerHTML=secs.map(s=>{
     const wt=totalCurr>0&&s.curr>0?(s.curr/totalCurr)*100:0;
-    return `<tr><td><span class="sn" style="font-size:12px">${s.name}</span></td>
+    const safe=s.name.replace(/'/g,"\\'");
+    return `<tr style="cursor:pointer" onclick="drillSector('${safe}')">
+      <td><span class="sn" style="font-size:12px">${s.name}</span></td>
       <td class="neu">${s.count}</td>
       <td class="neu">₹${fmtC(s.invest)}</td>
       <td class="neu">${s.live?'₹'+fmtC(s.curr):'—'}</td>
@@ -841,51 +1116,102 @@ function renderSectors(data){
   }).join('');
 }
 
+// NEW: Sector drilldown — switch to Holdings tab + apply sector filter
+function drillSector(sectorName){
+  activeSectorFilter=sectorName;
+  document.getElementById('sectorFilterName').textContent=sectorName;
+  document.getElementById('sectorFilterBar').classList.add('visible');
+  // Switch to Holdings tab
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  const hdTab=document.querySelectorAll('.tab')[1];
+  if(hdTab)hdTab.classList.add('active');
+  ['ov','hd','sc','gu'].forEach(t=>document.getElementById('t-'+t).style.display=t==='hd'?'':'none');
+  renderHoldingsFromCurrent();
+}
+
+// NEW: Clear sector filter
+function clearSectorFilter(){
+  activeSectorFilter='';
+  document.getElementById('sectorFilterBar').classList.remove('visible');
+  renderHoldingsFromCurrent();
+}
+
 function renderIndices(){
   const card=i=>`<div class="ic ${i.pct>=0?'pos-card':'neg-card'}">
     <div class="ic-name">${i.flag||''} ${i.name}</div>
     <div class="ic-val">${i.val.toLocaleString('en-IN',{maximumFractionDigits:2})}</div>
-    <div class="ic-chg ${cls(i.pct)}">
-      <span class="ic-pct" style="background:${i.pct>=0?'var(--green-bg)':'var(--red-bg)'};">${fmtP(i.pct)}</span>
-      &nbsp;${i.chg>=0?'+':''}${Math.abs(i.chg)<10?i.chg.toFixed(2):i.chg.toFixed(0)}
-    </div>
+    <div class="ic-chg ${cls(i.pct)}"><span class="ic-pct" style="background:${i.pct>=0?'var(--green-bg)':'var(--red-bg)'};">${fmtP(i.pct)}</span>&nbsp;${i.chg>=0?'+':''}${Math.abs(i.chg)<10?i.chg.toFixed(2):i.chg.toFixed(0)}</div>
   </div>`;
   document.getElementById('idx-india').innerHTML=INDIA_INDICES.map(card).join('');
   document.getElementById('idx-global').innerHTML=GLOBAL_INDICES.map(card).join('');
   document.getElementById('idx-comm').innerHTML=COMM_INDICES.map(card).join('');
 }
 
+// FIXED: setLiveStatus with correct labels
 function setLiveStatus(state,count,total){
   const dot=document.getElementById('liveDot');
   const lbl=document.getElementById('liveLabel');
   const meta=document.getElementById('liveMeta');
-  if(state==='loading'){dot.className='live-dot amber';lbl.textContent='Fetching live prices…';meta.textContent=count+'/'+(total||'?')+' updated';}
-  else if(state==='live'){dot.className='live-dot green';lbl.textContent='Live prices · '+count+' stocks updated';meta.textContent='Auto-refresh every 5 min · Last: '+new Date().toLocaleTimeString('en-IN');}
-  else{dot.className='live-dot';lbl.textContent='Using last close prices from CSV';meta.textContent='Tap ↻ Live to fetch real-time NSE data';}
+  if(state==='loading'){
+    dot.className='live-dot amber';lbl.textContent='Fetching live prices…';meta.textContent=(count||0)+'/'+(total||'?')+' updated';
+  }else if(state==='live'){
+    dot.className='live-dot green';
+    lbl.textContent='Live Data · '+count+' stocks updated';  // FIXED label
+    meta.textContent='Auto-refresh every 5 min · Last: '+new Date().toLocaleTimeString('en-IN');
+  }else if(state==='partial'){
+    dot.className='live-dot amber';
+    lbl.textContent='Partial Live Data · '+count+'/'+(total||'?');  // FIXED label
+    meta.textContent='Last: '+new Date().toLocaleTimeString('en-IN');
+  }else if(state==='cached'){
+    dot.className='live-dot';
+    lbl.textContent='Using Cached Prices';  // FIXED label
+    meta.textContent='Sheet prices used as fallback · Tap ↻ Live to retry';
+  }else{
+    dot.className='live-dot';lbl.textContent='Using sheet/close prices';meta.textContent='Tap ↻ Live to fetch real-time NSE data';
+  }
 }
 
 function renderAll(){
   const data=compute();
-  renderKPI(data); renderOverview(data); renderHoldings(data); renderSectors(data); renderIndices();
+  _lastComputedData=data;
+  renderKPI(data);renderOverview(data);renderHoldings(data);renderSectors(data);renderIndices();
   const now=new Date();
   document.getElementById('tDate').textContent=now.toLocaleDateString('en-IN',{weekday:'short',day:'2-digit',month:'short',year:'2-digit'});
-  document.getElementById('lastUp').textContent=(lastCSVDate?'CSV: '+lastCSVDate+' · ':'')+' Prices: '+now.toLocaleTimeString('en-IN');
+  document.getElementById('lastUp').textContent=(lastCSVDate?'Source: '+lastCSVDate+' · ':'')+' Updated: '+now.toLocaleTimeString('en-IN');
 }
 
 // ══════════════════════════════════════════════════════
 //  UI HELPERS
 // ══════════════════════════════════════════════════════
 function showDashboard(){document.getElementById('uploadZone').classList.add('hidden');document.getElementById('dashboard').style.display='';}
-function showTab(id,el){['ov','hd','sc','gu'].forEach(t=>document.getElementById('t-'+t).style.display=t===id?'':'none');document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));el.classList.add('active')}
-function filterHoldings(){const q=document.getElementById('srch').value.toLowerCase();document.querySelectorAll('.h-row').forEach(r=>r.style.display=r.dataset.q.includes(q)?'':'none')}
-let _tt;
-function toast(msg,type='ok'){const el=document.getElementById('toast');el.textContent=msg;el.className='show '+type;clearTimeout(_tt);_tt=setTimeout(()=>el.className='',3500)}
+function showTab(id,el){['ov','hd','sc','gu'].forEach(t=>document.getElementById('t-'+t).style.display=t===id?'':'none');document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');}
 
-// ── INIT ──
-PORTFOLIO=SEED.map(s=>({...s}));
-PORTFOLIO.forEach(s=>{livePrices[s.code]=s.valRate;});
-showDashboard(); setLiveStatus('stale'); renderAll();
-setInterval(refreshPrices,5*60*1000);
+// UPDATED: debounced search
+let _srchT;
+function debouncedFilter(){clearTimeout(_srchT);_srchT=setTimeout(filterHoldings,180);}
+function filterHoldings(){
+  const q=document.getElementById('srch').value.toLowerCase();
+  document.querySelectorAll('.h-row').forEach(r=>r.style.display=r.dataset.q.includes(q)?'':'none');
+}
+
+let _tt;
+function toast(msg,type='ok'){const el=document.getElementById('toast');el.textContent=msg;el.className='show '+type;clearTimeout(_tt);_tt=setTimeout(()=>el.className='',3500);}
+
+// NEW: Loading overlay
+function showLoading(msg='Loading…'){document.getElementById('loadingTxt').textContent=msg;document.getElementById('loadingOverlay').classList.add('visible');}
+function hideLoading(){document.getElementById('loadingOverlay').classList.remove('visible');}
+
+// ══════════════════════════════════════════════════════
+//  INIT — Auto-load from Google Sheet on page load
+// ══════════════════════════════════════════════════════
+(async function init(){
+  console.log('[INIT] Portfolio Dashboard starting…');
+  // NEW: Auto-fetch sheet data on load
+  await loadSheetData(true);
+  setLiveStatus('stale');
+  // Auto-refresh prices every 5 min
+  setInterval(refreshPrices,5*60*1000);
+})();
 </script>
 </body>
 </html>
